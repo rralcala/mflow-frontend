@@ -1,0 +1,67 @@
+import {
+    BooleanField,
+    BooleanInput, 
+    DataTable, 
+    Edit, 
+    EditButton, 
+    List,
+    NumberField, 
+    NumberInput, 
+    Show, 
+    SimpleForm, 
+    SimpleShowLayout, 
+    TextField,
+    TextInput
+ } from 'react-admin';
+
+export const AccountList = () => (
+    <List>
+        <DataTable>
+            <DataTable.Col source="id" />
+            <DataTable.Col source="accountType" />
+            <DataTable.Col source="institution" />
+            <DataTable.Col source="country" />
+            <DataTable.Col source="currency" />
+            
+            <DataTable.NumberCol source="balance" />
+            <DataTable.Col source="liquid">
+                <BooleanField source="liquid" />
+            </DataTable.Col>
+            <DataTable.NumberCol source="factor" />
+            <DataTable.Col>
+                <EditButton />
+            </DataTable.Col>
+        </DataTable>
+    </List>
+);
+
+export const AccountShow = () => (
+    <Show>
+        <SimpleShowLayout>
+            <TextField source="id" />
+            <TextField source="accountType" />
+            <TextField source="country" />
+            <TextField source="institution" />
+            <NumberField source="factor" />
+            <NumberField source="balance" />
+            <TextField source="currency" />
+            <BooleanField source="liquid" />
+        </SimpleShowLayout>
+    </Show>
+);
+
+
+export const AccountEdit = () => (
+    <Edit>
+        <SimpleForm>
+            <TextInput source="id"  InputProps={{ disabled: true }} />
+            <NumberInput source="balance" />
+            <TextInput source="accountType" />
+            <TextInput source="country" />
+            <TextInput source="currency" />
+            <TextInput source="institution" />
+            <NumberInput source="factor" />
+            <BooleanInput source="liquid" />
+        </SimpleForm>
+    </Edit>
+);
