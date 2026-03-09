@@ -15,7 +15,7 @@ import {
  } from 'react-admin';
 
 export const AccountList = () => (
-    <List>
+    <List perPage={25}>
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="accountType" />

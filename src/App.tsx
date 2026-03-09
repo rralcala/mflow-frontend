@@ -1,4 +1,4 @@
-import { Admin, Resource } from "react-admin";
+import { Admin, Resource, ShowGuesser, ListGuesser } from "react-admin";
 import jsonServerProvider from 'ra-data-json-server';
 import { authProvider } from './authProvider';
 import { httpClient } from './httpClient';
@@ -42,5 +42,6 @@ export const App = () => (
       <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} /> {/* This resource is only used for the dashboard, so we don't need to specify list, show, edit, or create components. */}
       <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
+      <Resource name="exchangeRates" list={ListGuesser}  show={ShowGuesser} />
     </Admin>
 );
