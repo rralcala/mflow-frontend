@@ -16,7 +16,12 @@ export const MonthlytransactionList = () => (
             <DataTable.Col source="assetId">
                 <ReferenceField source="assetId" reference="assets" />
             </DataTable.Col>
-            <DataTable.NumberCol source="amount" />
+            <DataTable.NumberCol source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
 
             <DataTable.Col source="currency" />
         </DataTable>
@@ -28,7 +33,12 @@ export const MonthlytransactionShow = () => (
         <SimpleShowLayout>
             <TextField source="yearMonth" />
             <ReferenceField source="assetId" reference="assets" />
-            <NumberField source="amount" />
+            <NumberField source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <TextField source="currency" />
         </SimpleShowLayout>
     </Show>

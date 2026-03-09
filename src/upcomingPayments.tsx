@@ -21,7 +21,12 @@ export const UpcomingpaymentList = () => (
             <DataTable.Col source="assetId">
                 <ReferenceField source="assetId" reference="assets" />
             </DataTable.Col>
-            <DataTable.NumberCol source="amount" />
+            <DataTable.NumberCol source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <DataTable.Col source="currency" />
         </DataTable>
     </List>
@@ -32,7 +37,12 @@ export const UpcomingpaymentShow = () => (
         <SimpleShowLayout>
             <TextField source="country" />
             <ReferenceField source="assetId" reference="assets" />
-            <NumberField source="amount" />
+            <NumberField source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <BooleanField source="capital" />
             <TextField source="currency" />
             <DateField source="date" />

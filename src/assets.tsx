@@ -7,7 +7,12 @@ export const AssetList = () => (
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="type" />
-            <DataTable.NumberCol source="currentValue" />
+            <DataTable.NumberCol source="currentValue" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <DataTable.Col source="currency" />
         </DataTable>
     </List>
@@ -19,7 +24,12 @@ export const AssetShow = () => (
             <TextField source="id"/>
             <TextField source="type" />
             <TextField source="currency" />
-            <NumberField source="currentValue" />
+            <NumberField source="currentValue" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
         </SimpleShowLayout>
     </Show>
 );

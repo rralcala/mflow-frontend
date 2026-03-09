@@ -1,19 +1,24 @@
-import { Admin, Resource, ShowGuesser, ListGuesser } from "react-admin";
+import { Admin, Resource } from "react-admin";
 import jsonServerProvider from 'ra-data-json-server';
+
 import { authProvider } from './authProvider';
 import { httpClient } from './httpClient';
-import { RecurrentList, RecurrentShow, RecurrentEdit, RecurrentCreate } from "./recurrents";
-import { RecurrenttransactionList, RecurrenttransactionShow, RecurrenttransactionEdit, RecurrenttransactionCreate } from "./recurrentTransaction";
+
+import { Dashboard } from "./Dashboard";
 import { AssetList, AssetShow } from "./assets";
 import { AccountShow, AccountList, AccountEdit } from "./accounts";
-
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { Dashboard } from "./Dashboard";
+import { RecurrentList, RecurrentShow, RecurrentEdit, RecurrentCreate } from "./recurrents";
+import { RecurrenttransactionList, RecurrenttransactionShow, RecurrenttransactionEdit, RecurrenttransactionCreate } from "./recurrentTransaction";
 import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
 import { MonthlytransactionList, MonthlytransactionShow } from "./mothlyTransactions";
+import { ExchangerateList } from "./exchangeRates";
+
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DownloadIcon from '@mui/icons-material/Download';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import SavingsIcon from '@mui/icons-material/Savings';
 import UploadIcon from '@mui/icons-material/Upload';
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -27,7 +32,6 @@ export const App = () => (
       authProvider={authProvider}
       dashboard={Dashboard}
       requireAuth >
-      <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
       <Resource name="recurrents" 
         list={RecurrentList} 
         show={RecurrentShow} 
@@ -39,9 +43,10 @@ export const App = () => (
         edit={RecurrenttransactionEdit} 
         create={RecurrenttransactionCreate} 
         icon={ReceiptIcon} />
-      <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
+      <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
+      <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} /> {/* This resource is only used for the dashboard, so we don't need to specify list, show, edit, or create components. */}
       <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
-      <Resource name="exchangeRates" list={ListGuesser}  show={ShowGuesser} />
+      <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
     </Admin>
 );

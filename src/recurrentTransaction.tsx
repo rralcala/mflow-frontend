@@ -43,7 +43,12 @@ export const RecurrenttransactionList = () => (
                 <DateField source="yearMonth" />
             </DataTable.Col>
             <DataTable.Col source="description" />
-            <DataTable.NumberCol source="amount" />
+            <DataTable.NumberCol source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
 
             <DataTable.Col source="transactionDate">
                 <DateField source="transactionDate" />
@@ -68,7 +73,12 @@ export const RecurrenttransactionShow = () => (
             
             <ReferenceField source="paidWithAssetId" reference="assets" />
             
-            <NumberField source="amount" />
+            <NumberField source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <TextField source="id" />
             
         </SimpleShowLayout>

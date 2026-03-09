@@ -71,8 +71,12 @@ export const CardWithIcon = ({ icon, title, subtitle, to, children }: Props) => 
                     <Typography variant="h5" component="h2">
                         <Stack spacing={1} direction="row"> 
                             <span>
-                        <NumberField source="amount"
-                        /> </span>
+                        <NumberField source="amount"  options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/> </span>
                         <span>
                         <TextField source="currency"
                         />

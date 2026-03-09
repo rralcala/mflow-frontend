@@ -27,7 +27,12 @@ export const RecurrentList = () => (
                 <ReferenceField source="assetId" reference="assets" link="show"/>
             </DataTable.Col>
             <DataTable.Col source="country" />
-            <DataTable.NumberCol source="amount" />
+            <DataTable.NumberCol source="amount"  options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <DataTable.Col source="currency" />
             <DataTable.Col source="start">
                 <DateField source="start" />
@@ -35,7 +40,12 @@ export const RecurrentList = () => (
             <DataTable.Col source="end">
                 <DateField source="end" />
             </DataTable.Col>
-            <DataTable.NumberCol source="rate" />
+            <DataTable.NumberCol source="rate" options={{
+                    style: 'percent',
+                    useGrouping: true,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                }}/>
             <DataTable.Col source="recurrence" />
             <DataTable.Col>
                <EditButton />
@@ -50,13 +60,23 @@ export const RecurrentShow = () => (
             <TextField source="id" />
             <TextField source="flowClass" />
             <TextField source="country" />
-            <NumberField source="amount" />
+            <NumberField source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <TextField source="currency" />
             <ReferenceField source="assetId" reference="assets" />
             <DateField source="start" />
             <DateField source="end" />
             <TextField source="recurrence" />
-            <NumberField source="rate" />
+            <NumberField source="rate" options={{
+                    style: 'percent',
+                    useGrouping: true,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                }}/>
         </SimpleShowLayout>
     </Show>
 );
