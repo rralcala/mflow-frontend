@@ -21,7 +21,7 @@ export const AccountList = () => (
             <DataTable.Col source="accountType" />
             <DataTable.Col source="institution" />
             <DataTable.Col source="country" />
-            <DataTable.Col source="currency" />
+            
             
             <DataTable.NumberCol source="balance" options={{
                     style: 'decimal',
@@ -29,6 +29,7 @@ export const AccountList = () => (
                     maximumFractionDigits: 0,
                     minimumFractionDigits: 0,
                 }}/>
+            <DataTable.Col source="currency" />
             <DataTable.Col source="liquid">
                 <BooleanField source="liquid" />
             </DataTable.Col>
