@@ -28,7 +28,7 @@ const postDefaultValue = () => {
 
 export const RecurrenttransactionList = () => (
     <List>
-   <DataTable rowClick={false}>
+   <DataTable>
      <DataTable.Col source="id" />
             <DataTable.Col source="createDate">
                 <DateField source="createDate" />
