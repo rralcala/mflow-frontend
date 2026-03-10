@@ -23,7 +23,12 @@ export const AccountList = () => (
             <DataTable.Col source="country" />
             <DataTable.Col source="currency" />
             
-            <DataTable.NumberCol source="balance" />
+            <DataTable.NumberCol source="balance" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
             <DataTable.Col source="liquid">
                 <BooleanField source="liquid" />
             </DataTable.Col>
