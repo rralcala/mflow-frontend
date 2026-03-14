@@ -26,10 +26,14 @@ const postDefaultValue = () => {
     };
 };
 
+const postFilters = [
+    <ReferenceInput source="recurrentId" label="Recurrent" reference="recurrents" />,
+];
+
 export const RecurrenttransactionList = () => (
-    <List>
-   <DataTable>
-     <DataTable.Col source="id" />
+    <List filters={postFilters}>
+        <DataTable>
+            <DataTable.Col source="id" />
             <DataTable.Col source="createDate">
                 <DateField source="createDate" />
             </DataTable.Col>

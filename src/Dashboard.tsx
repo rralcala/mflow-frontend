@@ -26,17 +26,10 @@ export const Dashboard = () => {
     return (
 
         <Stack spacing={1}>
-
             <Card>
                 <CardHeader title="Welcome mFlow" />
                 <CardContent>Here's a summary of key budgets:</CardContent>
             </Card>
-            <CardWithIcon
-                to="/recurrentTransactions"
-                icon={DollarIcon}
-                title={`Remaining fixed for ${year}-${month}`}
-                subtitle={data}
-            />
             <CardWithIcon
                 to="/recurrentTransactions"
                 icon={DollarIcon}
@@ -49,7 +42,12 @@ export const Dashboard = () => {
                 title={`Remaining groceries for ${year}-${month}`}
                 subtitle={dataS}
             />
-
+            <CardWithIcon
+                to="/recurrentTransactions"
+                icon={DollarIcon}
+                title={`Remaining fixed for ${year}-${month}`}
+                subtitle={data}
+            />
        </Stack>
     );
 };
