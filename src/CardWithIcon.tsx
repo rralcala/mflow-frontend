@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { FC, createElement, ReactNode } from 'react';
-import { Card, Box, Typography, Divider } from '@mui/material';
+import { Card, Box, Typography } from '@mui/material';
 import { Link, To } from 'react-router-dom';
 import { NumberField, RecordContextProvider, TextField } from 'react-admin';
 import { Stack } from '@mui/material';
@@ -13,7 +12,7 @@ interface Props {
     children?: ReactNode;
 }
 
-export const CardWithIcon = ({ icon, title, subtitle, to, children }: Props) => (
+export const CardWithIcon = ({ icon, title, subtitle, to }: Props) => (
     <Card
         sx={{
             minHeight: 52,
@@ -68,27 +67,21 @@ export const CardWithIcon = ({ icon, title, subtitle, to, children }: Props) => 
                 >
                     <Typography color="textSecondary">{title}</Typography>
                     <RecordContextProvider value={subtitle}>
-                    <Typography variant="h5" component="h2">
-                        <Stack spacing={1} direction="row"> 
-                            <span>
-                        <NumberField source="amount"  options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }}/> </span>
-                        <span>
-                        <TextField source="currency"
-                        />
-                        </span>
-                        </Stack>
-                    </Typography>
+                        <Typography variant="h5" component="h2">
+                            <Stack direction="row" justifyContent="flex-end" alignItems="left" spacing={1}>
+                                <NumberField source="amount" transform={v =>-v} options={{
+                                    style: 'decimal',
+                                    useGrouping: true,
+                                    maximumFractionDigits: 0,
+                                    minimumFractionDigits: 0,
+                                }}/>
+                                <TextField source="currency"/>
+                            </Stack>
+                        </Typography>
                     </RecordContextProvider>
                 </Box>
             </Box>
         </Link>
-        {children && <Divider />}
-        {children}
     </Card>
 );
 
