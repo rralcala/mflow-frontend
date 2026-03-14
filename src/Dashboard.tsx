@@ -13,34 +13,39 @@ export const Dashboard = () => {
 
     const { data: dataD, isLoading: isLoadingD, error: errorD } = useGetOne('monthlyTransactions', { id: '2026-03-Discretionary' });
   
-    if (isLoading || isLoadingD) return <Card><CardContent>Loading...</CardContent></Card>;
-    if (error || errorD) return <Card><CardContent>Error loading data</CardContent></Card>;
+    
+    const { data: dataS, isLoading: isLoadingS, error: errorS } = useGetOne('monthlyTransactions', { id: '2026-03-Supermercado' });
+  
+    if (isLoading || isLoadingD || isLoadingS) return <Card><CardContent>Loading...</CardContent></Card>;
+    if (error || errorD || errorS) return <Card><CardContent>Error loading data</CardContent></Card>;
 
     return (
 
         <Stack spacing={1}>
-            <span>
-                <Card>
-                    <CardHeader title="Welcome mFlow" />
-                    <CardContent>Here's a summary of key budgets:</CardContent>
-                </Card>
-            </span>
-            <span>
-                <CardWithIcon
-                    to="/recurrentTransactions"
-                    icon={DollarIcon}
-                    title="Remaining fixed"
-                    subtitle={data}
-                />
-            </span>
-            <span>
-                <CardWithIcon
-                    to="/recurrentTransactions"
-                    icon={DollarIcon}
-                    title="Remaining discretionary"
-                    subtitle={dataD}
-                />
-            </span>
+
+            <Card>
+                <CardHeader title="Welcome mFlow" />
+                <CardContent>Here's a summary of key budgets:</CardContent>
+            </Card>
+            <CardWithIcon
+                to="/recurrentTransactions"
+                icon={DollarIcon}
+                title="Remaining fixed"
+                subtitle={data}
+            />
+            <CardWithIcon
+                to="/recurrentTransactions"
+                icon={DollarIcon}
+                title="Remaining discretionary"
+                subtitle={dataD}
+            />
+            <CardWithIcon
+                to="/recurrentTransactions"
+                icon={DollarIcon}
+                title="Remaining groceries"
+                subtitle={dataS}
+            />
+
        </Stack>
     );
 };
