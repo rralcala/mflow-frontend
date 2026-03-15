@@ -30,6 +30,7 @@ export const AssetShow = () => (
                     maximumFractionDigits: 0,
                     minimumFractionDigits: 0,
                 }}/>
+            <TextField source="details" />
         </SimpleShowLayout>
     </Show>
 );
