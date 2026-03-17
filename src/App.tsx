@@ -1,4 +1,4 @@
-import { Admin, Resource } from "react-admin";
+import { Admin, Resource, CustomRoutes } from "react-admin";
 import jsonServerProvider from 'ra-data-json-server';
 
 import { authProvider } from './authProvider';
@@ -12,6 +12,7 @@ import { RecurrenttransactionList, RecurrenttransactionShow, Recurrenttransactio
 import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
 import { MonthlytransactionList, MonthlytransactionShow } from "./mothlyTransactions";
 import { ExchangerateList } from "./exchangeRates";
+import { DashboardCashFlow } from "./DashboardCashFlow";
 
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -20,6 +21,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import SavingsIcon from '@mui/icons-material/Savings';
 import UploadIcon from '@mui/icons-material/Upload';
+import { Route } from "react-router";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -48,5 +50,9 @@ export const App = () => (
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} /> {/* This resource is only used for the dashboard, so we don't need to specify list, show, edit, or create components. */}
       <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
       <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
+      <CustomRoutes>
+        <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
+    </CustomRoutes>
+
     </Admin>
 );

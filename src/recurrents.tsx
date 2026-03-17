@@ -102,6 +102,7 @@ export const RecurrentEdit = () => (
 export const RecurrentCreate = () => (
     <Create>
         <SimpleForm>
+            <TextInput source="id"/>
             <TextInput source="country" />
             <TextInput source="flowClass" />
             <NumberInput source="amount" />
