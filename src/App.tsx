@@ -25,6 +25,8 @@ import { Route } from "react-router";
 import { BondList } from "./bonds";
 import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
 import { InstrumentEdit, InstrumentList, InstrumentShow } from "./instruments";
+import { DepositCertificateList } from "./depositCertificates";
+import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -53,6 +55,8 @@ export const App = () => (
       <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} />
       <Resource name="bonds" list={BondList} show={ShowGuesser} icon={AccountBalanceIcon} />
       <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={AccountBalanceIcon} />
+      <Resource name="depositCertificates" list={DepositCertificateList} show={ShowGuesser} icon={AccountBalanceIcon} />
+      <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={AccountBalanceIcon} />
       <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit}  icon={AccountBalanceIcon} />
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
       <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} />
