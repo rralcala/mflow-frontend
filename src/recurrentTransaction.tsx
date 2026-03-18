@@ -33,18 +33,8 @@ const postFilters = [
 export const RecurrenttransactionList = () => (
     <List filters={postFilters}>
         <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="createDate">
-                <DateField source="createDate" />
-            </DataTable.Col>
             <DataTable.Col source="recurrentId">
                 <ReferenceField source="recurrentId" reference="recurrents" />
-            </DataTable.Col>
-            <DataTable.Col source="paidWithAssetId">
-                <ReferenceField source="paidWithAssetId" reference="assets" />
-            </DataTable.Col>
-            <DataTable.Col source="yearMonth">
-                <DateField source="yearMonth" />
             </DataTable.Col>
             <DataTable.Col source="description" />
             <DataTable.NumberCol source="amount" options={{
@@ -53,11 +43,19 @@ export const RecurrenttransactionList = () => (
                     maximumFractionDigits: 0,
                     minimumFractionDigits: 0,
                 }}/>
-
+             <DataTable.Col source="paidWithAssetId">
+                <ReferenceField source="paidWithAssetId" reference="assets" />
+            </DataTable.Col>
             <DataTable.Col source="transactionDate">
                 <DateField source="transactionDate" />
             </DataTable.Col>
-            
+            <DataTable.Col source="yearMonth">
+                <DateField source="yearMonth" />
+            </DataTable.Col>
+            <DataTable.Col source="createDate">
+                <DateField source="createDate" />
+            </DataTable.Col>
+            <DataTable.Col source="id" />
             <DataTable.Col>
                <EditButton />
             </DataTable.Col>
