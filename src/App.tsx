@@ -1,4 +1,4 @@
-import { Admin, Resource, CustomRoutes, ListGuesser, EditGuesser, ShowGuesser } from "react-admin";
+import { Admin, Resource, CustomRoutes } from "react-admin";
 import jsonServerProvider from 'ra-data-json-server';
 
 import { authProvider } from './authProvider';
@@ -22,10 +22,10 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import SavingsIcon from '@mui/icons-material/Savings';
 import UploadIcon from '@mui/icons-material/Upload';
 import { Route } from "react-router";
-import { BondList } from "./bonds";
+import { BondList, BondShow } from "./bonds";
 import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
 import { InstrumentEdit, InstrumentList, InstrumentShow } from "./instruments";
-import { DepositCertificateList } from "./depositCertificates";
+import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
 import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -53,9 +53,9 @@ export const App = () => (
 
       <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
       <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} />
-      <Resource name="bonds" list={BondList} show={ShowGuesser} icon={AccountBalanceIcon} />
+      <Resource name="bonds" list={BondList} show={BondShow} icon={AccountBalanceIcon} />
       <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={AccountBalanceIcon} />
-      <Resource name="depositCertificates" list={DepositCertificateList} show={ShowGuesser} icon={AccountBalanceIcon} />
+      <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={AccountBalanceIcon} />
       <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={AccountBalanceIcon} />
       <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit}  icon={AccountBalanceIcon} />
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
