@@ -22,11 +22,6 @@ export const RecurrentList = () => (
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="flowClass" />
-            
-            <DataTable.Col source="assetId">
-                <ReferenceField source="assetId" reference="assets" link="show"/>
-            </DataTable.Col>
-            <DataTable.Col source="country" />
             <DataTable.NumberCol source="amount"  options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -37,6 +32,7 @@ export const RecurrentList = () => (
             <DataTable.Col source="start">
                 <DateField source="start" />
             </DataTable.Col>
+            <DataTable.Col source="recurrence" />
             <DataTable.Col source="end">
                 <DateField source="end" />
             </DataTable.Col>
@@ -46,7 +42,11 @@ export const RecurrentList = () => (
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                 }}/>
-            <DataTable.Col source="recurrence" />
+            <DataTable.Col source="country" />
+            <DataTable.Col source="assetId">
+                <ReferenceField source="assetId" reference="assets" link="show"/>
+            </DataTable.Col>
+            
             <DataTable.Col>
                <EditButton />
             </DataTable.Col>
