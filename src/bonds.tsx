@@ -19,7 +19,7 @@ export const BondList = () => (
             </DataTable.Col>
             <DataTable.Col source="entity" />
             <DataTable.Col source="country" />
-            <DataTable.Col source="id" />
+
         </DataTable>
     </List>
 );

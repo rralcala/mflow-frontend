@@ -35,7 +35,6 @@ export const BondscheduleList = () => (
                 <BooleanField source="paid" />
             </DataTable.Col>
 
-            <DataTable.Col source="id" />
         </DataTable>
     </List>
 );

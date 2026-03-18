@@ -1,4 +1,4 @@
-import { Admin, Resource, CustomRoutes, EditGuesser, ShowGuesser } from "react-admin";
+import { Admin, Resource, CustomRoutes, ListGuesser, EditGuesser, ShowGuesser } from "react-admin";
 import jsonServerProvider from 'ra-data-json-server';
 
 import { authProvider } from './authProvider';
@@ -24,6 +24,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 import { Route } from "react-router";
 import { BondList } from "./bonds";
 import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
+import { InstrumentEdit, InstrumentList, InstrumentShow } from "./instruments";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -47,12 +48,14 @@ export const App = () => (
         edit={RecurrenttransactionEdit} 
         create={RecurrenttransactionCreate} 
         icon={ReceiptIcon} />
+
+      <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
+      <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} />
       <Resource name="bonds" list={BondList} show={ShowGuesser} icon={AccountBalanceIcon} />
       <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={AccountBalanceIcon} />
-      <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
-      <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
-      <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} /> {/* This resource is only used for the dashboard, so we don't need to specify list, show, edit, or create components. */}
-      <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} /> {/* Assuming you have a users resource, you can use ListGuesser for it. */}
+      <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit}  icon={AccountBalanceIcon} />
+      <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
+      <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} />
       <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
       <CustomRoutes>
         <Route path="/dashboard-cf" element={<DashboardCashFlow />} />

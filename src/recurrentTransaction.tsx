@@ -55,7 +55,7 @@ export const RecurrenttransactionList = () => (
             <DataTable.Col source="createDate">
                 <DateField source="createDate" />
             </DataTable.Col>
-            <DataTable.Col source="id" />
+
             <DataTable.Col>
                <EditButton />
             </DataTable.Col>
