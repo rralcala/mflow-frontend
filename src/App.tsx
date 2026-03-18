@@ -21,6 +21,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import SavingsIcon from '@mui/icons-material/Savings';
 import UploadIcon from '@mui/icons-material/Upload';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import { Route } from "react-router";
 import { BondList, BondShow } from "./bonds";
 import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
@@ -53,10 +54,10 @@ export const App = () => (
 
       <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
       <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} />
-      <Resource name="bonds" list={BondList} show={BondShow} icon={AccountBalanceIcon} />
-      <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={AccountBalanceIcon} />
-      <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={AccountBalanceIcon} />
-      <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={AccountBalanceIcon} />
+      <Resource name="bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
+      <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={RequestQuoteIcon} />
+      <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
+      <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={RequestQuoteIcon} />
       <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit}  icon={AccountBalanceIcon} />
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
       <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} />
