@@ -1,7 +1,20 @@
 import { 
-    BooleanField, DataTable, DateField, EditButton, List,
-    NumberField, Show, SimpleShowLayout, TextField,
-    BooleanInput, DateInput, Edit, NumberInput, SimpleForm, TextInput
+    BooleanField, 
+    BooleanInput, 
+    Create, 
+    DataTable, 
+    DateField, 
+    DateInput, 
+    Edit, 
+    EditButton, 
+    List,
+    NumberField, 
+    NumberInput, 
+    Show, 
+    SimpleForm, 
+    SimpleShowLayout, 
+    TextField,
+    TextInput
  } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
@@ -66,7 +79,7 @@ export const PayableEdit = () => (
 
 
 export const PayableCreate = () => (
-    <Edit>
+    <Create>
         <SimpleForm>
             <TextInput source="country" />
             <TextInput source="description" />
@@ -74,7 +87,6 @@ export const PayableCreate = () => (
             <TextInput source="currency" />
             <DateInput source="dueDate" />
             <BooleanInput source="commited" />
-            <TextInput source="id"  InputProps={{ disabled: true }}/>
         </SimpleForm>
-    </Edit>
+    </Create>
 );
