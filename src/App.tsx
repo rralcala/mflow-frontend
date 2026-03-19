@@ -1,4 +1,4 @@
-import { Admin, Resource, CustomRoutes } from "react-admin";
+import { Admin, Resource, CustomRoutes, ShowGuesser, ListGuesser, EditGuesser } from "react-admin";
 import jsonServerProvider from 'ra-data-json-server';
 
 import { authProvider } from './authProvider';
@@ -28,6 +28,7 @@ import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSche
 import { InstrumentEdit, InstrumentList, InstrumentShow } from "./instruments";
 import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
 import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
+import { PayableList, PayableShow, PayableEdit } from "./payables";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -59,6 +60,8 @@ export const App = () => (
       <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
       <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={RequestQuoteIcon} />
       <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit}  icon={AccountBalanceIcon} />
+      <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit}  icon={AccountBalanceIcon} />
+      
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
       <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} />
       <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
