@@ -63,3 +63,18 @@ export const PayableEdit = () => (
         </SimpleForm>
     </Edit>
 );
+
+
+export const PayableCreate = () => (
+    <Edit>
+        <SimpleForm>
+            <TextInput source="country" />
+            <TextInput source="description" />
+            <NumberInput source="amount" />
+            <TextInput source="currency" />
+            <DateInput source="dueDate" />
+            <BooleanInput source="commited" />
+            <TextInput source="id"  InputProps={{ disabled: true }}/>
+        </SimpleForm>
+    </Edit>
+);
