@@ -28,6 +28,7 @@ export const PayableList = () => (
             </DataTable.Col>
 
             <DataTable.NumberCol source="amount" />
+            <DataTable.NumberCol source="balance" />
             <DataTable.Col source="currency" />
 
             <DataTable.Col source="commited">
@@ -56,6 +57,16 @@ export const PayableShow = () => (
                 }}/>
                 <TextField source="currency" />
             </Stack>
+            <Typography color="textSecondary">{'Balance'}</Typography>
+            <Stack direction="row" alignItems="left" spacing={1}>
+                <NumberField source="balance" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}/>
+                <TextField source="currency" />
+            </Stack>
             <TextField source="country" />
             <BooleanField source="commited" />
         </SimpleShowLayout>
@@ -69,6 +80,7 @@ export const PayableEdit = () => (
             <TextInput source="country" />
             <TextInput source="description" />
             <NumberInput source="amount" />
+            <NumberInput source="balance" />
             <TextInput source="currency" />
             <DateInput source="dueDate" />
             <BooleanInput source="commited" />
@@ -84,6 +96,7 @@ export const PayableCreate = () => (
             <TextInput source="country" />
             <TextInput source="description" />
             <NumberInput source="amount" />
+            <NumberInput source="balance" />
             <TextInput source="currency" />
             <DateInput source="dueDate" />
             <BooleanInput source="commited" />
