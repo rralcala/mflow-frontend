@@ -25,7 +25,7 @@ import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import { Route } from "react-router";
 import { BondList, BondShow } from "./bonds";
 import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
-import { InstrumentEdit, InstrumentList, InstrumentShow } from "./instruments";
+import { InstrumentEdit, InstrumentList, InstrumentShow, InstrumentCreate } from "./instruments";
 import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
 import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
 import { PayableList, PayableShow, PayableEdit, PayableCreate } from "./payables";
@@ -59,7 +59,7 @@ export const App = () => (
       <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={RequestQuoteIcon} />
       <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
       <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={RequestQuoteIcon} />
-      <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit}  icon={AccountBalanceIcon} />
+      <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={AccountBalanceIcon} />
       <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={AccountBalanceIcon} />
       
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
