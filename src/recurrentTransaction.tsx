@@ -95,7 +95,7 @@ export const RecurrenttransactionEdit = () => (
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets" />
+            <ReferenceInput source="paidWithAssetId" reference="assets"  filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
             <TextInput source="id" InputProps={{ disabled: true }} />
             <DateInput source="createDate"  InputProps={{ disabled: true }} />
         </SimpleForm>
@@ -111,7 +111,7 @@ export const RecurrenttransactionCreate = () => (
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets" />
+            <ReferenceInput source="paidWithAssetId" reference="assets"  filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
         </SimpleForm>
     </Create>
 );

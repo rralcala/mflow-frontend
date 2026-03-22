@@ -1,4 +1,4 @@
-import { DataTable, List, NumberField, Pagination, Show, SimpleShowLayout, TextField  } from 'react-admin';
+import { BooleanField, DataTable, List, NumberField, Pagination, Show, SimpleShowLayout, TextField  } from 'react-admin';
 
 const PostPagination = () => <Pagination rowsPerPageOptions={[10, 25, 50, 100, 200]} />;
 
@@ -14,6 +14,9 @@ export const AssetList = () => (
                     minimumFractionDigits: 0,
                 }}/>
             <DataTable.Col source="currency" />
+            <DataTable.Col source="liquid">
+                <BooleanField source="liquid" />
+            </DataTable.Col>
         </DataTable>
     </List>
 );
@@ -30,6 +33,7 @@ export const AssetShow = () => (
                     maximumFractionDigits: 0,
                     minimumFractionDigits: 0,
                 }}/>
+            <BooleanField source="liquid" />
             <TextField source="details" />
         </SimpleShowLayout>
     </Show>
