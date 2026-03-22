@@ -37,6 +37,7 @@ export const PayableList = () => (
             <DataTable.Col source="oneOff">
                 <BooleanField source="oneOff" />
             </DataTable.Col>
+            <DataTable.Col source="flowClass" />
             <DataTable.Col>
                 <EditButton />
             </DataTable.Col>
@@ -73,6 +74,7 @@ export const PayableShow = () => (
             <TextField source="country" />
             <BooleanField source="commited" />
             <BooleanField source="oneOff" />
+            <TextField source="flowClass" />
         </SimpleShowLayout>
     </Show>
 );
@@ -89,7 +91,7 @@ export const PayableEdit = () => (
             <DateInput source="dueDate" />
             <BooleanInput source="commited" />
             <BooleanInput source="oneOff" />
-
+            <TextInput source="flowClass" />
             <TextInput source="id"  InputProps={{ disabled: true }}/>
         </SimpleForm>
     </Edit>
@@ -107,6 +109,7 @@ export const PayableCreate = () => (
             <DateInput source="dueDate" />
             <BooleanInput source="commited" />
             <BooleanInput source="oneOff" />
+            <TextInput source="flowClass" />
         </SimpleForm>
     </Create>
 );
