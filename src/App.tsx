@@ -6,22 +6,22 @@ import { authProvider } from './authProvider';
 import { httpClient } from './httpClient';
 
 import { Dashboard } from "./Dashboard";
+import { Layout } from "./layout";
+
+import { AccountShow, AccountList, AccountEdit, AccountCreate } from "./accounts";
 import { AssetList, AssetShow } from "./assets";
-import { AccountShow, AccountList, AccountEdit } from "./accounts";
+import { BondList, BondShow } from "./bonds";
+import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
+import { DashboardCashFlow } from "./DashboardCashFlow";
+import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
+import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
+import { ExchangerateList } from "./exchangeRates";
+import { InstrumentEdit, InstrumentList, InstrumentShow, InstrumentCreate } from "./instruments";
+import { MonthlytransactionList, MonthlytransactionShow } from "./mothlyTransactions";
+import { PayableList, PayableShow, PayableEdit, PayableCreate } from "./payables";
 import { RecurrentList, RecurrentShow, RecurrentEdit, RecurrentCreate } from "./recurrents";
 import { RecurrenttransactionList, RecurrenttransactionShow, RecurrenttransactionEdit, RecurrenttransactionCreate } from "./recurrentTransaction";
 import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
-import { MonthlytransactionList, MonthlytransactionShow } from "./mothlyTransactions";
-import { ExchangerateList } from "./exchangeRates";
-import { DashboardCashFlow } from "./DashboardCashFlow";
-import { BondList, BondShow } from "./bonds";
-import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
-import { InstrumentEdit, InstrumentList, InstrumentShow, InstrumentCreate } from "./instruments";
-import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
-import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
-import { PayableList, PayableShow, PayableEdit, PayableCreate } from "./payables";
-
-import { Layout } from "./layout";
 
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
@@ -61,7 +61,7 @@ export const App = () => (
       <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />
       
       <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
-      <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} />
+      <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} create={AccountCreate} icon={SavingsIcon} />
       <Resource name="bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
       <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={ChecklistIcon} />
       <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />

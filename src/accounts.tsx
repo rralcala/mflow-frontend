@@ -1,15 +1,16 @@
 import {
     BooleanField,
-    BooleanInput, 
-    DataTable, 
-    Edit, 
-    EditButton, 
+    BooleanInput,
+    Create,
+    DataTable,
+    Edit,
+    EditButton,
     List,
-    NumberField, 
-    NumberInput, 
-    Show, 
-    SimpleForm, 
-    SimpleShowLayout, 
+    NumberField,
+    NumberInput,
+    Show,
+    SimpleForm,
+    SimpleShowLayout,
     TextField,
     TextInput
  } from 'react-admin';
@@ -70,4 +71,20 @@ export const AccountEdit = () => (
             <BooleanInput source="liquid" />
         </SimpleForm>
     </Edit>
+);
+
+
+export const AccountCreate = () => (
+    <Create>
+        <SimpleForm>
+            <TextInput source="id"/>
+            <TextInput source="country" />
+            <TextInput source="institution" />
+            <TextInput source="accountType" />
+            <TextInput source="currency" />
+            <NumberInput source="factor" />
+            <NumberInput source="balance" />
+            <BooleanInput source="liquid" />
+        </SimpleForm>
+    </Create>
 );
