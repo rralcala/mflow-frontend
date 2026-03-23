@@ -19,10 +19,6 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 type MenuName = 'menuCD' | 'menuBonds' | 'menuReports';
 
 
-
-
-
-
 const Menu = ({ dense = false }: MenuProps) => {
     const [state, setState] = useState({
         menuCD: true,
@@ -75,6 +71,20 @@ const Menu = ({ dense = false }: MenuProps) => {
                 leftIcon={createElement(resources["payables"].icon)}
                 dense={dense}
             />
+            <MenuItemLink
+                to="/assets"
+                state={{ _scrollToTop: true }}
+                primaryText={"Assets"}
+                leftIcon={createElement(resources["assets"].icon)}
+                dense={dense}
+            />
+            <MenuItemLink
+                to="/accounts"
+                state={{ _scrollToTop: true }}
+                primaryText={"Accounts"}
+                leftIcon={createElement(resources["accounts"].icon)}
+                dense={dense}
+            />
             <SubMenu
                 handleToggle={() => handleToggle('menuBonds')}
                 isOpen={state.menuBonds}
@@ -119,6 +129,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
             </SubMenu>
+            <MenuItemLink
+                to="/instruments"
+                state={{ _scrollToTop: true }}
+                primaryText={"Instruments"}
+                leftIcon={createElement(resources["instruments"].icon)}
+                dense={dense}
+            />
             <SubMenu
                 handleToggle={() => handleToggle('menuReports')}
                 isOpen={state.menuReports}
@@ -148,27 +165,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
             </SubMenu>
-            <MenuItemLink
-                to="/accounts"
-                state={{ _scrollToTop: true }}
-                primaryText={"Accounts"}
-                leftIcon={createElement(resources["accounts"].icon)}
-                dense={dense}
-            />
-            <MenuItemLink
-                to="/assets"
-                state={{ _scrollToTop: true }}
-                primaryText={"Assets"}
-                leftIcon={createElement(resources["assets"].icon)}
-                dense={dense}
-            />
-            <MenuItemLink
-                to="/instruments"
-                state={{ _scrollToTop: true }}
-                primaryText={"Instruments"}
-                leftIcon={createElement(resources["instruments"].icon)}
-                dense={dense}
-            />
+
         </Box>
     );
 };
