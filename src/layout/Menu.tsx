@@ -111,7 +111,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                 <MenuItemLink
                     to="/bondSchedules"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Bond Schedules"}
+                    primaryText={"Interest Schedules"}
                     leftIcon={createElement(resources["bondSchedules"].icon)}
                     dense={dense}
                 />
