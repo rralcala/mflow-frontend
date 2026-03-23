@@ -52,7 +52,8 @@ export const App = () => (
         edit={RecurrenttransactionEdit} 
         create={RecurrenttransactionCreate} 
         icon={ReceiptIcon} />
-
+      <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />
+      
       <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
       <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} icon={SavingsIcon} />
       <Resource name="bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
@@ -60,7 +61,6 @@ export const App = () => (
       <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
       <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={RequestQuoteIcon} />
       <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={AccountBalanceIcon} />
-      <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={AccountBalanceIcon} />
       
       <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
       <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} />
