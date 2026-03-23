@@ -16,7 +16,7 @@ import SubMenu from './SubMenu';
 import BarChartIcon from '@mui/icons-material/BarChart';
 
 
-type MenuName = 'menuCD' | 'menuBonds' | 'menuReports';
+type MenuName = 'menuCD' | 'menuBonds' | 'menuReports' | 'menuAssets';
 
 
 const Menu = ({ dense = false }: MenuProps) => {
@@ -24,6 +24,7 @@ const Menu = ({ dense = false }: MenuProps) => {
         menuCD: true,
         menuBonds: true,
         menuReports: true,
+        menuAssets: true,
     });
     const resources = useResourceDefinitions();
     const [open] = useSidebarState();
@@ -71,6 +72,14 @@ const Menu = ({ dense = false }: MenuProps) => {
                 leftIcon={createElement(resources["payables"].icon)}
                 dense={dense}
             />
+
+            <SubMenu
+                handleToggle={() => handleToggle('menuAssets')}
+                isOpen={state.menuAssets}
+                name="Assets"
+                icon={createElement(resources["assets"].icon)}
+                dense={dense}
+            >
             <MenuItemLink
                 to="/assets"
                 state={{ _scrollToTop: true }}
@@ -136,6 +145,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                 leftIcon={createElement(resources["instruments"].icon)}
                 dense={dense}
             />
+            </SubMenu>
             <SubMenu
                 handleToggle={() => handleToggle('menuReports')}
                 isOpen={state.menuReports}
