@@ -17,6 +17,7 @@ import {
     TextField,
     TextInput
 } from 'react-admin';
+import { Stack, Typography } from '@mui/material';
 
 const postFilters = [
        <SelectInput label="Flow Class" source="flowClass" choices={[
@@ -71,13 +72,16 @@ export const RecurrentShow = () => (
             <TextField source="id" />
             <TextField source="flowClass" />
             <TextField source="country" />
-            <NumberField source="amount" options={{
+            <Typography color="textSecondary">{'Value'}</Typography>
+            <Stack direction="row" alignItems="left" spacing={1}>
+                <NumberField source="amount" options={{
                     style: 'decimal',
                     useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
                 }}/>
-            <TextField source="currency" />
+                <TextField source="currency" />
+            </Stack>
             <ReferenceField source="assetId" reference="assets" />
             <DateField source="start" />
             <DateField source="end" />

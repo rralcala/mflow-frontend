@@ -88,8 +88,8 @@ export const InstrumentShow = () => (
                 <NumberField source="value" options={{
                     style: 'decimal',
                     useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
                 }}/>
                 <TextField source="currency" />
             </Stack>

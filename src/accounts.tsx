@@ -14,6 +14,7 @@ import {
     TextField,
     TextInput
  } from 'react-admin';
+import { Stack, Typography } from '@mui/material';
 
 export const AccountList = () => (
     <List perPage={25}>
@@ -49,9 +50,17 @@ export const AccountShow = () => (
             <TextField source="accountType" />
             <TextField source="country" />
             <TextField source="institution" />
-            <NumberField source="factor" />
-            <NumberField source="balance" />
-            <TextField source="currency" />
+            <NumberField source="factor"/>
+            <Typography color="textSecondary">{'Value'}</Typography>
+            <Stack direction="row" alignItems="left" spacing={1}>
+                <NumberField source="balance" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                }}/>
+                <TextField source="currency" />
+            </Stack>
             <BooleanField source="liquid" />
         </SimpleShowLayout>
     </Show>

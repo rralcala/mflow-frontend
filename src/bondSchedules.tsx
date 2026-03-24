@@ -44,7 +44,12 @@ export const BondscheduleShow = () => (
         <SimpleShowLayout>
             <ReferenceField source="bondId" reference="bonds" />
             <DateField source="transactionDate" />
-            <NumberField source="amount" />
+            <NumberField source="amount" options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                }}/>
             <BooleanField source="paid" />
             <TextField source="id" />
         </SimpleShowLayout>

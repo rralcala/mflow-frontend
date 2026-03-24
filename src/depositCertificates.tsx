@@ -35,8 +35,8 @@ export const DepositCertificateShow = () => (
                 <NumberField source="capital" options={{
                     style: 'decimal',
                     useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
                 }}/>
                 <TextField source="currency" />
             </Stack>

@@ -78,8 +78,8 @@ export const RecurrenttransactionShow = () => (
             <NumberField source="amount" options={{
                     style: 'decimal',
                     useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
                 }}/>
             <TextField source="id" />
             
