@@ -1,21 +1,22 @@
-import { 
+import {
     BooleanField,
-    BooleanInput, 
-    DataTable, 
-    DateField, 
-    DateInput, 
-    Edit, 
-    List, 
-    NumberField, 
-    NumberInput, 
+    BooleanInput,
+    DataTable,
+    DateField,
+    DateInput,
+    Edit,
+    EditButton,
+    List,
+    NumberField,
+    NumberInput,
     ReferenceField,
-    ReferenceInput, 
-    Show, 
-    SimpleForm, 
-    SimpleShowLayout, 
+    ReferenceInput,
+    Show,
+    SimpleForm,
+    SimpleShowLayout,
     TextField,
     TextInput
- } from 'react-admin';
+} from 'react-admin';
 
 const postFilters = [
     <ReferenceInput source="depositCertificateId" label="Deposit Certificate" reference="depositCertificates" />,
@@ -34,7 +35,9 @@ export const DepositCertificateSchedulesList = () => (
             <DataTable.Col source="paid">
                 <BooleanField source="paid" />
             </DataTable.Col>
-
+            <DataTable.Col>
+                <EditButton />
+            </DataTable.Col>
         </DataTable>
     </List>
 );
@@ -45,11 +48,11 @@ export const DepositCertificateScheduleShow = () => (
             <ReferenceField source="depositCertificateId" reference="depositCertificates" />
             <DateField source="transactionDate" />
             <NumberField source="amount" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
             <BooleanField source="paid" />
             <TextField source="id" />
         </SimpleShowLayout>
@@ -59,11 +62,11 @@ export const DepositCertificateScheduleShow = () => (
 export const DepositCertificateScheduleEdit = () => (
     <Edit>
         <SimpleForm>
-            <ReferenceInput source="depositCertificateId" reference="depositCertificates" InputProps={{ disabled: true }}  />
+            <ReferenceInput source="depositCertificateId" reference="depositCertificates" InputProps={{ disabled: true }} />
             <BooleanInput source="paid" />
             <DateInput source="transactionDate" />
             <NumberInput source="amount" />
-            <TextInput source="id"  InputProps={{ disabled: true }} />
+            <TextInput source="id" InputProps={{ disabled: true }} />
         </SimpleForm>
     </Edit>
 );
