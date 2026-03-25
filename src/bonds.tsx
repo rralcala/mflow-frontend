@@ -1,5 +1,13 @@
 
-import { DataTable, DateField, List, NumberField, Show, SimpleShowLayout, TextField } from 'react-admin';
+import { 
+    DataTable,
+    DateField,
+    List,
+    NumberField,
+    Show,
+    SimpleShowLayout,
+    TextField
+} from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 export const BondList = () => (

@@ -10,7 +10,6 @@ import {
     List,
     NumberField,
     NumberInput,
-    SelectInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -18,18 +17,11 @@ import {
     TextInput
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
+import { FlowFilters } from './lib';
 
-const postFilters = [
-    <SelectInput label="Flow Class" source="flowClass" choices={[
-        { id: 'expense', name: 'expense' },
-        { id: 'income', name: 'income' },
-        { id: 'loan', name: 'loan' },
-        { id: 'repayment', name: 'repayment' },
-    ]} />
-];
 
 export const PayableList = () => (
-    <List filters={postFilters}>
+    <List filters={FlowFilters}>
         <DataTable>
             <DataTable.Col source="country" />
             <DataTable.Col source="description" />

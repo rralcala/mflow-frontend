@@ -37,6 +37,7 @@ export const RecurrenttransactionList = () => (
             <DataTable.Col source="recurrentId">
                 <ReferenceField source="recurrentId" reference="recurrents" />
             </DataTable.Col>
+            <DataTable.Col source="yearMonth" />
             <DataTable.Col source="description" />
             <DataTable.NumberCol source="amount" options={{
                 style: 'decimal',
@@ -50,9 +51,8 @@ export const RecurrenttransactionList = () => (
             <DataTable.Col source="transactionDate">
                 <DateField source="transactionDate" />
             </DataTable.Col>
-            <DataTable.Col source="yearMonth">
-                <DateField source="yearMonth" />
-            </DataTable.Col>
+
+
             <DataTable.Col source="createDate">
                 <DateField source="createDate" />
             </DataTable.Col>
@@ -68,7 +68,7 @@ export const RecurrenttransactionShow = () => (
     <Show>
         <SimpleShowLayout>
             <ReferenceField source="recurrentId" reference="recurrents" />
-            <DateField source="yearMonth" />
+            <TextField source="yearMonth" />
             <TextField source="description" />
             <DateField source="transactionDate" />
             <DateField source="createDate" />

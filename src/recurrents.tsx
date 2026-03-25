@@ -10,7 +10,6 @@ import {
     NumberInput,
     ReferenceField,
     ReferenceInput,
-    SelectInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -18,19 +17,10 @@ import {
     TextInput
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
-
-const postFilters = [
-    <SelectInput label="Flow Class" source="flowClass" choices={[
-        { id: 'expense', name: 'expense' },
-        { id: 'income', name: 'income' },
-        { id: 'loan', name: 'loan' },
-        { id: 'repayment', name: 'repayment' },
-    ]} />
-];
-
+import { FlowFilters } from './lib';
 
 export const RecurrentList = () => (
-    <List filters={postFilters}>
+    <List filters={FlowFilters}>
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="flowClass" />

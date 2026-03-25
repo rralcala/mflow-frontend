@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { useResourceDefinitions } from 'react-admin';
-import { Box } from '@mui/material';
+import { useState, createElement } from 'react';
+
 import {
     DashboardMenuItem,
     MenuItemLink,
     MenuProps,
     useSidebarState,
+    useResourceDefinitions,
 } from 'react-admin';
 import clsx from 'clsx';
-import { createElement } from 'react';
 
 import SubMenu from './SubMenu';
 
+import { Box } from '@mui/material';
 import BarChartIcon from '@mui/icons-material/BarChart';
 
 
