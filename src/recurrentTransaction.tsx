@@ -1,27 +1,28 @@
-import {     List,
+import {
+    List,
     Create,
     DataTable,
-    DateField, 
-    DateInput, 
+    DateField,
+    DateInput,
     Edit,
     EditButton,
-    NumberField, 
-    NumberInput, 
+    NumberField,
+    NumberInput,
     ReferenceField,
     ReferenceInput,
-    Show, 
+    Show,
     SimpleForm,
-    SimpleShowLayout, 
+    SimpleShowLayout,
     TextField,
-    TextInput, 
+    TextInput,
 } from 'react-admin';
 
 // Define a function that returns the default values
 const postDefaultValue = () => {
     const now = new Date();
     return {
-        transactionDate:  `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(
-    now.getDate()).padStart(2, "0")}`,
+        transactionDate: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(
+            now.getDate()).padStart(2, "0")}`,
         yearMonth: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`,
     };
 };
@@ -38,12 +39,12 @@ export const RecurrenttransactionList = () => (
             </DataTable.Col>
             <DataTable.Col source="description" />
             <DataTable.NumberCol source="amount" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }}/>
-             <DataTable.Col source="paidWithAssetId">
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+            }} />
+            <DataTable.Col source="paidWithAssetId">
                 <ReferenceField source="paidWithAssetId" reference="assets" />
             </DataTable.Col>
             <DataTable.Col source="transactionDate">
@@ -57,7 +58,7 @@ export const RecurrenttransactionList = () => (
             </DataTable.Col>
 
             <DataTable.Col>
-               <EditButton />
+                <EditButton />
             </DataTable.Col>
         </DataTable>
     </List>
@@ -71,18 +72,18 @@ export const RecurrenttransactionShow = () => (
             <TextField source="description" />
             <DateField source="transactionDate" />
             <DateField source="createDate" />
-            
-            
+
+
             <ReferenceField source="paidWithAssetId" reference="assets" />
-            
+
             <NumberField source="amount" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
             <TextField source="id" />
-            
+
         </SimpleShowLayout>
     </Show>
 );
@@ -95,9 +96,9 @@ export const RecurrenttransactionEdit = () => (
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets"  filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
+            <ReferenceInput source="paidWithAssetId" reference="assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
             <TextInput source="id" InputProps={{ disabled: true }} />
-            <DateInput source="createDate"  InputProps={{ disabled: true }} />
+            <DateInput source="createDate" InputProps={{ disabled: true }} />
         </SimpleForm>
     </Edit>
 );
@@ -105,13 +106,13 @@ export const RecurrenttransactionEdit = () => (
 
 export const RecurrenttransactionCreate = () => (
     <Create>
-        <SimpleForm  defaultValues={postDefaultValue}>
+        <SimpleForm defaultValues={postDefaultValue}>
             <ReferenceInput source="recurrentId" reference="recurrents" />
             <TextInput source="yearMonth" />
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets"  filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
+            <ReferenceInput source="paidWithAssetId" reference="assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
         </SimpleForm>
     </Create>
 );

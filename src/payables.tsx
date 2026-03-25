@@ -1,26 +1,26 @@
-import { 
-    BooleanField, 
-    BooleanInput, 
-    Create, 
-    DataTable, 
-    DateField, 
-    DateInput, 
-    Edit, 
-    EditButton, 
+import {
+    BooleanField,
+    BooleanInput,
+    Create,
+    DataTable,
+    DateField,
+    DateInput,
+    Edit,
+    EditButton,
     List,
-    NumberField, 
-    NumberInput, 
-    SelectInput, 
-    Show, 
-    SimpleForm, 
-    SimpleShowLayout, 
+    NumberField,
+    NumberInput,
+    SelectInput,
+    Show,
+    SimpleForm,
+    SimpleShowLayout,
     TextField,
     TextInput
- } from 'react-admin';
+} from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 const postFilters = [
-       <SelectInput label="Flow Class" source="flowClass" choices={[
+    <SelectInput label="Flow Class" source="flowClass" choices={[
         { id: 'expense', name: 'expense' },
         { id: 'income', name: 'income' },
         { id: 'loan', name: 'loan' },
@@ -68,7 +68,7 @@ export const PayableShow = () => (
                     useGrouping: true,
                     maximumFractionDigits: 0,
                     minimumFractionDigits: 0,
-                }}/>
+                }} />
                 <TextField source="currency" />
             </Stack>
             <Typography color="textSecondary">{'Balance'}</Typography>
@@ -78,7 +78,7 @@ export const PayableShow = () => (
                     useGrouping: true,
                     maximumFractionDigits: 0,
                     minimumFractionDigits: 0,
-                }}/>
+                }} />
                 <TextField source="currency" />
             </Stack>
             <TextField source="country" />
@@ -102,7 +102,7 @@ export const PayableEdit = () => (
             <BooleanInput source="commited" />
             <BooleanInput source="oneOff" />
             <TextInput source="flowClass" />
-            <TextInput source="id"  InputProps={{ disabled: true }}/>
+            <TextInput source="id" InputProps={{ disabled: true }} />
         </SimpleForm>
     </Edit>
 );

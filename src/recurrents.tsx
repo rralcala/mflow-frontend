@@ -1,26 +1,26 @@
 import {
     Create,
-    DataTable, 
-    DateField, 
-    DateInput, 
-    Edit, 
+    DataTable,
+    DateField,
+    DateInput,
+    Edit,
     EditButton,
     List,
-    NumberField, 
-    NumberInput, 
-    ReferenceField, 
-    ReferenceInput, 
-    SelectInput, 
-    Show, 
-    SimpleForm, 
-    SimpleShowLayout, 
+    NumberField,
+    NumberInput,
+    ReferenceField,
+    ReferenceInput,
+    SelectInput,
+    Show,
+    SimpleForm,
+    SimpleShowLayout,
     TextField,
     TextInput
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 const postFilters = [
-       <SelectInput label="Flow Class" source="flowClass" choices={[
+    <SelectInput label="Flow Class" source="flowClass" choices={[
         { id: 'expense', name: 'expense' },
         { id: 'income', name: 'income' },
         { id: 'loan', name: 'loan' },
@@ -34,12 +34,12 @@ export const RecurrentList = () => (
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="flowClass" />
-            <DataTable.NumberCol source="amount"  options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }}/>
+            <DataTable.NumberCol source="amount" options={{
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+            }} />
             <DataTable.Col source="currency" />
             <DataTable.Col source="start">
                 <DateField source="start" />
@@ -49,18 +49,18 @@ export const RecurrentList = () => (
                 <DateField source="end" />
             </DataTable.Col>
             <DataTable.NumberCol source="rate" options={{
-                    style: 'percent',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
             <DataTable.Col source="country" />
             <DataTable.Col source="assetId">
-                <ReferenceField source="assetId" reference="assets" link="show"/>
+                <ReferenceField source="assetId" reference="assets" link="show" />
             </DataTable.Col>
-            
+
             <DataTable.Col>
-               <EditButton />
+                <EditButton />
             </DataTable.Col>
         </DataTable>
     </List>
@@ -79,7 +79,7 @@ export const RecurrentShow = () => (
                     useGrouping: true,
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
-                }}/>
+                }} />
                 <TextField source="currency" />
             </Stack>
             <ReferenceField source="assetId" reference="assets" />
@@ -87,11 +87,11 @@ export const RecurrentShow = () => (
             <DateField source="end" />
             <TextField source="recurrence" />
             <NumberField source="rate" options={{
-                    style: 'percent',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
         </SimpleShowLayout>
     </Show>
 );
@@ -117,7 +117,7 @@ export const RecurrentEdit = () => (
 export const RecurrentCreate = () => (
     <Create>
         <SimpleForm>
-            <TextInput source="id"/>
+            <TextInput source="id" />
             <TextInput source="country" />
             <TextInput source="flowClass" />
             <NumberInput source="amount" />

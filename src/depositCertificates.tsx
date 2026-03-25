@@ -1,5 +1,5 @@
 
-import { DataTable, DateField, List,  NumberField, Show, SimpleShowLayout, TextField  } from 'react-admin';
+import { DataTable, DateField, List, NumberField, Show, SimpleShowLayout, TextField } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 export const DepositCertificateList = () => (
@@ -9,12 +9,12 @@ export const DepositCertificateList = () => (
             <DataTable.NumberCol source="capital" />
             <DataTable.Col source="currency" />
             <DataTable.NumberCol source="rate" options={{
-                    style: 'percent',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
-            
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
+
             <DataTable.Col source="maturityDate">
                 <DateField source="maturityDate" />
             </DataTable.Col>
@@ -37,15 +37,15 @@ export const DepositCertificateShow = () => (
                     useGrouping: true,
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
-                }}/>
+                }} />
                 <TextField source="currency" />
             </Stack>
             <NumberField source="rate" options={{
-                    style: 'percent',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
             <TextField source="country" />
             <TextField source="entity" />
             <DateField source="maturityDate" />

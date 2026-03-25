@@ -1,4 +1,4 @@
-import { BooleanField, DataTable, List, NumberField, Pagination, Show, SimpleShowLayout, TextField  } from 'react-admin';
+import { BooleanField, DataTable, List, NumberField, Pagination, Show, SimpleShowLayout, TextField } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 const PostPagination = () => <Pagination rowsPerPageOptions={[10, 25, 50, 100, 200]} />;
@@ -9,11 +9,11 @@ export const AssetList = () => (
             <DataTable.Col source="id" />
             <DataTable.Col source="type" />
             <DataTable.NumberCol source="currentValue" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }}/>
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+            }} />
             <DataTable.Col source="currency" />
             <DataTable.Col source="liquid">
                 <BooleanField source="liquid" />
@@ -25,7 +25,7 @@ export const AssetList = () => (
 export const AssetShow = () => (
     <Show>
         <SimpleShowLayout>
-            <TextField source="id"/>
+            <TextField source="id" />
             <TextField source="type" />
             <TextField source="currency" />
             <Typography color="textSecondary">{'Value'}</Typography>
@@ -35,7 +35,7 @@ export const AssetShow = () => (
                     useGrouping: true,
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
-                }}/>
+                }} />
                 <TextField source="currency" />
             </Stack>
             <BooleanField source="liquid" />

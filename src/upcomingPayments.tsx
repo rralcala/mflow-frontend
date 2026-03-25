@@ -1,4 +1,4 @@
-import { 
+import {
     BooleanField,
     DataTable,
     DateField,
@@ -11,22 +11,22 @@ import {
 } from 'react-admin';
 
 export const UpcomingpaymentList = () => (
-    <List  sort={{ field: 'date', order: 'ASC' }}  perPage={25}>
+    <List sort={{ field: 'date', order: 'ASC' }} perPage={25}>
         <DataTable>
             <DataTable.Col source="date">
                 <DateField source="date" />
             </DataTable.Col>
             <DataTable.Col source="country" />
-            
+
             <DataTable.Col source="assetId">
                 <ReferenceField source="assetId" reference="assets" />
             </DataTable.Col>
             <DataTable.NumberCol source="amount" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }}/>
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+            }} />
             <DataTable.Col source="currency" />
         </DataTable>
     </List>
@@ -38,11 +38,11 @@ export const UpcomingpaymentShow = () => (
             <TextField source="country" />
             <ReferenceField source="assetId" reference="assets" />
             <NumberField source="amount" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }}/>
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+            }} />
             <BooleanField source="capital" />
             <TextField source="currency" />
             <DateField source="date" />

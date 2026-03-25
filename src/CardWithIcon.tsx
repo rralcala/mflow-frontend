@@ -69,13 +69,13 @@ export const CardWithIcon = ({ icon, title, subtitle, to }: Props) => (
                     <RecordContextProvider value={subtitle}>
                         <Typography variant="h5" component="h2">
                             <Stack direction="row" justifyContent="flex-end" alignItems="left" spacing={1}>
-                                <NumberField source="amount" transform={v =>-v} options={{
+                                <NumberField source="amount" transform={v => -v} options={{
                                     style: 'decimal',
                                     useGrouping: true,
                                     maximumFractionDigits: 0,
                                     minimumFractionDigits: 0,
-                                }}/>
-                                <TextField source="currency"/>
+                                }} />
+                                <TextField source="currency" />
                             </Stack>
                         </Typography>
                     </RecordContextProvider>

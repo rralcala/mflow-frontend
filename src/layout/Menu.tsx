@@ -80,71 +80,71 @@ const Menu = ({ dense = false }: MenuProps) => {
                 icon={createElement(resources["assets"].icon)}
                 dense={dense}
             >
-            <MenuItemLink
-                to="/assets"
-                state={{ _scrollToTop: true }}
-                primaryText={"Assets"}
-                leftIcon={createElement(resources["assets"].icon)}
-                dense={dense}
-            />
-            <MenuItemLink
-                to="/accounts"
-                state={{ _scrollToTop: true }}
-                primaryText={"Accounts"}
-                leftIcon={createElement(resources["accounts"].icon)}
-                dense={dense}
-            />
-            <SubMenu
-                handleToggle={() => handleToggle('menuBonds')}
-                isOpen={state.menuBonds}
-                name="Bonds"
-                icon={createElement(resources["bonds"].icon)}
-                dense={dense}
-            >
                 <MenuItemLink
-                    to="/bonds"
+                    to="/assets"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Bonds"}
-                    leftIcon={createElement(resources["bonds"].icon)}
+                    primaryText={"Assets"}
+                    leftIcon={createElement(resources["assets"].icon)}
                     dense={dense}
                 />
                 <MenuItemLink
-                    to="/bondSchedules"
+                    to="/accounts"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Interest Schedules"}
-                    leftIcon={createElement(resources["bondSchedules"].icon)}
+                    primaryText={"Accounts"}
+                    leftIcon={createElement(resources["accounts"].icon)}
                     dense={dense}
                 />
-            </SubMenu>
-            <SubMenu
-                handleToggle={() => handleToggle('menuCD')}
-                isOpen={state.menuCD}
-                name="Deposit Certificates"
-                icon={createElement(resources["depositCertificates"].icon)}
-                dense={dense}
-            >
+                <SubMenu
+                    handleToggle={() => handleToggle('menuBonds')}
+                    isOpen={state.menuBonds}
+                    name="Bonds"
+                    icon={createElement(resources["bonds"].icon)}
+                    dense={dense}
+                >
+                    <MenuItemLink
+                        to="/bonds"
+                        state={{ _scrollToTop: true }}
+                        primaryText={"Bonds"}
+                        leftIcon={createElement(resources["bonds"].icon)}
+                        dense={dense}
+                    />
+                    <MenuItemLink
+                        to="/bondSchedules"
+                        state={{ _scrollToTop: true }}
+                        primaryText={"Interest Schedules"}
+                        leftIcon={createElement(resources["bondSchedules"].icon)}
+                        dense={dense}
+                    />
+                </SubMenu>
+                <SubMenu
+                    handleToggle={() => handleToggle('menuCD')}
+                    isOpen={state.menuCD}
+                    name="Deposit Certificates"
+                    icon={createElement(resources["depositCertificates"].icon)}
+                    dense={dense}
+                >
+                    <MenuItemLink
+                        to="/depositCertificates"
+                        state={{ _scrollToTop: true }}
+                        primaryText={"Deposit Certificates"}
+                        leftIcon={createElement(resources["depositCertificates"].icon)}
+                        dense={dense}
+                    />
+                    <MenuItemLink
+                        to="/depositCertificateSchedules"
+                        state={{ _scrollToTop: true }}
+                        primaryText={"Interest Schedules"}
+                        leftIcon={createElement(resources["depositCertificateSchedules"].icon)}
+                        dense={dense}
+                    />
+                </SubMenu>
                 <MenuItemLink
-                    to="/depositCertificates"
+                    to="/instruments"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Deposit Certificates"}
-                    leftIcon={createElement(resources["depositCertificates"].icon)}
+                    primaryText={"Instruments"}
+                    leftIcon={createElement(resources["instruments"].icon)}
                     dense={dense}
                 />
-                <MenuItemLink
-                    to="/depositCertificateSchedules"
-                    state={{ _scrollToTop: true }}
-                    primaryText={"Interest Schedules"}
-                    leftIcon={createElement(resources["depositCertificateSchedules"].icon)}
-                    dense={dense}
-                />
-            </SubMenu>
-            <MenuItemLink
-                to="/instruments"
-                state={{ _scrollToTop: true }}
-                primaryText={"Instruments"}
-                leftIcon={createElement(resources["instruments"].icon)}
-                dense={dense}
-            />
             </SubMenu>
             <SubMenu
                 handleToggle={() => handleToggle('menuReports')}

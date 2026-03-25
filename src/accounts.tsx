@@ -13,7 +13,7 @@ import {
     SimpleShowLayout,
     TextField,
     TextInput
- } from 'react-admin';
+} from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 export const AccountList = () => (
@@ -23,14 +23,14 @@ export const AccountList = () => (
             <DataTable.Col source="accountType" />
             <DataTable.Col source="institution" />
             <DataTable.Col source="country" />
-            
-            
+
+
             <DataTable.NumberCol source="balance" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }}/>
+                style: 'decimal',
+                useGrouping: true,
+                maximumFractionDigits: 0,
+                minimumFractionDigits: 0,
+            }} />
             <DataTable.Col source="currency" />
             <DataTable.Col source="liquid">
                 <BooleanField source="liquid" />
@@ -50,7 +50,7 @@ export const AccountShow = () => (
             <TextField source="accountType" />
             <TextField source="country" />
             <TextField source="institution" />
-            <NumberField source="factor"/>
+            <NumberField source="factor" />
             <Typography color="textSecondary">{'Value'}</Typography>
             <Stack direction="row" alignItems="left" spacing={1}>
                 <NumberField source="balance" options={{
@@ -58,7 +58,7 @@ export const AccountShow = () => (
                     useGrouping: true,
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
-                }}/>
+                }} />
                 <TextField source="currency" />
             </Stack>
             <BooleanField source="liquid" />
@@ -70,7 +70,7 @@ export const AccountShow = () => (
 export const AccountEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="id"  InputProps={{ disabled: true }} />
+            <TextInput source="id" InputProps={{ disabled: true }} />
             <NumberInput source="balance" />
             <TextInput source="accountType" />
             <TextInput source="country" />
@@ -86,7 +86,7 @@ export const AccountEdit = () => (
 export const AccountCreate = () => (
     <Create>
         <SimpleForm>
-            <TextInput source="id"/>
+            <TextInput source="id" />
             <TextInput source="country" />
             <TextInput source="institution" />
             <TextInput source="accountType" />

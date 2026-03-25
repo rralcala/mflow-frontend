@@ -39,41 +39,41 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const dataProvider = jsonServerProvider(apiUrl + "/", httpClient);
 
 export const App = () => (
-    <Admin 
-      title="mFlow"
-      disableTelemetry
-      dataProvider={dataProvider}  
-      authProvider={authProvider}
-      dashboard={Dashboard}
-      layout={Layout}
-      requireAuth >
-      <Resource name="recurrents" 
-        list={RecurrentList} 
-        show={RecurrentShow} 
-        edit={RecurrentEdit} 
-        create={RecurrentCreate} icon={MenuBookIcon} />
-      <Resource name="recurrentTransactions" 
-        list={RecurrenttransactionList} 
-        show={RecurrenttransactionShow}  
-        edit={RecurrenttransactionEdit} 
-        create={RecurrenttransactionCreate} 
-        icon={ReceiptIcon} />
-      <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />
-      
-      <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
-      <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} create={AccountCreate} icon={SavingsIcon} />
-      <Resource name="bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
-      <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit}  icon={ChecklistIcon} />
-      <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
-      <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit}  icon={ChecklistIcon} />
-      <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={CandlestickChartIcon} />
-      
-      <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
-      <Resource name="monthlyTransactions" list={MonthlytransactionList}  show={MonthlytransactionShow} icon={UploadIcon} />
-      <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
-      <CustomRoutes>
-        <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
+  <Admin
+    title="mFlow"
+    disableTelemetry
+    dataProvider={dataProvider}
+    authProvider={authProvider}
+    dashboard={Dashboard}
+    layout={Layout}
+    requireAuth >
+    <Resource name="recurrents"
+      list={RecurrentList}
+      show={RecurrentShow}
+      edit={RecurrentEdit}
+      create={RecurrentCreate} icon={MenuBookIcon} />
+    <Resource name="recurrentTransactions"
+      list={RecurrenttransactionList}
+      show={RecurrenttransactionShow}
+      edit={RecurrenttransactionEdit}
+      create={RecurrenttransactionCreate}
+      icon={ReceiptIcon} />
+    <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />
+
+    <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
+    <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} create={AccountCreate} icon={SavingsIcon} />
+    <Resource name="bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
+    <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit} icon={ChecklistIcon} />
+    <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
+    <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit} icon={ChecklistIcon} />
+    <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={CandlestickChartIcon} />
+
+    <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
+    <Resource name="monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
+    <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
+    <CustomRoutes>
+      <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
     </CustomRoutes>
 
-    </Admin>
+  </Admin>
 );

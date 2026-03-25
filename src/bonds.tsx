@@ -1,5 +1,5 @@
 
-import { DataTable, DateField, List,  NumberField, Show, SimpleShowLayout, TextField } from 'react-admin';
+import { DataTable, DateField, List, NumberField, Show, SimpleShowLayout, TextField } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 export const BondList = () => (
@@ -9,12 +9,12 @@ export const BondList = () => (
             <DataTable.NumberCol source="capital" />
             <DataTable.Col source="currency" />
             <DataTable.NumberCol source="rate" options={{
-                    style: 'percent',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
-            
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
+
             <DataTable.Col source="maturityDate">
                 <DateField source="maturityDate" />
             </DataTable.Col>
@@ -37,16 +37,16 @@ export const BondShow = () => (
                     useGrouping: true,
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
-                }}/>
+                }} />
                 <TextField source="currency" />
             </Stack>
             <DateField source="maturityDate" />
             <NumberField source="rate" options={{
-                    style: 'percent',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }}/>
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
             <TextField source="country" />
             <TextField source="entity" />
         </SimpleShowLayout>
