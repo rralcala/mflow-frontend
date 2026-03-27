@@ -14,7 +14,7 @@ const formatterPct = new Intl.NumberFormat('en-US', {
     style: 'percent',
 
 });
-
+const apiUrl = import.meta.env.VITE_API_URL;
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'decimal',
     useGrouping: true,
@@ -32,7 +32,7 @@ export const DashboardAssetByLocation = () => {
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson('http://localhost:5000//assetsByLocation', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/assetsByLocation', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => console.error(error));
 
