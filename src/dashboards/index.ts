@@ -1,7 +1,11 @@
+import { Dashboard } from './Dashboard';
+import { DashboardAssetByLocation } from './DashboardAssetByLocation';
+import { DashboardNetWorthSummary } from './DashboardNetWorthSummary';
 import { DashboardValuationHistory } from './DashboardValuationHistory';
 
-import { DashboardAssetByLocation } from './DashboardAssetByLocation';
-
-import { Dashboard } from './Dashboard';
-
-export { DashboardValuationHistory, DashboardAssetByLocation, Dashboard };
+export { 
+    Dashboard,
+    DashboardAssetByLocation, 
+    DashboardNetWorthSummary,
+    DashboardValuationHistory, 
+};

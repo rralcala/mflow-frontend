@@ -23,7 +23,8 @@ import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
 import {
   Dashboard,
   DashboardAssetByLocation,
-  DashboardValuationHistory
+  DashboardNetWorthSummary,
+  DashboardValuationHistory,
 }
   from "./dashboards";
 
@@ -78,6 +79,7 @@ export const App = () => (
     <CustomRoutes>
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
       <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
+      <Route path="/dashboard-nws" element={<DashboardNetWorthSummary />} />
     </CustomRoutes>
 
   </Admin>

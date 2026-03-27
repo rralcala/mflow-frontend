@@ -188,6 +188,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     leftIcon={<DashboardIcon />}
                     dense={dense}
                 />
+                <MenuItemLink
+                    to="/dashboard-nws"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Net Worth Summary"}
+                    leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
             </SubMenu>
 
         </Box>
