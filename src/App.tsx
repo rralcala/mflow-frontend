@@ -12,7 +12,7 @@ import { AccountShow, AccountList, AccountEdit, AccountCreate } from "./accounts
 import { AssetList, AssetShow } from "./assets";
 import { BondList, BondShow } from "./bonds";
 import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
-import { DashboardCashFlow } from "./DashboardCashFlow";
+import { DashboardAssetByLocation } from "./dashboards/DashboardCashFlow";
 import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
 import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
 import { ExchangerateList } from "./exchangeRates";
@@ -72,7 +72,7 @@ export const App = () => (
     <Resource name="monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
     <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
     <CustomRoutes>
-      <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
+      <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
     </CustomRoutes>
 
   </Admin>

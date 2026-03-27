@@ -14,7 +14,7 @@ import SubMenu from './SubMenu';
 
 import { Box } from '@mui/material';
 import BarChartIcon from '@mui/icons-material/BarChart';
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 type MenuName = 'menuCD' | 'menuBonds' | 'menuReports' | 'menuAssets';
 
@@ -172,6 +172,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     state={{ _scrollToTop: true }}
                     primaryText={"Exchange Rates"}
                     leftIcon={createElement(resources["exchangeRates"].icon)}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/dashboard-abl"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Asset By Location"}
+                    leftIcon={<DashboardIcon />}
                     dense={dense}
                 />
             </SubMenu>
