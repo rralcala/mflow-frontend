@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { fetchUtils } from 'react-admin';
+
 import { Chart } from "react-google-charts";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,11 +11,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
-const formatterPct = new Intl.NumberFormat('en-US', {
-    style: 'percent',
 
-});
 const apiUrl = import.meta.env.VITE_API_URL;
+
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'decimal',
     useGrouping: true,
@@ -38,7 +37,16 @@ export const DashboardAssetByLocation = () => {
 
     }, []); // Empty array ensures this runs once on mount
 
+    type DataRow = [any, number];
+    function addTotal<T>(matrix: DataRow[]): DataRow[] {
+        const columnSum = matrix.reduce((accumulator, currentRow) => {
+            // We use the nullish coalescing operator (?? 0) in case a row is shorter than expected
+            console.log(currentRow);
+            return accumulator + (currentRow[1] ?? 0);
+        }, 0);
 
+        return [...matrix, ["Total", columnSum]];
+    }
     return (
         <Stack>
             <Chart
@@ -58,7 +66,7 @@ export const DashboardAssetByLocation = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {dataR.slice(1).map((row) => (
+                        {addTotal(dataR.slice(1)).map((row) => (
                             <TableRow
                                 key={row[0]}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

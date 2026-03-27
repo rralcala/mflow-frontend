@@ -34,7 +34,7 @@ function reduceColumns<T>(matrix: DataRow[]): T[][] {
     return matrix.map(row => [row[0], {v: row[2] / row[1], f: formatterPct.format(row[2] / row[1])}, {v: row[3] / row[1], f: formatterPct.format(row[3] / row[1])}]);
 }
 
-export const options = {
+const options = {
     title: "Change over Time",
     isStacked: true,
     legend: { position: "bottom" },
@@ -50,11 +50,6 @@ export const options = {
 
 
 export const DashboardValuationHistory = () => {
-    // Fetch a specific record using useGetOne hook
-    // Replace 'dashboard-stats' with your actual resource name and '1' with the record ID
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
     const [dataR, setData] = useState([]);
 
     useEffect(() => {
@@ -87,7 +82,7 @@ export const DashboardValuationHistory = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {dataR.slice(1).map((row) => (
+                        {dataR.map((row) => (
                             <TableRow
                                 key={row[0]}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

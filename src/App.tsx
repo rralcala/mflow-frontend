@@ -5,14 +5,12 @@ import { Route } from "react-router";
 import { authProvider } from './authProvider';
 import { httpClient } from './httpClient';
 
-import { Dashboard } from "./Dashboard";
 import { Layout } from "./layout";
 
 import { AccountShow, AccountList, AccountEdit, AccountCreate } from "./accounts";
 import { AssetList, AssetShow } from "./assets";
 import { BondList, BondShow } from "./bonds";
 import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
-import { DashboardAssetByLocation } from "./dashboards/DashboardCashFlow";
 import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
 import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
 import { ExchangerateList } from "./exchangeRates";
@@ -22,6 +20,12 @@ import { PayableList, PayableShow, PayableEdit, PayableCreate } from "./payables
 import { RecurrentList, RecurrentShow, RecurrentEdit, RecurrentCreate } from "./recurrents";
 import { RecurrenttransactionList, RecurrenttransactionShow, RecurrenttransactionEdit, RecurrenttransactionCreate } from "./recurrentTransaction";
 import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
+import {
+  Dashboard,
+  DashboardAssetByLocation,
+  DashboardValuationHistory
+}
+  from "./dashboards";
 
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
@@ -33,7 +37,6 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import SavingsIcon from '@mui/icons-material/Savings';
 import UploadIcon from '@mui/icons-material/Upload';
-import { DashboardValuationHistory } from "./dashboards/DashboardValuationHistory";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 

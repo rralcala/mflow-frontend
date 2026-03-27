@@ -3,7 +3,7 @@ import { useGetOne } from "react-admin";
 
 import { Card, CardContent, CardHeader } from '@mui/material';
 import DollarIcon from '@mui/icons-material/AttachMoney';
-import CardWithIcon from './CardWithIcon';
+import CardWithIcon from '../CardWithIcon';
 import { Stack } from '@mui/material';
 
 export const Dashboard = () => {
