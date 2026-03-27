@@ -31,7 +31,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 type DataRow = [any, number, number, number];
 function reduceColumns<T>(matrix: DataRow[]): T[][] {
-    return matrix.map(row => [row[0], {v: row[2] / row[1], f: formatterPct.format(row[2] / row[1])}, {v: row[3] / row[1], f: formatterPct.format(row[3] / row[1])}]);
+    return matrix.map(row => [row[0], {v: row[2] / row[1], f: formatter.format(row[2]) + " " + formatterPct.format(row[2] / row[1])}, {v: row[3] / row[1], f: formatter.format(row[3]) + " " + formatterPct.format(row[3] / row[1])}]);
 }
 
 const options = {
