@@ -181,6 +181,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     leftIcon={<DashboardIcon />}
                     dense={dense}
                 />
+                <MenuItemLink
+                    to="/dashboard-vh"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Valuation History"}
+                    leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
             </SubMenu>
 
         </Box>

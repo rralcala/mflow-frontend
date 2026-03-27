@@ -33,6 +33,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import SavingsIcon from '@mui/icons-material/Savings';
 import UploadIcon from '@mui/icons-material/Upload';
+import { DashboardValuationHistory } from "./dashboards/DashboardValuationHistory";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -73,6 +74,7 @@ export const App = () => (
     <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
     <CustomRoutes>
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
+      <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
     </CustomRoutes>
 
   </Admin>
