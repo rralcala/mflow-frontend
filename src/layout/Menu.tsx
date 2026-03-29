@@ -202,6 +202,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     leftIcon={<DashboardIcon />}
                     dense={dense}
                 />
+                <MenuItemLink
+                    to="/dashboard-sa"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Spending Analysis"}
+                    leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
             </SubMenu>
 
         </Box>
