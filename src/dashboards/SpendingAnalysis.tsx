@@ -38,16 +38,16 @@ export const DashboardSpendingAnalysis = () => {
             .then(response => setData(response.json))
             .catch(error => setError(error))
             .finally(() => setLoading(false));
-    
+
     }, []); // Empty array ensures this runs once on mount
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
-   
+
     return (
         <Stack>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    
+
                     <TableHead>
                         <TableRow>
                             <TableCell>Item</TableCell>
@@ -70,7 +70,7 @@ export const DashboardSpendingAnalysis = () => {
                             key={"loan"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                        <TableCell component="th" scope="row">
+                            <TableCell component="th" scope="row">
                                 {"Loans"}
                             </TableCell>
                             <TableCell align="right">{formatterFract.format(dataR.total_budget.loan)}</TableCell>
@@ -80,7 +80,7 @@ export const DashboardSpendingAnalysis = () => {
                             key={"total_expense"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                        <TableCell component="th" scope="row">
+                            <TableCell component="th" scope="row">
                                 {"Total Expenses"}
                             </TableCell>
                             <TableCell align="right">{formatterFract.format(dataR.total_budget.loan + dataR.total_budget.expense)}</TableCell>
@@ -108,7 +108,7 @@ export const DashboardSpendingAnalysis = () => {
                             <TableCell align="right">{formatter.format(dataR.total_budget.repayment * dataR.exchange)}</TableCell>
                             <TableCell align="right"></TableCell>
                         </TableRow>
-                        
+
                     </TableBody>
                 </Table>
             </TableContainer>
