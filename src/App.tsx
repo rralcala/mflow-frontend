@@ -25,6 +25,7 @@ import {
   DashboardAssetByLocation,
   DashboardNetWorthSummary,
   DashboardValuationHistory,
+  DashboardProjectionAnalysis,
 }
   from "./dashboards";
 
@@ -80,6 +81,7 @@ export const App = () => (
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
       <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
       <Route path="/dashboard-nws" element={<DashboardNetWorthSummary />} />
+      <Route path="/dashboard-pa" element={<DashboardProjectionAnalysis />} />
     </CustomRoutes>
 
   </Admin>
