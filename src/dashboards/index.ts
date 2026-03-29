@@ -4,12 +4,14 @@ import { DashboardNetWorthSummary } from './NetWorthSummary';
 import { DashboardProjectionAnalysis } from './ProjectionEstimate';
 import { DashboardValuationHistory } from './ValuationHistory';
 import { DashboardSpendingAnalysis } from './SpendingAnalysis';
+import { DashboardCashFlow } from './CashFlow';
 
-export { 
+export {
     Dashboard,
-    DashboardAssetByLocation, 
+    DashboardAssetByLocation,
+    DashboardCashFlow,
     DashboardNetWorthSummary,
     DashboardProjectionAnalysis,
     DashboardSpendingAnalysis,
-    DashboardValuationHistory, 
+    DashboardValuationHistory,
 };

@@ -182,6 +182,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
                 <MenuItemLink
+                    to="/dashboard-cf"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Cash Flow"}
+                    leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
+                <MenuItemLink
                     to="/dashboard-vh"
                     state={{ _scrollToTop: true }}
                     primaryText={"Valuation History"}

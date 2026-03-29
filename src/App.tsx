@@ -23,6 +23,7 @@ import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
 import {
   Dashboard,
   DashboardAssetByLocation,
+  DashboardCashFlow,
   DashboardNetWorthSummary,
   DashboardProjectionAnalysis,
   DashboardSpendingAnalysis,
@@ -84,6 +85,7 @@ export const App = () => (
       <Route path="/dashboard-nws" element={<DashboardNetWorthSummary />} />
       <Route path="/dashboard-pa" element={<DashboardProjectionAnalysis />} />
       <Route path="/dashboard-sa" element={<DashboardSpendingAnalysis />} />
+      <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
     </CustomRoutes>
 
   </Admin>
