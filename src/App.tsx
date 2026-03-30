@@ -24,6 +24,7 @@ import {
   Dashboard,
   DashboardAssetByLocation,
   DashboardCashFlow,
+  DashboardInvestmentPerformance,
   DashboardNetWorthSummary,
   DashboardProjectionAnalysis,
   DashboardSpendingAnalysis,
@@ -86,6 +87,7 @@ export const App = () => (
       <Route path="/dashboard-pa" element={<DashboardProjectionAnalysis />} />
       <Route path="/dashboard-sa" element={<DashboardSpendingAnalysis />} />
       <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
+      <Route path="/dashboard-ip" element={<DashboardInvestmentPerformance />} />
     </CustomRoutes>
 
   </Admin>

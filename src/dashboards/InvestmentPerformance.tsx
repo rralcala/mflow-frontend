@@ -1,0 +1,133 @@
+
+import { useState, useEffect, ReactNode } from 'react';
+import { fetchUtils } from 'react-admin';
+import { Chart } from "react-google-charts";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { Stack } from '@mui/material';
+
+const apiUrl = import.meta.env.VITE_API_URL;
+
+
+const formatterPct = new Intl.NumberFormat('en-US', {
+    style: 'percent',
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+
+});
+
+
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    useGrouping: true,
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+});
+
+function formatPctWithNan(value: number): ReactNode {
+    if (isNaN(value)) {
+        return <span>-</span>;
+    }
+
+
+    return formatterPct.format(value);
+}
+
+function formatNumberWithColor(value: number): ReactNode {
+    const formatted = formatter.format(value);
+    if (value < 0) {
+        return <span style={{ color: 'red' }}>{formatted}</span>;
+    }
+    return <span>{formatted}</span>;
+}
+
+type DataRow = [any, number, number, number];
+function reduceColumns<T>(matrix: DataRow[]): T[][] {
+    return matrix.map(row => [row[0], { v: row[2] / row[1], f: formatter.format(row[2]) + " " + formatterPct.format(row[2] / row[1]) }, { v: row[3] / row[1], f: formatter.format(row[3]) + " " + formatterPct.format(row[3] / row[1]) }]);
+}
+
+const options = {
+    title: "Change over Time",
+    isStacked: true,
+    legend: { position: "bottom" },
+    vAxis: {
+        // 'percent' is a built-in ICU format that handles the *100 math for you
+        format: 'percent'
+    },
+    hAxis: {
+        title: "Year Month",
+        gridlines: { count: 3 }, // Controls the number of gridlines
+    },
+};
+
+function headRow(row) {
+    return (<TableRow
+        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+    >
+        <TableCell><b>Range</b></TableCell>
+        <TableCell align="right"><b>{formatPctWithNan(row["from"] / 100)}</b></TableCell>
+        <TableCell align="right"><b>{formatPctWithNan(row["to"] / 100)}</b></TableCell>
+
+        <TableCell></TableCell>
+    </TableRow>
+    );
+}
+
+function subRows(row) {
+    return row.assets.map((irow) => (
+        <TableRow
+
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+        >
+            <TableCell align="left">{irow[0]}</TableCell>
+            <TableCell align="right">{formatNumberWithColor(irow[1])}</TableCell>
+            <TableCell align="right">{irow[2]}</TableCell>
+            <TableCell align="right">{formatterPct.format(irow[3] / 100)}</TableCell>
+        </TableRow>
+
+    ))
+}
+
+export const DashboardInvestmentPerformance = () => {
+    const [dataR, setData] = useState([]);
+
+    useEffect(() => {
+        const user = { authenticated: true };
+        fetchUtils.fetchJson(apiUrl + '/investmentPerformance', { user, credentials: 'include' })
+            .then(response => setData(response.json))
+            .catch(error => console.error(error));
+
+    }, []); // Empty array ensures this runs once on mount
+
+
+    return (
+        <Stack>
+
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="left">Asset</TableCell>
+                            <TableCell align="right">Capital</TableCell>
+                            <TableCell align="right">Currency</TableCell>
+                            <TableCell align="right">Return</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {dataR.map((row) => (
+                            <>
+                                {headRow(row)}
+                                {subRows(row)}
+                            </>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Stack>
+    );
+};
