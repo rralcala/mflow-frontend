@@ -1,7 +1,6 @@
 
 import { useState, useEffect, ReactNode } from 'react';
 import { fetchUtils } from 'react-admin';
-import { Chart } from "react-google-charts";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,15 +11,6 @@ import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
 const apiUrl = import.meta.env.VITE_API_URL;
-
-
-const formatterPct = new Intl.NumberFormat('en-US', {
-    style: 'percent',
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-
-});
-
 
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'decimal',
@@ -36,26 +26,6 @@ function formatNumberWithColor(value: number): ReactNode {
     }
     return <span>{formatted}</span>;
 }
-
-type DataRow = [any, number, number, number];
-function reduceColumns<T>(matrix: DataRow[]): T[][] {
-    return matrix.map(row => [row[0], { v: row[2] / row[1], f: formatter.format(row[2]) + " " + formatterPct.format(row[2] / row[1]) }, { v: row[3] / row[1], f: formatter.format(row[3]) + " " + formatterPct.format(row[3] / row[1]) }]);
-}
-
-const options = {
-    title: "Change over Time",
-    isStacked: true,
-    legend: { position: "bottom" },
-    vAxis: {
-        // 'percent' is a built-in ICU format that handles the *100 math for you
-        format: 'percent'
-    },
-    hAxis: {
-        title: "Year Month",
-        gridlines: { count: 3 }, // Controls the number of gridlines
-    },
-};
-
 
 export const DashboardCashFlow = () => {
     const [dataR, setData] = useState([]);
