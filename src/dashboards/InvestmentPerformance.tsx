@@ -46,24 +46,11 @@ function formatNumberWithColor(value: number): ReactNode {
     return <span>{formatted}</span>;
 }
 
-type DataRow = [any, number, number, number];
-function reduceColumns<T>(matrix: DataRow[]): T[][] {
-    return matrix.map(row => [row[0], { v: row[2] / row[1], f: formatter.format(row[2]) + " " + formatterPct.format(row[2] / row[1]) }, { v: row[3] / row[1], f: formatter.format(row[3]) + " " + formatterPct.format(row[3] / row[1]) }]);
-}
+type DataRow = [string, number];
+function reduceColumns<T>(matrix): DataRow[] {
 
-const options = {
-    title: "Change over Time",
-    isStacked: true,
-    legend: { position: "bottom" },
-    vAxis: {
-        // 'percent' is a built-in ICU format that handles the *100 math for you
-        format: 'percent'
-    },
-    hAxis: {
-        title: "Year Month",
-        gridlines: { count: 3 }, // Controls the number of gridlines
-    },
-};
+    return matrix.map(row => [row["from"] + "-" + row["to"], Math.trunc(row["assets"].reduce((a, b) => a + b[1], 0))]);
+}
 
 function headRow(row) {
     return (<TableRow
@@ -93,6 +80,10 @@ function subRows(row) {
     ))
 }
 
+const options = {
+    title: "Investment Clusters",
+};
+
 export const DashboardInvestmentPerformance = () => {
     const [dataR, setData] = useState([]);
 
@@ -104,10 +95,15 @@ export const DashboardInvestmentPerformance = () => {
 
     }, []); // Empty array ensures this runs once on mount
 
-
     return (
         <Stack>
-
+            <Chart
+                chartType="PieChart"
+                data={[["Range", "Total"], ...reduceColumns(dataR)]}
+                options={options}
+                width={"100%"}
+                height={"400px"}
+            />
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
