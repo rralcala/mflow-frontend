@@ -60,7 +60,6 @@ function headRow(row) {
         <TableCell align="right"><b>{formatPctWithNan(row["from"] / 100)}</b></TableCell>
         <TableCell align="right"><b>{formatPctWithNan(row["to"] / 100)}</b></TableCell>
 
-        <TableCell></TableCell>
     </TableRow>
     );
 }
@@ -72,8 +71,7 @@ function subRows(row) {
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell align="left">{irow[0]}</TableCell>
-            <TableCell align="right">{formatNumberWithColor(irow[1])}</TableCell>
-            <TableCell align="right">{irow[2]}</TableCell>
+            <TableCell align="right">{formatNumberWithColor(irow[1])} {irow[2]}</TableCell>
             <TableCell align="right">{formatterPct.format(irow[3] / 100)}</TableCell>
         </TableRow>
 
@@ -110,7 +108,7 @@ export const DashboardInvestmentPerformance = () => {
                         <TableRow>
                             <TableCell align="left">Asset</TableCell>
                             <TableCell align="right">Capital</TableCell>
-                            <TableCell align="right">Currency</TableCell>
+                            
                             <TableCell align="right">Return</TableCell>
                         </TableRow>
                     </TableHead>
