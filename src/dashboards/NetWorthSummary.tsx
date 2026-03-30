@@ -5,6 +5,7 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
@@ -24,19 +25,25 @@ const formatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 0,
 });
 
-
 export const DashboardNetWorthSummary = () => {
-    const [dataR, setData] = useState({});
+    const [dataR, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/nwSummary', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/nwsummary', { user, credentials: 'include' })
             .then(response => setData(response.json))
-            .catch(error => console.error(error));
+            .catch(error => setError(error))
+            .finally(() => setLoading(false));
 
     }, []); // Empty array ensures this runs once on mount
 
-
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+    Object.entries(dataR.tot_per_location).map((row) => (
+        console.log(row[1])
+    ));
     return (
         <Stack>
 
@@ -106,6 +113,63 @@ export const DashboardNetWorthSummary = () => {
                             </TableCell>
                             <TableCell align="right">{formatter.format(dataR.fixed_income)}</TableCell>
                         </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <br />
+            Market Exposure<br /><br />
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Market</TableCell>
+                            <TableCell align="right">Exposure</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {Object.entries(dataR.tot_per_market).map((row) => (
+                            <TableRow hover
+                                key={row[0]}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {row[0]}
+                                </TableCell>
+
+                                <TableCell align="right">{formatterPct.format(row[1])}</TableCell>
+
+
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <br />
+            Asset Location<br /><br />
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Location</TableCell>
+                            <TableCell align="right">Value</TableCell>
+                            <TableCell align="right">Allocation</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {Object.entries(dataR.tot_per_location).map((row) => (
+                            <TableRow hover
+                                key={row[1][0]}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {row[1][0]}
+                                </TableCell>
+
+                                <TableCell align="right">{formatter.format(row[1][1])}</TableCell>
+                                <TableCell align="right">{formatterPct.format(row[1][2])}</TableCell>
+
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
