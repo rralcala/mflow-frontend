@@ -168,10 +168,10 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
                 <MenuItemLink
-                    to="/exchangeRates"
+                    to="/reports/exchangeRates"
                     state={{ _scrollToTop: true }}
                     primaryText={"Exchange Rates"}
-                    leftIcon={createElement(resources["exchangeRates"].icon)}
+                    leftIcon={createElement(resources["reports/exchangeRates"].icon)}
                     dense={dense}
                 />
                 <MenuItemLink

@@ -3,7 +3,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export const authProvider = {
     login: ({ username, password }) => {
-        const request = new Request(`${apiUrl}/rlogin`, {
+        const request = new Request(`${apiUrl}/auth/rlogin`, {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -21,7 +21,11 @@ export const authProvider = {
             });
     },
     logout: () => {
-        // Optional: Call Flask logout endpoint if you want to clear server session
+        const request = new Request(`${apiUrl}/auth/rlogout`, {
+            method: 'GET',
+            credentials: 'include',
+        });
+        fetch(request)
         localStorage.removeItem('auth');
         return Promise.resolve();
     },

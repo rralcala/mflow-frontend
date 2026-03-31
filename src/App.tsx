@@ -79,7 +79,7 @@ export const App = () => (
 
     <Resource name="reports/upcoming_payments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
     <Resource name="assets/monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
-    <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
+    <Resource name="reports/exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
     <CustomRoutes>
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
       <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
