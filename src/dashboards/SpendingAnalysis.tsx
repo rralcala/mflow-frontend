@@ -10,6 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
+import { formatter } from '../lib';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const formatterFract = new Intl.NumberFormat('en-US', {
@@ -17,14 +19,6 @@ const formatterFract = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 2,
     minimumFractionDigits: 2,
 });
-
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    useGrouping: true,
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-});
-
 
 export const DashboardSpendingAnalysis = () => {
     const [dataR, setData] = useState(null);
@@ -34,7 +28,7 @@ export const DashboardSpendingAnalysis = () => {
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/spendingAnalysis', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/reports/spending_analysis', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => setError(error))
             .finally(() => setLoading(false));

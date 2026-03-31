@@ -77,7 +77,7 @@ export const App = () => (
     <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit} icon={ChecklistIcon} />
     <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={CandlestickChartIcon} />
 
-    <Resource name="upcomingPayments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
+    <Resource name="reports/upcoming_payments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
     <Resource name="monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
     <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
     <CustomRoutes>

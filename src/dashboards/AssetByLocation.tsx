@@ -12,26 +12,18 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
-const apiUrl = import.meta.env.VITE_API_URL;
+import { formatter } from '../lib';
 
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    useGrouping: true,
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-});
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const DashboardAssetByLocation = () => {
     // Fetch a specific record using useGetOne hook
     // Replace 'dashboard-stats' with your actual resource name and '1' with the record ID
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
     const [dataR, setData] = useState([]);
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/assetsByLocation', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/reports/assets_by_location', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => console.error(error));
 

@@ -11,23 +11,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
+import { formatter, formatterPct } from '../lib';
+
 const apiUrl = import.meta.env.VITE_API_URL;
-
-
-const formatterPct = new Intl.NumberFormat('en-US', {
-    style: 'percent',
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-
-});
-
-
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    useGrouping: true,
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-});
 
 type DataRow = [any, number, number, number];
 function reduceColumns<T>(matrix: DataRow[]): T[][] {
@@ -54,7 +40,7 @@ export const DashboardValuationHistory = () => {
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/valuationHistory', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/reports/valuation_history', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => console.error(error));
 

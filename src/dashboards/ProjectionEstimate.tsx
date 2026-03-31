@@ -9,28 +9,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
+import { formatter } from '../lib';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const formatterFract = new Intl.NumberFormat('en-US', {
+export const formatterFract = new Intl.NumberFormat('en-US', {
     style: 'decimal',
+    useGrouping: true,
     maximumFractionDigits: 2,
     minimumFractionDigits: 2,
 });
-
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    useGrouping: true,
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-});
-
 
 export const DashboardProjectionAnalysis = () => {
     const [dataR, setData] = useState({});
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/projectionAnalysis', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/reports/projection_analysis', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => console.error(error));
 

@@ -10,40 +10,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
+import { formatNumberWithColor, formatterPct } from '../lib';
 
 const apiUrl = import.meta.env.VITE_API_URL;
-
-
-const formatterPct = new Intl.NumberFormat('en-US', {
-    style: 'percent',
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-
-});
-
-
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    useGrouping: true,
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-});
 
 function formatPctWithNan(value: number): ReactNode {
     if (isNaN(value)) {
         return <span>-</span>;
     }
-
-
     return formatterPct.format(value);
-}
-
-function formatNumberWithColor(value: number): ReactNode {
-    const formatted = formatter.format(value);
-    if (value < 0) {
-        return <span style={{ color: 'red' }}>{formatted}</span>;
-    }
-    return <span>{formatted}</span>;
 }
 
 type DataRow = [string, number];
@@ -87,7 +62,7 @@ export const DashboardInvestmentPerformance = () => {
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/investmentPerformance', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/reports/investment_performance', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => console.error(error));
 
@@ -108,7 +83,7 @@ export const DashboardInvestmentPerformance = () => {
                         <TableRow>
                             <TableCell align="left">Asset</TableCell>
                             <TableCell align="right">Capital</TableCell>
-                            
+
                             <TableCell align="right">Return</TableCell>
                         </TableRow>
                     </TableHead>

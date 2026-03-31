@@ -1,5 +1,5 @@
 
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchUtils } from 'react-admin';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,29 +10,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
+import { formatNumberWithColor } from '../lib';
+
 const apiUrl = import.meta.env.VITE_API_URL;
-
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    useGrouping: true,
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-});
-
-function formatNumberWithColor(value: number): ReactNode {
-    const formatted = formatter.format(value);
-    if (value < 0) {
-        return <span style={{ color: 'red' }}>{formatted}</span>;
-    }
-    return <span>{formatted}</span>;
-}
 
 export const DashboardCashFlow = () => {
     const [dataR, setData] = useState([]);
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/cashFlow', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/reports/cash_flow', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => console.error(error));
 

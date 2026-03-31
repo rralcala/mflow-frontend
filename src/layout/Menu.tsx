@@ -154,10 +154,10 @@ const Menu = ({ dense = false }: MenuProps) => {
                 dense={dense}
             >
                 <MenuItemLink
-                    to="/upcomingPayments"
+                    to="/reports/upcoming_payments"
                     state={{ _scrollToTop: true }}
                     primaryText={"Upcoming Payments"}
-                    leftIcon={createElement(resources["upcomingPayments"].icon)}
+                    leftIcon={createElement(resources["reports/upcoming_payments"].icon)}
                     dense={dense}
                 />
                 <MenuItemLink

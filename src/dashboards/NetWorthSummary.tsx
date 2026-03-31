@@ -10,20 +10,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
+import { formatter, formatterPct } from '../lib';
+
 const apiUrl = import.meta.env.VITE_API_URL;
-
-const formatterPct = new Intl.NumberFormat('en-US', {
-    style: 'percent',
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-});
-
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    useGrouping: true,
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-});
 
 export const DashboardNetWorthSummary = () => {
     const [dataR, setData] = useState(null);
@@ -32,7 +21,7 @@ export const DashboardNetWorthSummary = () => {
 
     useEffect(() => {
         const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/nwsummary', { user, credentials: 'include' })
+        fetchUtils.fetchJson(apiUrl + '/reports/nw_summary', { user, credentials: 'include' })
             .then(response => setData(response.json))
             .catch(error => setError(error))
             .finally(() => setLoading(false));
@@ -173,6 +162,8 @@ export const DashboardNetWorthSummary = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <br />
+            End
         </Stack>
     );
 };
