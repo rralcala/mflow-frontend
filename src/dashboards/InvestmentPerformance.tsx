@@ -49,11 +49,12 @@ const options = {
 };
 
 export const DashboardInvestmentPerformance = () => {
+    const reportRoute = '/reports/investment_performance';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(fetcherEffect(setData, setError, setLoading, '/reports/investment_performance'), []); // Empty array ensures this runs once on mount
+    useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []); // Empty array ensures this runs once on mount
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;

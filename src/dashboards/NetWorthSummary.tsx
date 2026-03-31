@@ -15,11 +15,12 @@ import { formatter, formatterPct } from '../lib';
 
 
 export const DashboardNetWorthSummary = () => {
+    const reportRoute = '/reports/net_worth_summary';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(fetcherEffect(setData, setError, setLoading, '/reports/nw_summary'), []);
+    useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;

@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { fetchUtils } from 'react-admin';
 import { Chart } from "react-google-charts";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,8 +11,7 @@ import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
 import { formatter, formatterPct } from '../lib';
-
-const apiUrl = import.meta.env.VITE_API_URL;
+import { fetcherEffect } from '../httpClient';
 
 type DataRow = [any, number, number, number];
 function reduceColumns<T>(matrix: DataRow[]): T[][] {
@@ -36,16 +34,15 @@ const options = {
 
 
 export const DashboardValuationHistory = () => {
-    const [dataR, setData] = useState([]);
+    const reportRoute = '/reports/valuation_history';
+    const [dataR, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/reports/valuation_history', { user, credentials: 'include' })
-            .then(response => setData(response.json))
-            .catch(error => console.error(error));
+    useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
 
-    }, []); // Empty array ensures this runs once on mount
-
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
     return (
         <Stack>

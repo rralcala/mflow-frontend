@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { fetchUtils } from 'react-admin';
 
 import { Chart } from "react-google-charts";
 import Table from '@mui/material/Table';
@@ -12,22 +11,19 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
+import { fetcherEffect } from '../httpClient';
 import { formatter } from '../lib';
 
-const apiUrl = import.meta.env.VITE_API_URL;
-
 export const DashboardAssetByLocation = () => {
-    // Fetch a specific record using useGetOne hook
-    // Replace 'dashboard-stats' with your actual resource name and '1' with the record ID
-    const [dataR, setData] = useState([]);
+    const reportRoute = '/reports/assets_by_location';
+    const [dataR, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/reports/assets_by_location', { user, credentials: 'include' })
-            .then(response => setData(response.json))
-            .catch(error => console.error(error));
+    useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []); // Empty array ensures this runs once on mount
 
-    }, []); // Empty array ensures this runs once on mount
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
     type DataRow = [any, number];
     function addTotal<T>(matrix: DataRow[]): DataRow[] {

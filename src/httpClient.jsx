@@ -15,7 +15,7 @@ export const httpClient = (url, options = {}) => {
 
 export function fetcherEffect(setData, setError, setLoading, route) {
 
-return () => {
+    return () => {
         const user = { authenticated: true };
         fetchUtils.fetchJson(apiUrl + route, { user, credentials: 'include' })
             .then(response => setData(response.json))
