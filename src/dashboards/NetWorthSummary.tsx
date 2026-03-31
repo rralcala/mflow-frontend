@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { fetchUtils } from 'react-admin';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,29 +10,20 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
+import { fetcherEffect } from '../httpClient';
 import { formatter, formatterPct } from '../lib';
 
-const apiUrl = import.meta.env.VITE_API_URL;
 
 export const DashboardNetWorthSummary = () => {
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/reports/nw_summary', { user, credentials: 'include' })
-            .then(response => setData(response.json))
-            .catch(error => setError(error))
-            .finally(() => setLoading(false));
-
-    }, []); // Empty array ensures this runs once on mount
+    useEffect(fetcherEffect(setData, setError, setLoading, '/reports/nw_summary'), []);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
-    Object.entries(dataR.tot_per_location).map((row) => (
-        console.log(row[1])
-    ));
+
     return (
         <Stack>
 

@@ -21,3 +21,10 @@ export function formatNumberWithColor(value: number): ReactNode {
     }
     return <span>{formatted}</span>;
 }
+
+export function formatPctWithNan(value: number): ReactNode {
+    if (isNaN(value)) {
+        return <span>-</span>;
+    }
+    return formatterPct.format(value);
+}

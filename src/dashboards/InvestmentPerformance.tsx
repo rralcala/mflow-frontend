@@ -1,6 +1,6 @@
 
 import { useState, useEffect, ReactNode } from 'react';
-import { fetchUtils } from 'react-admin';
+
 import { Chart } from "react-google-charts";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,39 +10,30 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
-import { formatNumberWithColor, formatterPct } from '../lib';
-
-const apiUrl = import.meta.env.VITE_API_URL;
-
-function formatPctWithNan(value: number): ReactNode {
-    if (isNaN(value)) {
-        return <span>-</span>;
-    }
-    return formatterPct.format(value);
-}
+import { formatNumberWithColor, formatterPct, formatPctWithNan } from '../lib';
+import { fetcherEffect } from '../httpClient';
 
 type DataRow = [string, number];
 function reduceColumns<T>(matrix): DataRow[] {
-
     return matrix.map(row => [row["from"] + "-" + row["to"], Math.trunc(row["assets"].reduce((a, b) => a + b[1], 0))]);
 }
 
 function headRow(row) {
-    return (<TableRow
-        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    >
-        <TableCell><b>Range</b></TableCell>
-        <TableCell align="right"><b>{formatPctWithNan(row["from"] / 100)}</b></TableCell>
-        <TableCell align="right"><b>{formatPctWithNan(row["to"] / 100)}</b></TableCell>
+    return (
+        <TableRow
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+        >
+            <TableCell><b>Range</b></TableCell>
+            <TableCell align="right"><b>{formatPctWithNan(row["from"] / 100)}</b></TableCell>
+            <TableCell align="right"><b>{formatPctWithNan(row["to"] / 100)}</b></TableCell>
 
-    </TableRow>
+        </TableRow>
     );
 }
 
 function subRows(row) {
     return row.assets.map((irow) => (
         <TableRow
-
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell align="left">{irow[0]}</TableCell>
@@ -58,16 +49,14 @@ const options = {
 };
 
 export const DashboardInvestmentPerformance = () => {
-    const [dataR, setData] = useState([]);
+    const [dataR, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/reports/investment_performance', { user, credentials: 'include' })
-            .then(response => setData(response.json))
-            .catch(error => console.error(error));
+    useEffect(fetcherEffect(setData, setError, setLoading, '/reports/investment_performance'), []); // Empty array ensures this runs once on mount
 
-    }, []); // Empty array ensures this runs once on mount
-
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
     return (
         <Stack>
             <Chart
