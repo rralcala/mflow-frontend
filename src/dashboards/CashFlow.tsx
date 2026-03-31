@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { fetchUtils } from 'react-admin';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,19 +10,19 @@ import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
 import { formatNumberWithColor } from '../lib';
-
-const apiUrl = import.meta.env.VITE_API_URL;
+import { fetcherEffect } from '../httpClient';
 
 export const DashboardCashFlow = () => {
-    const [dataR, setData] = useState([]);
+    const reportRoute = '/reports/reports/cash_flow';
+    const [dataR, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const user = { authenticated: true };
-        fetchUtils.fetchJson(apiUrl + '/reports/cash_flow', { user, credentials: 'include' })
-            .then(response => setData(response.json))
-            .catch(error => console.error(error));
+    useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []); // Empty array ensures this runs once on mount
 
-    }, []); // Empty array ensures this runs once on mount
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
     const today = new Date().toISOString().split('T')[0];
 
     let min_uu = Infinity;

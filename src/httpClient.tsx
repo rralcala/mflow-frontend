@@ -1,4 +1,4 @@
-// src/httpClient.js
+// src/httpClient.ts
 import { fetchUtils } from 'react-admin';
 
 const apiUrl = import.meta.env.VITE_API_URL;
