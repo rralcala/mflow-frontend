@@ -14,7 +14,7 @@ export const MonthlytransactionList = () => (
             <DataTable.Col source="yearMonth" />
 
             <DataTable.Col source="assetId">
-                <ReferenceField source="assetId" reference="assets" />
+                <ReferenceField source="assetId" reference="assets/assets" />
             </DataTable.Col>
             <DataTable.NumberCol source="amount" options={{
                 style: 'decimal',
@@ -32,7 +32,7 @@ export const MonthlytransactionShow = () => (
     <Show>
         <SimpleShowLayout>
             <TextField source="yearMonth" />
-            <ReferenceField source="assetId" reference="assets" />
+            <ReferenceField source="assetId" reference="assets/assets" />
             <NumberField source="amount" options={{
                 style: 'decimal',
                 useGrouping: true,

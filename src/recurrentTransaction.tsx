@@ -28,14 +28,14 @@ const postDefaultValue = () => {
 };
 
 const postFilters = [
-    <ReferenceInput source="recurrentId" label="Recurrent" reference="recurrents" />,
+    <ReferenceInput source="recurrentId" label="Recurrent" reference="assets/recurrents" />,
 ];
 
 export const RecurrenttransactionList = () => (
     <List filters={postFilters}>
         <DataTable>
             <DataTable.Col source="recurrentId">
-                <ReferenceField source="recurrentId" reference="recurrents" />
+                <ReferenceField source="recurrentId" reference="assets/recurrents" />
             </DataTable.Col>
             <DataTable.Col source="yearMonth" />
             <DataTable.Col source="description" />
@@ -46,7 +46,7 @@ export const RecurrenttransactionList = () => (
                 minimumFractionDigits: 0,
             }} />
             <DataTable.Col source="paidWithAssetId">
-                <ReferenceField source="paidWithAssetId" reference="assets" />
+                <ReferenceField source="paidWithAssetId" reference="assets/assets" />
             </DataTable.Col>
             <DataTable.Col source="transactionDate">
                 <DateField source="transactionDate" />
@@ -67,14 +67,14 @@ export const RecurrenttransactionList = () => (
 export const RecurrenttransactionShow = () => (
     <Show>
         <SimpleShowLayout>
-            <ReferenceField source="recurrentId" reference="recurrents" />
+            <ReferenceField source="recurrentId" reference="assets/recurrents" />
             <TextField source="yearMonth" />
             <TextField source="description" />
             <DateField source="transactionDate" />
             <DateField source="createDate" />
 
 
-            <ReferenceField source="paidWithAssetId" reference="assets" />
+            <ReferenceField source="paidWithAssetId" reference="assets/assets" />
 
             <NumberField source="amount" options={{
                 style: 'decimal',
@@ -91,12 +91,12 @@ export const RecurrenttransactionShow = () => (
 export const RecurrenttransactionEdit = () => (
     <Edit>
         <SimpleForm>
-            <ReferenceInput source="recurrentId" reference="recurrents" />
+            <ReferenceInput source="recurrentId" reference="assets/recurrents" />
             <TextInput source="yearMonth" />
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
+            <ReferenceInput source="paidWithAssetId" reference="assets/assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
             <TextInput source="id" InputProps={{ disabled: true }} />
             <DateInput source="createDate" InputProps={{ disabled: true }} />
         </SimpleForm>
@@ -107,12 +107,12 @@ export const RecurrenttransactionEdit = () => (
 export const RecurrenttransactionCreate = () => (
     <Create>
         <SimpleForm defaultValues={postDefaultValue}>
-            <ReferenceInput source="recurrentId" reference="recurrents" />
+            <ReferenceInput source="recurrentId" reference="assets/recurrents" />
             <TextInput source="yearMonth" />
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
+            <ReferenceInput source="paidWithAssetId" reference="assets/assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
         </SimpleForm>
     </Create>
 );

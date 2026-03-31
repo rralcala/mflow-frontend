@@ -46,7 +46,7 @@ export const RecurrentList = () => (
             }} />
             <DataTable.Col source="country" />
             <DataTable.Col source="assetId">
-                <ReferenceField source="assetId" reference="assets" link="show" />
+                <ReferenceField source="assetId" reference="assets/assets" link="show" />
             </DataTable.Col>
 
             <DataTable.Col>
@@ -72,7 +72,7 @@ export const RecurrentShow = () => (
                 }} />
                 <TextField source="currency" />
             </Stack>
-            <ReferenceField source="assetId" reference="assets" />
+            <ReferenceField source="assetId" reference="assets/assets" />
             <DateField source="start" />
             <DateField source="end" />
             <TextField source="recurrence" />
@@ -94,7 +94,7 @@ export const RecurrentEdit = () => (
             <TextInput source="flowClass" />
             <NumberInput source="amount" />
             <TextInput source="currency" />
-            <ReferenceInput source="assetId" reference="assets" />
+            <ReferenceInput source="assetId" reference="assets/assets" />
             <DateInput source="start" />
             <DateInput source="end" />
             <TextInput source="recurrence" />
@@ -112,7 +112,7 @@ export const RecurrentCreate = () => (
             <TextInput source="flowClass" />
             <NumberInput source="amount" />
             <TextInput source="currency" />
-            <ReferenceInput source="assetId" reference="assets" />
+            <ReferenceInput source="assetId" reference="assets/assets" />
             <DateInput source="start" />
             <DateInput source="end" />
             <TextInput source="recurrence" />

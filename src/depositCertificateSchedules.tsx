@@ -19,14 +19,14 @@ import {
 } from 'react-admin';
 
 const postFilters = [
-    <ReferenceInput source="depositCertificateId" label="Deposit Certificate" reference="depositCertificates" />,
+    <ReferenceInput source="depositCertificateId" label="Deposit Certificate" reference="assets/depositCertificates" />,
 ];
 
 export const DepositCertificateSchedulesList = () => (
     <List filters={postFilters}>
         <DataTable>
             <DataTable.Col source="depositCertificateId">
-                <ReferenceField source="depositCertificateId" reference="depositCertificates" />
+                <ReferenceField source="depositCertificateId" reference="assets/depositCertificates" />
             </DataTable.Col>
             <DataTable.Col source="transactionDate">
                 <DateField source="transactionDate" />
@@ -45,7 +45,7 @@ export const DepositCertificateSchedulesList = () => (
 export const DepositCertificateScheduleShow = () => (
     <Show>
         <SimpleShowLayout>
-            <ReferenceField source="depositCertificateId" reference="depositCertificates" />
+            <ReferenceField source="depositCertificateId" reference="assets/depositCertificates" />
             <DateField source="transactionDate" />
             <NumberField source="amount" options={{
                 style: 'decimal',
@@ -62,7 +62,7 @@ export const DepositCertificateScheduleShow = () => (
 export const DepositCertificateScheduleEdit = () => (
     <Edit>
         <SimpleForm>
-            <ReferenceInput source="depositCertificateId" reference="depositCertificates" InputProps={{ disabled: true }} />
+            <ReferenceInput source="depositCertificateId" reference="assets/depositCertificates" InputProps={{ disabled: true }} />
             <BooleanInput source="paid" />
             <DateInput source="transactionDate" />
             <NumberInput source="amount" />

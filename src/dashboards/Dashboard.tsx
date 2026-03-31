@@ -13,12 +13,12 @@ export const Dashboard = () => {
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
 
-    const { data, isLoading, error } = useGetOne('monthlyTransactions', { id: `${year}-${month}-CostoFijo-PY` });
+    const { data, isLoading, error } = useGetOne('assets/monthlyTransactions', { id: `${year}-${month}-CostoFijo-PY` });
 
-    const { data: dataD, isLoading: isLoadingD, error: errorD } = useGetOne('monthlyTransactions', { id: `${year}-${month}-Discretionary` });
+    const { data: dataD, isLoading: isLoadingD, error: errorD } = useGetOne('assets/monthlyTransactions', { id: `${year}-${month}-Discretionary` });
 
 
-    const { data: dataS, isLoading: isLoadingS, error: errorS } = useGetOne('monthlyTransactions', { id: `${year}-${month}-Supermercado` });
+    const { data: dataS, isLoading: isLoadingS, error: errorS } = useGetOne('assets/monthlyTransactions', { id: `${year}-${month}-Supermercado` });
 
     if (isLoading || isLoadingD || isLoadingS) return <Card><CardContent>Loading...</CardContent></Card>;
     if (error || errorD || errorS) return <Card><CardContent>Error loading data</CardContent></Card>;

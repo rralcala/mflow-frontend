@@ -52,24 +52,24 @@ const Menu = ({ dense = false }: MenuProps) => {
         >
             <DashboardMenuItem />
             <MenuItemLink
-                to="/recurrents"
+                to="/assets/recurrents"
                 state={{ _scrollToTop: true }}
                 primaryText={"Recurrents"}
-                leftIcon={createElement(resources["recurrents"].icon)}
+                leftIcon={createElement(resources["assets/recurrents"].icon)}
                 dense={dense}
             />
             <MenuItemLink
-                to="/recurrentTransactions"
+                to="/assets/recurrentTransactions"
                 state={{ _scrollToTop: true }}
                 primaryText={"Recurrent Transactions"}
-                leftIcon={createElement(resources["recurrentTransactions"].icon)}
+                leftIcon={createElement(resources["assets/recurrentTransactions"].icon)}
                 dense={dense}
             />
             <MenuItemLink
-                to="/payables"
+                to="/assets/payables"
                 state={{ _scrollToTop: true }}
                 primaryText={"Payables"}
-                leftIcon={createElement(resources["payables"].icon)}
+                leftIcon={createElement(resources["assets/payables"].icon)}
                 dense={dense}
             />
 
@@ -77,42 +77,42 @@ const Menu = ({ dense = false }: MenuProps) => {
                 handleToggle={() => handleToggle('menuAssets')}
                 isOpen={state.menuAssets}
                 name="Assets"
-                icon={createElement(resources["assets"].icon)}
+                icon={createElement(resources["assets/assets"].icon)}
                 dense={dense}
             >
                 <MenuItemLink
-                    to="/assets"
+                    to="/assets/assets"
                     state={{ _scrollToTop: true }}
                     primaryText={"Assets"}
-                    leftIcon={createElement(resources["assets"].icon)}
+                    leftIcon={createElement(resources["assets/assets"].icon)}
                     dense={dense}
                 />
                 <MenuItemLink
-                    to="/accounts"
+                    to="/assets/accounts"
                     state={{ _scrollToTop: true }}
                     primaryText={"Accounts"}
-                    leftIcon={createElement(resources["accounts"].icon)}
+                    leftIcon={createElement(resources["assets/accounts"].icon)}
                     dense={dense}
                 />
                 <SubMenu
                     handleToggle={() => handleToggle('menuBonds')}
                     isOpen={state.menuBonds}
                     name="Bonds"
-                    icon={createElement(resources["bonds"].icon)}
+                    icon={createElement(resources["assets/bonds"].icon)}
                     dense={dense}
                 >
                     <MenuItemLink
-                        to="/bonds"
+                        to="/assets/bonds"
                         state={{ _scrollToTop: true }}
                         primaryText={"Bonds"}
-                        leftIcon={createElement(resources["bonds"].icon)}
+                        leftIcon={createElement(resources["assets/bonds"].icon)}
                         dense={dense}
                     />
                     <MenuItemLink
-                        to="/bondSchedules"
+                        to="/assets/bondSchedules"
                         state={{ _scrollToTop: true }}
                         primaryText={"Interest Schedules"}
-                        leftIcon={createElement(resources["bondSchedules"].icon)}
+                        leftIcon={createElement(resources["assets/bondSchedules"].icon)}
                         dense={dense}
                     />
                 </SubMenu>
@@ -120,29 +120,29 @@ const Menu = ({ dense = false }: MenuProps) => {
                     handleToggle={() => handleToggle('menuCD')}
                     isOpen={state.menuCD}
                     name="Deposit Certificates"
-                    icon={createElement(resources["depositCertificates"].icon)}
+                    icon={createElement(resources["assets/depositCertificates"].icon)}
                     dense={dense}
                 >
                     <MenuItemLink
-                        to="/depositCertificates"
+                        to="/assets/depositCertificates"
                         state={{ _scrollToTop: true }}
                         primaryText={"Deposit Certificates"}
-                        leftIcon={createElement(resources["depositCertificates"].icon)}
+                        leftIcon={createElement(resources["assets/depositCertificates"].icon)}
                         dense={dense}
                     />
                     <MenuItemLink
-                        to="/depositCertificateSchedules"
+                        to="/assets/depositCertificateSchedules"
                         state={{ _scrollToTop: true }}
                         primaryText={"Interest Schedules"}
-                        leftIcon={createElement(resources["depositCertificateSchedules"].icon)}
+                        leftIcon={createElement(resources["assets/depositCertificateSchedules"].icon)}
                         dense={dense}
                     />
                 </SubMenu>
                 <MenuItemLink
-                    to="/instruments"
+                    to="/assets/instruments"
                     state={{ _scrollToTop: true }}
                     primaryText={"Instruments"}
-                    leftIcon={createElement(resources["instruments"].icon)}
+                    leftIcon={createElement(resources["assets/instruments"].icon)}
                     dense={dense}
                 />
             </SubMenu>
@@ -161,10 +161,10 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
                 <MenuItemLink
-                    to="/monthlyTransactions"
+                    to="/assets/monthlyTransactions"
                     state={{ _scrollToTop: true }}
                     primaryText={"Monthly Transactions"}
-                    leftIcon={createElement(resources["monthlyTransactions"].icon)}
+                    leftIcon={createElement(resources["assets/monthlyTransactions"].icon)}
                     dense={dense}
                 />
                 <MenuItemLink

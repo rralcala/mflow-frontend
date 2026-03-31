@@ -56,29 +56,29 @@ export const App = () => (
     dashboard={Dashboard}
     layout={Layout}
     requireAuth >
-    <Resource name="recurrents"
+    <Resource name="assets/recurrents"
       list={RecurrentList}
       show={RecurrentShow}
       edit={RecurrentEdit}
       create={RecurrentCreate} icon={MenuBookIcon} />
-    <Resource name="recurrentTransactions"
+    <Resource name="assets/recurrentTransactions"
       list={RecurrenttransactionList}
       show={RecurrenttransactionShow}
       edit={RecurrenttransactionEdit}
       create={RecurrenttransactionCreate}
       icon={ReceiptIcon} />
-    <Resource name="payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />
+    <Resource name="assets/payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />
 
-    <Resource name="assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
-    <Resource name="accounts" list={AccountList} show={AccountShow} edit={AccountEdit} create={AccountCreate} icon={SavingsIcon} />
-    <Resource name="bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
-    <Resource name="bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit} icon={ChecklistIcon} />
-    <Resource name="depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
-    <Resource name="depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit} icon={ChecklistIcon} />
-    <Resource name="instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={CandlestickChartIcon} />
+    <Resource name="assets/assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
+    <Resource name="assets/accounts" list={AccountList} show={AccountShow} edit={AccountEdit} create={AccountCreate} icon={SavingsIcon} />
+    <Resource name="assets/bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
+    <Resource name="assets/bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit} icon={ChecklistIcon} />
+    <Resource name="assets/depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
+    <Resource name="assets/depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit} icon={ChecklistIcon} />
+    <Resource name="assets/instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={CandlestickChartIcon} />
 
     <Resource name="reports/upcoming_payments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
-    <Resource name="monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
+    <Resource name="assets/monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
     <Resource name="exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
     <CustomRoutes>
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />

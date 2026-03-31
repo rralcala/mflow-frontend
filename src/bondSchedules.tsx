@@ -19,14 +19,14 @@ import {
 } from 'react-admin';
 
 const postFilters = [
-    <ReferenceInput source="bondId" label="Bond" reference="bonds" />,
+    <ReferenceInput source="bondId" label="Bond" reference="assets/bonds" />,
 ];
 
 export const BondscheduleList = () => (
     <List filters={postFilters}>
         <DataTable>
             <DataTable.Col source="bondId">
-                <ReferenceField source="bondId" reference="bonds" />
+                <ReferenceField source="bondId" reference="assets/bonds" />
             </DataTable.Col>
             <DataTable.Col source="transactionDate">
                 <DateField source="transactionDate" />
@@ -45,7 +45,7 @@ export const BondscheduleList = () => (
 export const BondscheduleShow = () => (
     <Show>
         <SimpleShowLayout>
-            <ReferenceField source="bondId" reference="bonds" />
+            <ReferenceField source="bondId" reference="assets/bonds" />
             <DateField source="transactionDate" />
             <NumberField source="amount" options={{
                 style: 'decimal',
@@ -62,7 +62,7 @@ export const BondscheduleShow = () => (
 export const BondscheduleEdit = () => (
     <Edit>
         <SimpleForm>
-            <ReferenceInput source="bondId" reference="bonds" InputProps={{ disabled: true }} />
+            <ReferenceInput source="bondId" reference="assets/bonds" InputProps={{ disabled: true }} />
             <BooleanInput source="paid" />
             <DateInput source="transactionDate" />
             <NumberInput source="amount" />
