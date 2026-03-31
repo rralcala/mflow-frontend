@@ -154,27 +154,6 @@ const Menu = ({ dense = false }: MenuProps) => {
                 dense={dense}
             >
                 <MenuItemLink
-                    to="/reports/upcoming_payments"
-                    state={{ _scrollToTop: true }}
-                    primaryText={"Upcoming Payments"}
-                    leftIcon={createElement(resources["reports/upcoming_payments"].icon)}
-                    dense={dense}
-                />
-                <MenuItemLink
-                    to="/assets/monthlyTransactions"
-                    state={{ _scrollToTop: true }}
-                    primaryText={"Monthly Transactions"}
-                    leftIcon={createElement(resources["assets/monthlyTransactions"].icon)}
-                    dense={dense}
-                />
-                <MenuItemLink
-                    to="/reports/exchangeRates"
-                    state={{ _scrollToTop: true }}
-                    primaryText={"Exchange Rates"}
-                    leftIcon={createElement(resources["reports/exchangeRates"].icon)}
-                    dense={dense}
-                />
-                <MenuItemLink
                     to="/dashboard-abl"
                     state={{ _scrollToTop: true }}
                     primaryText={"Asset By Location"}
@@ -189,10 +168,31 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
                 <MenuItemLink
-                    to="/dashboard-vh"
+                    to="/reports/exchangeRates"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Valuation History"}
+                    primaryText={"Exchange Rates"}
+                    leftIcon={createElement(resources["reports/exchangeRates"].icon)}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/dashboard-ip"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Investment Clusters"}
                     leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/dashboard-mpnl"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Monthly PNL"}
+                    leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/assets/monthlyTransactions"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Monthly Transactions"}
+                    leftIcon={createElement(resources["assets/monthlyTransactions"].icon)}
                     dense={dense}
                 />
                 <MenuItemLink
@@ -217,9 +217,16 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
                 <MenuItemLink
-                    to="/dashboard-ip"
+                    to="/reports/upcoming_payments"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Investment Clusters"}
+                    primaryText={"Upcoming Payments"}
+                    leftIcon={createElement(resources["reports/upcoming_payments"].icon)}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/dashboard-vh"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Valuation History"}
                     leftIcon={<DashboardIcon />}
                     dense={dense}
                 />
