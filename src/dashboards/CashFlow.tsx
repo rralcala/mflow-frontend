@@ -24,19 +24,30 @@ export const DashboardCashFlow = () => {
             .catch(error => console.error(error));
 
     }, []); // Empty array ensures this runs once on mount
+    const today = new Date().toISOString().split('T')[0];
 
+    let min_uu = Infinity;
+    let min_up = Infinity;
+    let min_pp = Infinity;
 
+    // 2. Use .forEach() instead of .map() when you aren't creating a new array
+    dataR.forEach((row) => {
+        if (row.date >= today) {
+            min_uu = Math.min(min_uu, row["USD-US"]);
+            min_up = Math.min(min_up, row["USD-PY"]);
+            min_pp = Math.min(min_pp, row["PYG-PY"]);
+        }
+    });
     return (
         <Stack>
-
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Date</TableCell>
-                            <TableCell align="right">US-USD</TableCell>
-                            <TableCell align="right">PY-USD</TableCell>
-                            <TableCell align="right">PY-PYG</TableCell>
+                            <TableCell align="right">US-USD Min: {formatNumberWithColor(min_uu)}</TableCell>
+                            <TableCell align="right">PY-USD Min: {formatNumberWithColor(min_up)}</TableCell>
+                            <TableCell align="right">PY-PYG Min: {formatNumberWithColor(min_pp)}</TableCell>
                             <TableCell align="right">Total</TableCell>
                         </TableRow>
                     </TableHead>
