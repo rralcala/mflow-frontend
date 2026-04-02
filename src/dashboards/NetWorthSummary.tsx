@@ -31,7 +31,7 @@ export const DashboardNetWorthSummary = () => {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableBody>
-                        <TableRow
+                        <TableRow hover
                             key={"capital"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
@@ -40,7 +40,7 @@ export const DashboardNetWorthSummary = () => {
                             </TableCell>
                             <TableCell align="right">{formatter.format(dataR.capital)}</TableCell>
                         </TableRow>
-                        <TableRow
+                        <TableRow hover
                             key={"debt"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
@@ -49,7 +49,7 @@ export const DashboardNetWorthSummary = () => {
                             </TableCell>
                             <TableCell align="right">{formatter.format(dataR.debt)}</TableCell>
                         </TableRow>
-                        <TableRow
+                        <TableRow hover
                             key={"debt_to_assets"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
@@ -58,7 +58,7 @@ export const DashboardNetWorthSummary = () => {
                             </TableCell>
                             <TableCell align="right">{formatterPct.format(dataR.debt_to_assets)}</TableCell>
                         </TableRow>
-                        <TableRow
+                        <TableRow hover
                             key={"net_worth"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
@@ -67,7 +67,7 @@ export const DashboardNetWorthSummary = () => {
                             </TableCell>
                             <TableCell align="right">{formatter.format(dataR.net_worth)}</TableCell>
                         </TableRow>
-                        <TableRow
+                        <TableRow hover
                             key={"return_on_assets"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
@@ -76,7 +76,7 @@ export const DashboardNetWorthSummary = () => {
                             </TableCell>
                             <TableCell align="right">{formatterPct.format(dataR.return_on_assets)}</TableCell>
                         </TableRow>
-                        <TableRow
+                        <TableRow hover
                             key={"estimated_monthly_income"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
@@ -85,7 +85,7 @@ export const DashboardNetWorthSummary = () => {
                             </TableCell>
                             <TableCell align="right">{formatter.format(dataR.estimated_monthly_income)}</TableCell>
                         </TableRow>
-                        <TableRow
+                        <TableRow hover
                             key={"fixed_income"}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
