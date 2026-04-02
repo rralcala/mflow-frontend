@@ -64,7 +64,7 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                         <TableRow>
                           <TableCell>Asset</TableCell>
                           <TableCell align="right">Amount</TableCell>
-                          
+
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -74,7 +74,7 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                               {historyRow[0]}
                             </TableCell>
                             <TableCell align="right">{formatter.format(historyRow[1])} {historyRow[2]}</TableCell>
-                            
+
 
                           </TableRow>
                         ))}
@@ -178,10 +178,34 @@ export const DashboardMonthlyPNL = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
+  console.log(dataR["summary"]);
   return (
-    Object.entries(dataR).map((row) => (
-      renderRow(row, toggleCard, openCards)
-    ))
+    <Stack>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableBody>
+            <TableRow hover>
+              <TableCell>Year total</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["grand_total"][0])}</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["grand_total"][1])}</TableCell>
+            </TableRow>
+            <TableRow hover>
+              <TableCell>Income</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["income"][0])}</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["income"][1])}</TableCell>
+            </TableRow>
+            <TableRow hover>
+              <TableCell><b>Year net (excl One Offs)</b></TableCell>
+              <TableCell align="right"><b>{formatter.format(dataR["summary"]["year_net"][0])}</b></TableCell>
+              <TableCell align="right"><b>{formatter.format(dataR["summary"]["year_net"][1])}</b></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <br/>
+      {Object.entries(dataR["year_months"]).map((row) => (
+        renderRow(row, toggleCard, openCards)
+      ))}
+    </Stack>
   );
 };
