@@ -15,7 +15,7 @@ import { formatter, formatterPct } from '../lib';
 
 
 export const DashboardIncomePerLocation = () => {
-    const reportRoute = '/reports/nw_summary';
+    const reportRoute = '/reports/income_per_location';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
