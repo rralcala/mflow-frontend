@@ -24,6 +24,7 @@ import {
   Dashboard,
   DashboardAssetByLocation,
   DashboardCashFlow,
+  DashboardIncomePerLocation,
   DashboardInvestmentPerformance,
   DashboardMonthlyPNL,
   DashboardNetWorthSummary,
@@ -83,13 +84,14 @@ export const App = () => (
     <Resource name="reports/exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
     <CustomRoutes>
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
-      <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
+      <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
+      <Route path="/dashboard-ip" element={<DashboardInvestmentPerformance />} />
+      <Route path="/dashboard-ipl" element={<DashboardIncomePerLocation />} />
+      <Route path="/dashboard-mpnl" element={<DashboardMonthlyPNL />} />
       <Route path="/dashboard-nws" element={<DashboardNetWorthSummary />} />
       <Route path="/dashboard-pa" element={<DashboardProjectionAnalysis />} />
       <Route path="/dashboard-sa" element={<DashboardSpendingAnalysis />} />
-      <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
-      <Route path="/dashboard-ip" element={<DashboardInvestmentPerformance />} />
-      <Route path="/dashboard-mpnl" element={<DashboardMonthlyPNL />} />
+      <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
     </CustomRoutes>
 
   </Admin>

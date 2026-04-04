@@ -1,6 +1,7 @@
 import { Dashboard } from './Dashboard';
 import { DashboardAssetByLocation } from './AssetByLocation';
 import { DashboardCashFlow } from './CashFlow';
+import { DashboardIncomePerLocation } from './IncomePerLocation';
 import { DashboardInvestmentPerformance } from './InvestmentPerformance';
 import { DashboardMonthlyPNL } from './MonthlyPNL';
 import { DashboardNetWorthSummary } from './NetWorthSummary';
@@ -12,6 +13,7 @@ export {
     Dashboard,
     DashboardAssetByLocation,
     DashboardCashFlow,
+    DashboardIncomePerLocation,
     DashboardInvestmentPerformance,
     DashboardMonthlyPNL,
     DashboardNetWorthSummary,

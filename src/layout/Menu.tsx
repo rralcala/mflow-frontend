@@ -175,6 +175,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
                 <MenuItemLink
+                    to="/dashboard-ipl"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Income Per Location"}
+                    leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
+                <MenuItemLink
                     to="/dashboard-ip"
                     state={{ _scrollToTop: true }}
                     primaryText={"Investment Clusters"}
@@ -203,13 +210,6 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
                 <MenuItemLink
-                    to="/dashboard-pa"
-                    state={{ _scrollToTop: true }}
-                    primaryText={"Projection Analysis"}
-                    leftIcon={<DashboardIcon />}
-                    dense={dense}
-                />
-                <MenuItemLink
                     to="/dashboard-sa"
                     state={{ _scrollToTop: true }}
                     primaryText={"Spending Analysis"}
@@ -227,6 +227,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     to="/dashboard-vh"
                     state={{ _scrollToTop: true }}
                     primaryText={"Valuation History"}
+                    leftIcon={<DashboardIcon />}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/dashboard-pa"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Projection Analysis"}
                     leftIcon={<DashboardIcon />}
                     dense={dense}
                 />
