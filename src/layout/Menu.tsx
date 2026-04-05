@@ -72,13 +72,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                 leftIcon={createElement(resources["assets/payables"].icon)}
                 dense={dense}
             />
-            <MenuItemLink
-                to="/assets/properties"
-                state={{ _scrollToTop: true }}
-                primaryText={"Properties"}
-                leftIcon={createElement(resources["assets/properties"].icon)}
-                dense={dense}
-            />
+
 
             <SubMenu
                 handleToggle={() => handleToggle('menuAssets')}
@@ -150,6 +144,13 @@ const Menu = ({ dense = false }: MenuProps) => {
                     state={{ _scrollToTop: true }}
                     primaryText={"Instruments"}
                     leftIcon={createElement(resources["assets/instruments"].icon)}
+                    dense={dense}
+                />
+                <MenuItemLink
+                    to="/assets/properties"
+                    state={{ _scrollToTop: true }}
+                    primaryText={"Properties"}
+                    leftIcon={createElement(resources["assets/properties"].icon)}
                     dense={dense}
                 />
             </SubMenu>

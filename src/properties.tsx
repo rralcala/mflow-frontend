@@ -65,7 +65,7 @@ export const PropertyEdit = () => (
             <NumberInput source="depreciation" />
             <NumberInput source="rentPrice" />
             <TextInput source="rentCurrency" />
-            <TextInput source="additionalData" />
+            <TextInput source="additionalData"  multiline rows={5} />
         </SimpleForm>
     </Edit>
 );
