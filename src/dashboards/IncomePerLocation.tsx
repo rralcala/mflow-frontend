@@ -13,6 +13,33 @@ import { Stack } from '@mui/material';
 import { fetcherEffect } from '../httpClient';
 import { formatter, formatterPct } from '../lib';
 
+const ExportButton = ({ data }: { data: any[] }) => {
+  const downloadCSV = () => {
+    // 1. Define your headers
+    //const headers = Object.keys(data[0]).join(',');
+
+    // 2. Map the data to rows
+    const rows = data.map((obj) => 
+      Object.values(obj).map(val => `"${val}"`).join(',')
+    ).join('\n');
+
+    // 3. Create the CSV content
+    const csvContent = `s${rows}`;
+
+    // 4. Create a blob and trigger download
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'export.csv');
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+    return <button onClick={downloadCSV}>Download CSV</button>;
+};
 
 export const DashboardIncomePerLocation = () => {
     const reportRoute = '/reports/income_per_location';
@@ -35,7 +62,12 @@ export const DashboardIncomePerLocation = () => {
 
     return (
         <Stack>
-            Asset Location<br /><br />
+            <br />
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <span>Asset Location</span>
+                <ExportButton data={Object.values(dataR.tot_per_location)} />
+            </Stack>
+            <br />
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
