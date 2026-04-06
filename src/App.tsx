@@ -49,7 +49,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const dataProvider = jsonServerProvider(apiUrl + "/", httpClient);
+const dataProvider = jsonServerProvider(apiUrl, httpClient);
 
 export const App = () => (
   <Admin

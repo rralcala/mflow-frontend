@@ -28,3 +28,9 @@ export function formatPctWithNan(value: number): ReactNode {
     }
     return formatterPct.format(value);
 }
+
+export const formatterFract = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+});

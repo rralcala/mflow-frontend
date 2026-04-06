@@ -16,6 +16,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { fetcherEffect } from '../httpClient';
 import { formatter } from '../lib';
 
+const reportRoute = 'reports/monthly_pnl';
+
 type pnlRow = [number, Object];
 type CardStates = Record<string, boolean>;
 
@@ -159,7 +161,6 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
 
 
 export const DashboardMonthlyPNL = () => {
-  const reportRoute = '/reports/monthly_pnl';
   const [dataR, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

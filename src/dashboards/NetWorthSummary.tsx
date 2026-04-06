@@ -13,9 +13,9 @@ import { Stack } from '@mui/material';
 import { fetcherEffect } from '../httpClient';
 import { formatter, formatterPct } from '../lib';
 
+const reportRoute = 'reports/nw_summary';
 
 export const DashboardNetWorthSummary = () => {
-    const reportRoute = '/reports/nw_summary';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

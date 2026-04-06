@@ -13,6 +13,8 @@ import { Stack } from '@mui/material';
 import { formatter, formatterPct } from '../lib';
 import { fetcherEffect } from '../httpClient';
 
+    const reportRoute = 'reports/valuation_history';
+
 type DataRow = [any, number, number, number];
 function reduceColumns<T>(matrix: DataRow[]): T[][] {
     return matrix.map(row => [row[0], { v: row[2] / row[1], f: formatter.format(row[2]) + " " + formatterPct.format(row[2] / row[1]) }, { v: row[3] / row[1], f: formatter.format(row[3]) + " " + formatterPct.format(row[3] / row[1]) }]);
@@ -34,7 +36,6 @@ const options = {
 
 
 export const DashboardValuationHistory = () => {
-    const reportRoute = '/reports/valuation_history';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

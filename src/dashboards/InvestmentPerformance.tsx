@@ -13,6 +13,8 @@ import { Stack } from '@mui/material';
 import { formatNumberWithColor, formatterPct, formatPctWithNan } from '../lib';
 import { fetcherEffect } from '../httpClient';
 
+const reportRoute = 'reports/investment_performance';
+
 type DataRow = [string, number];
 function reduceColumns<T>(matrix): DataRow[] {
     return matrix.map(row => [row["from"] + "-" + row["to"], Math.trunc(row["assets"].reduce((a, b) => a + b[1], 0))]);
@@ -49,7 +51,6 @@ const options = {
 };
 
 export const DashboardInvestmentPerformance = () => {
-    const reportRoute = '/reports/investment_performance';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

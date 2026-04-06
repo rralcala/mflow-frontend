@@ -12,8 +12,9 @@ import { Stack } from '@mui/material';
 import { formatNumberWithColor } from '../lib';
 import { fetcherEffect } from '../httpClient';
 
+const reportRoute = 'reports/cash_flow';
+
 export const DashboardCashFlow = () => {
-    const reportRoute = '/reports/reports/cash_flow';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

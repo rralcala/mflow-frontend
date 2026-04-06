@@ -13,6 +13,8 @@ import { Stack } from '@mui/material';
 import { fetcherEffect } from '../httpClient';
 import { formatter, formatterPct } from '../lib';
 
+const reportRoute = 'reports/income_per_location';
+
 const ExportButton = ({ data }: { data: any[] }) => {
   const downloadCSV = () => {
     // 1. Define your headers
@@ -42,7 +44,7 @@ const ExportButton = ({ data }: { data: any[] }) => {
 };
 
 export const DashboardIncomePerLocation = () => {
-    const reportRoute = '/reports/income_per_location';
+
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

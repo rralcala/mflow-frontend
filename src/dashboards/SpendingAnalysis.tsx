@@ -9,17 +9,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Stack } from '@mui/material';
 
-import { formatter } from '../lib';
+import { formatter, formatterFract } from '../lib';
 import { fetcherEffect } from '../httpClient';
 
-const formatterFract = new Intl.NumberFormat('en-US', {
-    style: 'decimal',
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-});
+const reportRoute = 'reports/spending_analysis';
 
 export const DashboardSpendingAnalysis = () => {
-    const reportRoute = '/reports/spending_analysis';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

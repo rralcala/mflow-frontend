@@ -14,8 +14,9 @@ import { Stack } from '@mui/material';
 import { fetcherEffect } from '../httpClient';
 import { formatter } from '../lib';
 
+const reportRoute = 'reports/assets_by_location';
+
 export const DashboardAssetByLocation = () => {
-    const reportRoute = '/reports/assets_by_location';
     const [dataR, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
