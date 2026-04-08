@@ -65,7 +65,7 @@ export const DashboardNetWorthSummary = () => {
                             <TableCell component="th" scope="row">
                                 {"Net Worth"}
                             </TableCell>
-                            <TableCell align="right">{formatter.format(dataR.net_worth)}</TableCell>
+                            <TableCell align="right"><b>{formatter.format(dataR.net_worth)}</b></TableCell>
                         </TableRow>
                         <TableRow hover
                             key={"return_on_assets"}

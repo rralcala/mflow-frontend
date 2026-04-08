@@ -185,14 +185,14 @@ const Menu = ({ dense = false }: MenuProps) => {
                 <MenuItemLink
                     to="/dashboard-ipl"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Income Per Location"}
+                    primaryText={"Investment Per Location"}
                     leftIcon={<DashboardIcon />}
                     dense={dense}
                 />
                 <MenuItemLink
                     to="/dashboard-ip"
                     state={{ _scrollToTop: true }}
-                    primaryText={"Investment Clusters"}
+                    primaryText={"Investment Performance"}
                     leftIcon={<DashboardIcon />}
                     dense={dense}
                 />

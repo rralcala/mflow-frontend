@@ -20,14 +20,22 @@ function reduceColumns<T>(matrix): DataRow[] {
     return matrix.map(row => [row["from"] + "-" + row["to"], Math.trunc(row["assets"].reduce((a, b) => a + b[1], 0))]);
 }
 
+function checkUndefinedPct(value, ifso: string) {
+    if (value === undefined) {
+        return ifso;
+    } else {
+        return formatPctWithNan(value / 100)
+    }
+}
+
 function headRow(row) {
     return (
         <TableRow
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell><b>Range</b></TableCell>
-            <TableCell align="right"><b>{formatPctWithNan(row["from"] / 100)}</b></TableCell>
-            <TableCell align="right"><b>{formatPctWithNan(row["to"] / 100)}</b></TableCell>
+            <TableCell align="right"><b>{checkUndefinedPct(row["from"], "-Inf")}</b></TableCell>
+            <TableCell align="right"><b>{checkUndefinedPct(row["to"], "Inf")}</b></TableCell>
 
         </TableRow>
     );
@@ -35,7 +43,7 @@ function headRow(row) {
 
 function subRows(row) {
     return row.assets.map((irow) => (
-        <TableRow
+        <TableRow hover
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell align="left">{irow[0]}</TableCell>
