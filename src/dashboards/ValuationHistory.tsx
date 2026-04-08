@@ -13,7 +13,7 @@ import { Stack } from '@mui/material';
 import { formatter, formatterPct } from '../lib';
 import { fetcherEffect } from '../httpClient';
 
-    const reportRoute = 'reports/valuation_history';
+const reportRoute = 'reports/valuation_history';
 
 type DataRow = [any, number, number, number];
 function reduceColumns<T>(matrix: DataRow[]): T[][] {
