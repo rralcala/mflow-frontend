@@ -43,7 +43,7 @@ export const InstrumentList = () => (
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
             }} />
-            <DataTable.NumberCol source="estimated_dividend" options={{
+            <DataTable.NumberCol label="Monthly Dividend" source="estimated_dividend" options={{
                 style: 'decimal',
                 useGrouping: true,
                 maximumFractionDigits: 0,
