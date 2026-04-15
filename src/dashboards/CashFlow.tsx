@@ -53,7 +53,7 @@ export const DashboardCashFlow = () => {
                     </TableHead>
                     <TableBody>
                         {dataR.map((row) => (
-                            <TableRow
+                            <TableRow hover
                                 key={row.date}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
