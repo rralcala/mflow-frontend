@@ -16,7 +16,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { fetcherEffect } from '../httpClient';
 import { formatter } from '../lib';
 
-const reportRoute = 'reports/monthly_pnl';
+const reportRoute = 'reports/monthly_pnl?oneOff=1';
 
 type pnlRow = [number, Object];
 type CardStates = Record<string, boolean>;
@@ -196,7 +196,7 @@ export const DashboardMonthlyPNL = () => {
               <TableCell align="right">{formatter.format(dataR["summary"]["income"][1])}</TableCell>
             </TableRow>
             <TableRow hover>
-              <TableCell><b>Year net (excl One Offs)</b></TableCell>
+              <TableCell><b>Year net</b></TableCell>
               <TableCell align="right"><b>{formatter.format(dataR["summary"]["year_net"][0])}</b></TableCell>
               <TableCell align="right"><b>{formatter.format(dataR["summary"]["year_net"][1])}</b></TableCell>
             </TableRow>
