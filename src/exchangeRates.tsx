@@ -55,6 +55,13 @@ export const ExchangerateList = () => {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2,
                 }} />
+            <DataTable.NumberCol source="weekChange"
+                options={{
+                    style: 'percent',
+                    useGrouping: true,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                }} />
         </DataTable>
     </List>);
 };
