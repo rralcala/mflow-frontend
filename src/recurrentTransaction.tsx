@@ -15,8 +15,40 @@ import {
     SimpleShowLayout,
     TextField,
     TextInput,
+    useListContext
 } from 'react-admin';
+import { Stack } from '@mui/material';
+import { formatter } from './lib/formaters';
 
+const sumCurrency = (data, fieldName, currency) => {
+    return data.reduce((sum, record) => {
+        if (currency && record.currency !== currency) {
+            return sum; // Skip records that don't match the specified currency
+        }
+        return sum + (record[fieldName] || 0);
+    }, 0)
+}
+
+const SumFooter = ({ fieldName }) => {
+    const { data, isLoading } = useListContext();
+
+    if (isLoading || !data || data.length === 0) {
+        return null;
+    }
+
+
+    // Calculate the total
+    const totalUSD = sumCurrency(data, fieldName, "USD");
+    const totalPYG = sumCurrency(data, fieldName, "PYG");
+
+    return (
+        <Stack>
+            <b>USD:</b><br />
+            {formatter.format(totalUSD)}<br />
+            <b>PYG:</b><br />
+            {formatter.format(totalPYG)}
+        </Stack>);
+}
 // Define a function that returns the default values
 const postDefaultValue = () => {
     const now = new Date();
@@ -33,7 +65,7 @@ const postFilters = [
 ];
 
 export const RecurrenttransactionList = () => (
-    <List filters={postFilters}>
+    <List filters={postFilters} title="Recurrent Transactions" aside={<SumFooter fieldName="amount" />} >
         <DataTable>
             <DataTable.Col source="recurrentId">
                 <ReferenceField source="recurrentId" reference="assets/recurrents" />

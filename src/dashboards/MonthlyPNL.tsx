@@ -185,20 +185,21 @@ export const DashboardMonthlyPNL = () => {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>
-            <TableRow hover>
-              <TableCell>Year total</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["grand_total"][0])}</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["grand_total"][1])}</TableCell>
-            </TableRow>
+         
             <TableRow hover>
               <TableCell>Income</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["income"][0])}</TableCell>
               <TableCell align="right">{formatter.format(dataR["summary"]["income"][1])}</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["income"][0])}</TableCell>
+            </TableRow>
+            <TableRow hover>
+              <TableCell>Expenses</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][1])}</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][0])}</TableCell>
             </TableRow>
             <TableRow hover>
               <TableCell><b>Year net</b></TableCell>
-              <TableCell align="right"><b>{formatter.format(dataR["summary"]["year_net"][0])}</b></TableCell>
-              <TableCell align="right"><b>{formatter.format(dataR["summary"]["year_net"][1])}</b></TableCell>
+              <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][1])}</b></TableCell>
+              <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][0])}</b></TableCell>
             </TableRow>
           </TableBody>
         </Table>
