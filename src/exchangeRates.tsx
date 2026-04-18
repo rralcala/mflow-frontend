@@ -45,7 +45,7 @@ const handleClick = async () => {
 export const ExchangerateList = () => {
     notify = useNotify();
     refresh = useRefresh();
-    return (<List actions={<PostListActions />} >
+    return (<List actions={<PostListActions />} title="Exchange Rates">
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.NumberCol source="rate"

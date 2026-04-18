@@ -15,7 +15,8 @@ import {
     SimpleShowLayout,
     TextField,
     TextInput,
-    useListContext
+    useListContext,
+    useGetOne
 } from 'react-admin';
 import { Stack } from '@mui/material';
 import { formatter } from './lib/formaters';
@@ -25,28 +26,35 @@ const sumCurrency = (data, fieldName, currency) => {
         if (currency && record.currency !== currency) {
             return sum; // Skip records that don't match the specified currency
         }
-        return sum + (record[fieldName] || 0);
+        let amount = record[fieldName] || 0;
+        if (amount > 0) {
+            return sum;
+        }
+        return sum - amount;
     }, 0)
 }
 
 const SumFooter = ({ fieldName }) => {
     const { data, isLoading } = useListContext();
+    const { data: dataQuotes, isLoading: isLoadingQuotes, error: errorQuotes } = useGetOne('reports/exchangeRates', { id: "USDPYG" });
 
-    if (isLoading || !data || data.length === 0) {
+    if (isLoading || !data || data.length === 0 || errorQuotes || isLoadingQuotes || !dataQuotes) {
         return null;
     }
 
-
-    // Calculate the total
+    // Calculate the totals
     const totalUSD = sumCurrency(data, fieldName, "USD");
     const totalPYG = sumCurrency(data, fieldName, "PYG");
 
     return (
         <Stack>
-            <b>USD:</b><br />
-            {formatter.format(totalUSD)}<br />
-            <b>PYG:</b><br />
-            {formatter.format(totalPYG)}
+            <>Spending:</>
+            <b>USD:</b>
+            <>{formatter.format(totalUSD)}</>
+            <b>PYG:</b>
+            <>{formatter.format(totalPYG)}</>
+            <b>Combo:</b>
+            <b>{formatter.format(totalUSD * dataQuotes.rate + totalPYG)}</b>
         </Stack>);
 }
 // Define a function that returns the default values
