@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useGetOne } from 'react-admin';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Table from '@mui/material/Table';
@@ -165,7 +166,7 @@ export const DashboardMonthlyPNL = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openCards, setOpenCards] = useState<CardStates>({});
-
+  const { data: dataQuotes, isLoading: isLoadingQuotes, error: errorQuotes } = useGetOne('reports/exchangeRates', { id: "USDPYG" });
   const toggleCard = (id: string) => {
 
     setOpenCards((prev) => ({
@@ -177,34 +178,45 @@ export const DashboardMonthlyPNL = () => {
   };
   useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  console.log(dataR["summary"]);
+  if (loading || isLoadingQuotes) return <p>Loading...</p>;
+  if (error || errorQuotes) return <p>Error: {error?.message || errorQuotes?.message}</p>;
+
   return (
     <Stack>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
+
+          <TableHead>
+            <TableRow>
+              <TableCell>Line</TableCell>
+              <TableCell align="right">PYG</TableCell>
+              <TableCell align="right">USD</TableCell>
+              <TableCell align="right">Combo</TableCell>
+            </TableRow>
+          </TableHead>
           <TableBody>
-         
             <TableRow hover>
               <TableCell>Income</TableCell>
               <TableCell align="right">{formatter.format(dataR["summary"]["income"][1])}</TableCell>
               <TableCell align="right">{formatter.format(dataR["summary"]["income"][0])}</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["income"][0] * dataQuotes.rate + dataR["summary"]["income"][1])}</TableCell>
             </TableRow>
             <TableRow hover>
               <TableCell>Expenses</TableCell>
               <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][1])}</TableCell>
               <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][0])}</TableCell>
+              <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][0] * dataQuotes.rate + dataR["summary"]["expenses"][1])}</TableCell>
             </TableRow>
             <TableRow hover>
               <TableCell><b>Year net</b></TableCell>
               <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][1])}</b></TableCell>
               <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][0])}</b></TableCell>
+              <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][0] * dataQuotes.rate + dataR["summary"]["net"][1])}</b></TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
-      <br/>
+      <br />
       {Object.entries(dataR["year_months"]).map((row) => (
         renderRow(row, toggleCard, openCards)
       ))}
