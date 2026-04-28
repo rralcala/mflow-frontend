@@ -24,7 +24,7 @@ const postFilters = [
 ];
 
 export const DepositCertificateSchedulesList = () => (
-    <List filters={postFilters}>
+    <List filters={postFilters} title="Deposit Certificate Schedules">
         <DataTable>
             <DataTable.Col source="depositCertificateId">
                 <ReferenceField source="depositCertificateId" reference="assets/depositCertificates" />

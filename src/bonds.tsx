@@ -11,7 +11,7 @@ import {
 import { Stack, Typography } from '@mui/material';
 
 export const BondList = () => (
-    <List>
+    <List title="Bonds">
         <DataTable>
             <DataTable.Col source="name" />
             <DataTable.NumberCol source="capital" />

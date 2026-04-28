@@ -3,7 +3,7 @@ import { DataTable, DateField, List, NumberField, Show, SimpleShowLayout, TextFi
 import { Stack, Typography } from '@mui/material';
 
 export const DepositCertificateList = () => (
-    <List>
+    <List title="Deposit Certificates">
         <DataTable>
             <DataTable.Col source="name" />
             <DataTable.NumberCol source="capital" />

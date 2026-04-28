@@ -24,7 +24,7 @@ const postFilters = [
 ];
 
 export const BondscheduleList = () => (
-    <List filters={postFilters}>
+    <List filters={postFilters} title="Bond Schedules">
         <DataTable>
             <DataTable.Col source="bondId">
                 <ReferenceField source="bondId" reference="assets/bonds" />
