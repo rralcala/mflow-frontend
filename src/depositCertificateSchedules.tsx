@@ -20,6 +20,7 @@ import {
 
 const postFilters = [
     <ReferenceInput source="depositCertificateId" label="Deposit Certificate" reference="assets/depositCertificates" />,
+    <BooleanInput source="paid" label="Paid" />,
 ];
 
 export const DepositCertificateSchedulesList = () => (

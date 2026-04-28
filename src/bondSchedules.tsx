@@ -20,6 +20,7 @@ import {
 
 const postFilters = [
     <ReferenceInput source="bondId" label="Bond" reference="assets/bonds" />,
+    <BooleanInput source="paid" label="Paid" />,
 ];
 
 export const BondscheduleList = () => (
