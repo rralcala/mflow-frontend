@@ -19,7 +19,7 @@ import {
 import { Stack, Typography } from '@mui/material';
 
 export const InstrumentList = () => (
-    <List>
+    <List title="Financial Instruments">
         <DataTable>
             <DataTable.Col source="location" />
             <DataTable.Col source="symbol" />

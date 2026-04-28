@@ -9,7 +9,7 @@ import {
 } from 'react-admin';
 
 export const MonthlytransactionList = () => (
-    <List sort={{ field: 'yearMonth', order: 'ASC' }} perPage={25}>
+    <List sort={{ field: 'yearMonth', order: 'ASC' }} perPage={25} title="Monthly Costs">
         <DataTable>
             <DataTable.Col source="yearMonth" />
 

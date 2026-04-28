@@ -11,7 +11,7 @@ import {
 } from 'react-admin';
 
 export const UpcomingpaymentList = () => (
-    <List sort={{ field: 'date', order: 'ASC' }} perPage={25}>
+    <List sort={{ field: 'date', order: 'ASC' }} perPage={25} title="Upcoming Payments">
         <DataTable>
             <DataTable.Col source="date">
                 <DateField source="date" />

@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material';
 const PostPagination = () => <Pagination rowsPerPageOptions={[10, 25, 50, 100, 200]} />;
 
 export const AssetList = () => (
-    <List perPage={200} pagination={<PostPagination />}>
+    <List perPage={200} pagination={<PostPagination />} title="Asset List">
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="type" />

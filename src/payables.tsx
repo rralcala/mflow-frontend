@@ -21,7 +21,7 @@ import { FlowFilters } from './lib';
 
 
 export const PayableList = () => (
-    <List filters={FlowFilters}>
+    <List filters={FlowFilters} title="Single Payables">
         <DataTable>
             <DataTable.Col source="country" />
             <DataTable.Col source="description" />

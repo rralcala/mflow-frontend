@@ -17,7 +17,7 @@ import {
 import { Stack, Typography } from '@mui/material';
 
 export const AccountList = () => (
-    <List perPage={25}>
+    <List perPage={25} title="Cash Accounts">
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="accountType" />

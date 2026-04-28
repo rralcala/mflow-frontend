@@ -20,7 +20,7 @@ import { Stack, Typography } from '@mui/material';
 import { FlowFilters } from './lib';
 
 export const RecurrentList = () => (
-    <List filters={FlowFilters}>
+    <List filters={FlowFilters} title="Recurrent Flows">
         <DataTable>
             <DataTable.Col source="id" />
             <DataTable.Col source="flowClass" />

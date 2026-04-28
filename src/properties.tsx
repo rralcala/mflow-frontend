@@ -14,7 +14,7 @@ import {
 } from 'react-admin';
 
 export const PropertyList = () => (
-    <List>
+    <List title="Properties">
         <DataTable>
             <DataTable.Col source="propertyName" />
             <DataTable.Col source="country" />
