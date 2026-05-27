@@ -1,44 +1,53 @@
 // src/authProvider.js
+import type { AuthProvider } from 'react-admin';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export const authProvider = {
-    login: ({ username, password }) => {
+export const authProvider: AuthProvider = {
+    async login({ username, password }) {
         const request = new Request(`${apiUrl}auth/rlogin`, {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: new Headers({ 'Content-Type': 'application/json' }),
             credentials: 'include',
         });
-        return fetch(request)
-            .then(response => {
-                if (response.status < 200 || response.status >= 300) {
-                    throw new Error(response.statusText);
-                }
-                return response.json();
-            })
-            .then(auth => {
-                localStorage.setItem('auth', JSON.stringify(auth));
+
+        const response = await fetch(request);
+
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+
+        const auth = await response.json();
+
+        localStorage.setItem('auth', JSON.stringify(auth));
+
+        return auth;
+
+    },
+    async logout() {
+        if (localStorage.getItem('auth')) {
+            const request = new Request(`${apiUrl}/auth/rlogout`, {
+                method: 'GET',
+                credentials: 'include',
             });
+            await fetch(request);
+            localStorage.removeItem('auth');
+        }
+        //return Promise.resolve();
     },
-    logout: () => {
-        const request = new Request(`${apiUrl}/auth/rlogout`, {
-            method: 'GET',
-            credentials: 'include',
-        });
-        fetch(request)
-        localStorage.removeItem('auth');
-        return Promise.resolve();
-    },
-    checkError: (error) => {
+    async checkError(error) {
         const status = error.status;
         if (status === 401 || status === 403) {
             localStorage.removeItem('auth');
-            return Promise.reject();
+            throw new Error('Session expired:' + status);
         }
-        return Promise.resolve();
+        
     },
-    checkAuth: () => {
-        return localStorage.getItem('auth') ? Promise.resolve() : Promise.reject();
-    },
-    getPermissions: () => Promise.resolve(),
+    async checkAuth() {
+        if (!localStorage.getItem('auth')) {
+            throw new Error('Not authenticated');
+        }
+    }
+   
 };
