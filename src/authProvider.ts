@@ -1,4 +1,3 @@
-// src/authProvider.js
 import type { AuthProvider } from 'react-admin';
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -13,13 +12,11 @@ export const authProvider: AuthProvider = {
         });
 
         const response = await fetch(request);
-
         if (!response.ok) {
             throw new Error(response.statusText);
         }
 
         const auth = await response.json();
-
         localStorage.setItem('auth', JSON.stringify(auth));
 
         return auth;
@@ -34,7 +31,6 @@ export const authProvider: AuthProvider = {
             await fetch(request);
             localStorage.removeItem('auth');
         }
-        //return Promise.resolve();
     },
     async checkError(error) {
         const status = error.status;
@@ -42,12 +38,11 @@ export const authProvider: AuthProvider = {
             localStorage.removeItem('auth');
             throw new Error('Session expired:' + status);
         }
-        
     },
     async checkAuth() {
         if (!localStorage.getItem('auth')) {
             throw new Error('Not authenticated');
         }
     }
-   
+
 };
