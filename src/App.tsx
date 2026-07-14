@@ -9,9 +9,9 @@ import { Layout } from "./layout";
 
 import { AccountShow, AccountList, AccountEdit, AccountCreate } from "./accounts";
 import { AssetList, AssetShow } from "./assets";
-import { BondList, BondShow } from "./bonds";
-import { BondscheduleEdit, BondscheduleList, BondscheduleShow } from "./bondSchedules";
-import { DepositCertificateList, DepositCertificateShow } from "./depositCertificates";
+import { BondList, BondShow, BondEdit, BondCreate  } from "./bonds";
+import { BondscheduleEdit, BondscheduleList, BondscheduleShow} from "./bondSchedules";
+import { DepositCertificateList, DepositCertificateShow, DepositCertificateEdit, DepositCertificateCreate} from "./depositCertificates";
 import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
 import { ExchangerateList } from "./exchangeRates";
 import { InstrumentEdit, InstrumentList, InstrumentShow, InstrumentCreate } from "./instruments";
@@ -63,9 +63,9 @@ export const App = () => (
     <Resource name="assets/accounts" list={AccountList} show={AccountShow} edit={AccountEdit} create={AccountCreate} icon={SavingsIcon} />
     <Resource name="assets/assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
     <Resource name="assets/bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit} icon={ChecklistIcon} />
-    <Resource name="assets/bonds" list={BondList} show={BondShow} icon={RequestQuoteIcon} />
+    <Resource name="assets/bonds" list={BondList} show={BondShow} edit={BondEdit} create={BondCreate} icon={RequestQuoteIcon} />
     <Resource name="assets/depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit} icon={ChecklistIcon} />
-    <Resource name="assets/depositCertificates" list={DepositCertificateList} show={DepositCertificateShow} icon={RequestQuoteIcon} />
+    <Resource name="assets/depositCertificates" list={DepositCertificateList}  edit={DepositCertificateEdit} show={DepositCertificateShow} create={DepositCertificateCreate} icon={RequestQuoteIcon} />
     <Resource name="assets/instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={CandlestickChartIcon} />
     <Resource name="assets/monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
     <Resource name="assets/payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />

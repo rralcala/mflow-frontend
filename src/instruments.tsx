@@ -63,6 +63,12 @@ export const InstrumentList = () => (
                 minimumFractionDigits: 2,
             }} />
             <DataTable.Col source="country" />
+            <DataTable.NumberCol source="capital_rate" options={{
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
             <DataTable.Col>
                 <EditButton />
             </DataTable.Col>
@@ -107,7 +113,12 @@ export const InstrumentShow = () => (
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
             }} />
-
+            <NumberField source="capital_rate" options={{
+                style: 'percent',
+                useGrouping: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+            }} />
             <Typography color="textSecondary">{'Estimated Dividend'}</Typography>
             <Stack direction="row" alignItems="left" spacing={1}>
                 <NumberField source="estimated_dividend" options={{
@@ -141,7 +152,7 @@ export const InstrumentEdit = () => (
             <TextInput source="currency" />
             <TextInput source="dividend" />
             <NumberInput source="dividend_rate" />
-
+            <NumberInput source="capital_rate" />
             <BooleanInput source="liquid" />
             <NumberInput source="factor" />
             <DateInput source="acquisition_date" />
@@ -161,6 +172,7 @@ export const InstrumentCreate = () => (
             <TextInput source="currency" />
             <TextInput source="dividend" />
             <NumberInput source="dividend_rate" />
+            <NumberInput source="capital_rate" />
             <BooleanInput source="liquid" />
             <NumberInput source="factor" />
             <DateInput source="acquisition_date" />

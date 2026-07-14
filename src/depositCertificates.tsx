@@ -1,5 +1,20 @@
 
-import { DataTable, DateField, List, NumberField, Show, SimpleShowLayout, TextField } from 'react-admin';
+import {
+    Create,
+    DataTable,
+    DateField,
+    DateInput,
+    Edit,
+    EditButton,
+    List,
+    NumberField,
+    NumberInput,
+    Show,
+    SimpleForm,
+    SimpleShowLayout,
+    TextField,
+    TextInput
+} from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 
 export const DepositCertificateList = () => (
@@ -20,11 +35,12 @@ export const DepositCertificateList = () => (
             </DataTable.Col>
             <DataTable.Col source="entity" />
             <DataTable.Col source="country" />
-
+            <DataTable.Col>
+                <EditButton />
+            </DataTable.Col>
         </DataTable>
     </List>
 );
-
 
 export const DepositCertificateShow = () => (
     <Show>
@@ -51,4 +67,33 @@ export const DepositCertificateShow = () => (
             <DateField source="maturityDate" />
         </SimpleShowLayout>
     </Show>
+);
+
+export const DepositCertificateEdit = () => (
+    <Edit>
+        <SimpleForm>
+            <TextInput source="name" />
+            <TextInput source="entity" />
+            <TextInput source="country" />
+            <TextInput source="currency" />
+            <NumberInput source="capital" />
+            <DateInput source="maturityDate" />
+            <NumberInput source="rate" />
+            <TextInput source="id"  InputProps={{ disabled: true }} />
+        </SimpleForm>
+    </Edit>
+);
+
+export const DepositCertificateCreate = () => (
+    <Create>
+        <SimpleForm>
+            <TextInput source="name" />
+            <TextInput source="entity" />
+            <TextInput source="country" />
+            <TextInput source="currency" />
+            <NumberInput source="capital" />
+            <DateInput source="maturityDate" />
+            <NumberInput source="rate" />
+        </SimpleForm>
+    </Create>
 );
