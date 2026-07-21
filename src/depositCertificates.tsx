@@ -29,7 +29,7 @@ export const DepositCertificateList = () => (
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
             }} />
-
+            <DataTable.NumberCol source="purchasePrice" />
             <DataTable.Col source="maturityDate">
                 <DateField source="maturityDate" />
             </DataTable.Col>
