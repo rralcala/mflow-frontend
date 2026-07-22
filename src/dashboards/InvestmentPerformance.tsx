@@ -16,8 +16,38 @@ import { fetcherEffect } from '../httpClient';
 const reportRoute = 'reports/investment_performance';
 
 type DataRow = [string, number];
+function getLabel(from: number, to: number)
+{
+    var label = ""
+    var start = false
+    if (from == to) {
+        return from + "%"
+    }
+    if (from !== undefined) {
+        label += from + "% "
+        start = true
+    }
+    else
+    {
+        label += "< "
+    }
+    if (to !== undefined) {
+        if (start) {
+            label += "- "
+        }
+        label += to + "%"
+    } else {
+        label = "> " + label
+    }
+    return label
+}
 function reduceColumns<T>(matrix): DataRow[] {
-    return matrix.map(row => [row["from"] + "-" + row["to"], Math.trunc(row["assets"].reduce((a, b) => a + b[1], 0))]);
+
+    return matrix.map(row => 
+        [
+            getLabel(row["from"] , row["to"]), Math.trunc(row["assets"].reduce((a, b) => a + b[1], 0))
+        ]
+    );
 }
 
 function checkUndefinedPct(value, ifso: string) {
@@ -56,6 +86,7 @@ function subRows(row) {
 
 const options = {
     title: "Investment Clusters",
+    colors: ["#f35858", "#658ef5", "#ebcd20", "#01a722"],
 };
 
 export const DashboardInvestmentPerformance = () => {
