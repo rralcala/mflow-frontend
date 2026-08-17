@@ -12,7 +12,7 @@ import clsx from 'clsx';
 
 import SubMenu from './SubMenu';
 
-import { Box } from '@mui/material';
+import { Box, MenuList } from '@mui/material';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
@@ -50,6 +50,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                 'RaMenu-closed': !open,
             })}
         >
+            <MenuList>
             <DashboardMenuItem />
             <MenuItemLink
                 to="/assets/recurrents"
@@ -246,7 +247,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                     dense={dense}
                 />
             </SubMenu>
-
+            </MenuList>
         </Box>
     );
 };
