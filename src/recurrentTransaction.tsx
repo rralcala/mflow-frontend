@@ -69,7 +69,8 @@ const postDefaultValue = () => {
 
 const postFilters = [
     <ReferenceInput source="recurrentId" label="Recurrent" reference="assets/recurrents" />,
-    <TextInput source="yearMonth" label="Year Month" />
+    <TextInput source="yearMonth" label="Year Month" />,
+    <TextInput source="description" label="Description" />
 ];
 
 export const RecurrenttransactionList = () => (
