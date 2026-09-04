@@ -1,5 +1,6 @@
 import { FlowFilters } from './filters';
 import { formatter, formatterPct, formatNumberWithColor, formatPctWithNan, formatterFract } from './formaters';
+import { SingleFetchAutocomplete } from './SingleFetchAutocomplete';
 
 export {
     FlowFilters,
@@ -8,4 +9,5 @@ export {
     formatterFract,
     formatterPct,
     formatPctWithNan,
+    SingleFetchAutocomplete,
 };

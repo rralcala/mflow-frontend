@@ -47,7 +47,7 @@ export const DepositCertificateShow = () => (
         <SimpleShowLayout>
             <TextField source="name" />
             <Typography color="textSecondary">{'Value'}</Typography>
-            <Stack direction="row" alignItems="left" spacing={1}>
+            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
                 <NumberField source="capital" options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -79,7 +79,7 @@ export const DepositCertificateEdit = () => (
             <NumberInput source="capital" />
             <DateInput source="maturityDate" />
             <NumberInput source="rate" />
-            <TextInput source="id"  InputProps={{ disabled: true }} />
+            <TextInput source="id"  disabled />
         </SimpleForm>
     </Edit>
 );

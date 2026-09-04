@@ -54,7 +54,7 @@ export const PayableShow = () => (
             <TextField source="description" />
             <DateField source="dueDate" />
             <Typography color="textSecondary">{'Amount'}</Typography>
-            <Stack direction="row" alignItems="left" spacing={1}>
+            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
                 <NumberField source="amount" options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -64,7 +64,7 @@ export const PayableShow = () => (
                 <TextField source="currency" />
             </Stack>
             <Typography color="textSecondary">{'Balance'}</Typography>
-            <Stack direction="row" alignItems="left" spacing={1}>
+            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
                 <NumberField source="balance" options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -94,7 +94,7 @@ export const PayableEdit = () => (
             <BooleanInput source="commited" />
             <BooleanInput source="oneOff" />
             <TextInput source="flowClass" />
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <TextInput source="id" disabled />
         </SimpleForm>
     </Edit>
 );
