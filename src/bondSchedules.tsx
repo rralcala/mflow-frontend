@@ -63,11 +63,11 @@ export const BondscheduleShow = () => (
 export const BondscheduleEdit = () => (
     <Edit>
         <SimpleForm>
-            <ReferenceInput source="bondId" reference="assets/bonds" InputProps={{ disabled: true }} />
+            <ReferenceInput source="bondId" reference="assets/bonds" />
             <BooleanInput source="paid" />
             <DateInput source="transactionDate" />
             <NumberInput source="amount" />
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <TextInput source="id" disabled />
         </SimpleForm>
     </Edit>
 );

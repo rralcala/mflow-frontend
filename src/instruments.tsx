@@ -7,6 +7,7 @@ import {
     DateInput,
     Edit,
     EditButton,
+    FunctionField,
     List,
     NumberField,
     NumberInput,
@@ -17,6 +18,16 @@ import {
     TextInput
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
+import cronstrue from 'cronstrue';
+
+const cronToString = (pattern: string) => {
+  try {
+    
+    return cronstrue.toString(pattern);
+  } catch {
+    return "N/A";
+  }
+}
 
 export const InstrumentList = () => (
     <List title="Financial Instruments">
@@ -90,7 +101,7 @@ export const InstrumentShow = () => (
                 minimumFractionDigits: 2,
             }} />
             <Typography color="textSecondary">{'Value'}</Typography>
-            <Stack direction="row" alignItems="left" spacing={1}>
+            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
                 <NumberField source="value" options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -106,7 +117,11 @@ export const InstrumentShow = () => (
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
             }} />
-            <TextField source="dividend" />
+
+            <FunctionField 
+                label="Dividend Schedule" 
+                render={record => `${cronToString(record.dividend)}`} 
+            />
             <NumberField source="dividend_rate" options={{
                 style: 'percent',
                 useGrouping: true,
@@ -120,7 +135,7 @@ export const InstrumentShow = () => (
                 minimumFractionDigits: 2,
             }} />
             <Typography color="textSecondary">{'Estimated Dividend'}</Typography>
-            <Stack direction="row" alignItems="left" spacing={1}>
+            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
                 <NumberField source="estimated_dividend" options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -145,8 +160,8 @@ export const InstrumentShow = () => (
 export const InstrumentEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="country" InputProps={{ disabled: true }} />
-            <TextInput source="location" InputProps={{ disabled: true }} />
+            <TextInput source="country" disabled />
+            <TextInput source="location" disabled />
             <TextInput source="symbol" />
             <NumberInput source="qty" />
             <TextInput source="currency" />
@@ -157,7 +172,7 @@ export const InstrumentEdit = () => (
             <NumberInput source="factor" />
             <DateInput source="acquisition_date" />
             <NumberInput source="acquisition_price" />
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <TextInput source="id" disabled/>
         </SimpleForm>
     </Edit>
 );

@@ -63,11 +63,11 @@ export const DepositCertificateScheduleShow = () => (
 export const DepositCertificateScheduleEdit = () => (
     <Edit>
         <SimpleForm>
-            <ReferenceInput source="depositCertificateId" reference="assets/depositCertificates" InputProps={{ disabled: true }} />
+            <ReferenceInput source="depositCertificateId" reference="assets/depositCertificates"/>
             <BooleanInput source="paid" />
             <DateInput source="transactionDate" />
             <NumberInput source="amount" />
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <TextInput source="id" disabled />
         </SimpleForm>
     </Edit>
 );

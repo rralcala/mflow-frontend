@@ -5,6 +5,7 @@ import {
     DateInput,
     Edit,
     EditButton,
+    FunctionField,
     List,
     NumberField,
     NumberInput,
@@ -16,6 +17,7 @@ import {
     TextField,
     TextInput
 } from 'react-admin';
+import cronstrue from 'cronstrue';
 import { Stack, Typography } from '@mui/material';
 import { FlowFilters } from './lib';
 
@@ -63,7 +65,7 @@ export const RecurrentShow = () => (
             <TextField source="flowClass" />
             <TextField source="country" />
             <Typography color="textSecondary">{'Value'}</Typography>
-            <Stack direction="row" alignItems="left" spacing={1}>
+            <Stack direction="row" sx={{ alignItems: "center", }} spacing={1}>
                 <NumberField source="amount" options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -75,7 +77,11 @@ export const RecurrentShow = () => (
             <ReferenceField source="assetId" reference="assets/assets" />
             <DateField source="start" />
             <DateField source="end" />
-            <TextField source="recurrence" />
+            <FunctionField 
+                label="Recurrence" 
+                render={record => `${cronstrue.toString(record.recurrence)}`} 
+            />
+
             <NumberField source="rate" options={{
                 style: 'percent',
                 useGrouping: true,
@@ -89,7 +95,7 @@ export const RecurrentShow = () => (
 export const RecurrentEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <TextInput source="id" disabled/>
             <TextInput source="country" />
             <TextInput source="flowClass" />
             <NumberInput source="amount" />

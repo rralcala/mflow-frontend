@@ -18,87 +18,94 @@ import {
     useListContext,
     useGetOne
 } from 'react-admin';
-import { Stack } from '@mui/material';
-import { formatter } from './lib/formaters';
+import { Stack, Typography } from '@mui/material';
+import { formatter, SingleFetchAutocomplete } from './lib';
 
-const sumCurrency = (data, fieldName, currency) => {
-    return data.reduce((sum, record) => {
-        if (currency && record.currency !== currency) {
-            return sum; // Skip records that don't match the specified currency
-        }
-        let amount = record[fieldName] || 0;
-        if (amount > 0) {
-            return sum;
-        }
-        return sum - amount;
-    }, 0)
+interface Transaction {
+    id: number;
+    currency: string;
+    amount: number;
 }
 
-const SumFooter = ({ fieldName }) => {
-    const { data, isLoading } = useListContext();
-    const { data: dataQuotes, isLoading: isLoadingQuotes, error: errorQuotes } = useGetOne('reports/exchangeRates', { id: "USDPYG" });
+// Currency amounts are stored as negative for spending, positive for income.
+// This sums only the spending (negative) side and returns it as a positive total.
+const sumSpending = (data: Transaction[], currency: string) =>
+    data
+        .filter((record) => record.currency === currency && record.amount < 0)
+        .reduce((sum, record) => sum - record.amount, 0);
 
-    if (isLoading || !data || data.length === 0 || errorQuotes || isLoadingQuotes || !dataQuotes) {
+const numberFieldOptions = {
+    style: 'decimal' as const,
+    useGrouping: true,
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+};
+
+const SumFooter = () => {
+    const { data, isLoading } = useListContext<Transaction>();
+    const { data: dataQuotes, isLoading: isLoadingQuotes, error: errorQuotes } =
+        useGetOne('reports/exchangeRates', { id: 'USDPYG' });
+
+    if (isLoading || !data?.length || isLoadingQuotes || errorQuotes || !dataQuotes) {
         return null;
     }
 
-    // Calculate the totals
-    const totalUSD = sumCurrency(data, fieldName, "USD");
-    const totalPYG = sumCurrency(data, fieldName, "PYG");
+    const totalUSD = sumSpending(data, 'USD');
+    const totalPYG = sumSpending(data, 'PYG');
 
     return (
-        <Stack>
-            <>Spending:</>
-            <b>USD:</b>
-            <>{formatter.format(totalUSD)}</>
-            <b>PYG:</b>
-            <>{formatter.format(totalPYG)}</>
-            <b>Combo:</b>
-            <b>{formatter.format(totalUSD * dataQuotes.rate + totalPYG)}</b>
-        </Stack>);
-}
-// Define a function that returns the default values
+        <Stack spacing={0.5}>
+            <Typography variant="subtitle2">Spending</Typography>
+            <Typography>USD: {formatter.format(totalUSD)}</Typography>
+            <Typography>PYG: {formatter.format(totalPYG)}</Typography>
+            <Typography sx={{ fontWeight: "bold" }}>
+                Combined: {formatter.format(totalUSD * dataQuotes.rate + totalPYG)}
+            </Typography>
+        </Stack>
+    );
+};
+
 const postDefaultValue = () => {
-    const now = new Date();
+    const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
     return {
-        transactionDate: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(
-            now.getDate()).padStart(2, "0")}`,
-        yearMonth: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`,
+        transactionDate: today,
+        yearMonth: today.slice(0, 7), // "YYYY-MM"
     };
 };
 
 const postFilters = [
-    <ReferenceInput source="recurrentId" label="Recurrent" reference="assets/recurrents" />,
+    <SingleFetchAutocomplete reference="assets/recurrents" source="recurrentId" targetField="id" label="Recurrent" />,
+
     <TextInput source="yearMonth" label="Year Month" />,
-    <TextInput source="description" label="Description" />
+    <TextInput source="description" label="Description" />,
 ];
 
 export const RecurrenttransactionList = () => (
-    <List filters={postFilters} title="Recurrent Transactions" aside={<SumFooter fieldName="amount" />} >
+    <List filters={postFilters} title="Recurrent Transactions" aside={<SumFooter />}>
         <DataTable>
             <DataTable.Col source="recurrentId">
                 <ReferenceField source="recurrentId" reference="assets/recurrents" />
             </DataTable.Col>
             <DataTable.Col source="yearMonth" />
             <DataTable.Col source="description" />
-            <DataTable.NumberCol source="amount" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 0,
-                minimumFractionDigits: 0,
-            }} />
+            <DataTable.NumberCol
+                source="amount"
+                options={{
+                    style: 'decimal',
+                    useGrouping: true,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
+                }}
+            />
             <DataTable.Col source="paidWithAssetId">
                 <ReferenceField source="paidWithAssetId" reference="assets/assets" />
             </DataTable.Col>
             <DataTable.Col source="transactionDate">
                 <DateField source="transactionDate" />
             </DataTable.Col>
-
-
             <DataTable.Col source="createDate">
                 <DateField source="createDate" />
             </DataTable.Col>
-
             <DataTable.Col>
                 <EditButton />
             </DataTable.Col>
@@ -114,18 +121,9 @@ export const RecurrenttransactionShow = () => (
             <TextField source="description" />
             <DateField source="transactionDate" />
             <DateField source="createDate" />
-
-
             <ReferenceField source="paidWithAssetId" reference="assets/assets" />
-
-            <NumberField source="amount" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
+            <NumberField source="amount" options={numberFieldOptions} />
             <TextField source="id" />
-
         </SimpleShowLayout>
     </Show>
 );
@@ -138,23 +136,33 @@ export const RecurrenttransactionEdit = () => (
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets/assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
-            <TextInput source="id" InputProps={{ disabled: true }} />
-            <DateInput source="createDate" InputProps={{ disabled: true }} />
+            <ReferenceInput
+                source="paidWithAssetId"
+                reference="assets/assets"
+                filter={{ liquid: true }}
+                sort={{ field: 'id', order: 'ASC' }}
+            />
+            <TextInput source="id" disabled />
+            <DateInput source="createDate" disabled />
         </SimpleForm>
     </Edit>
 );
 
-
 export const RecurrenttransactionCreate = () => (
     <Create>
         <SimpleForm defaultValues={postDefaultValue}>
-            <ReferenceInput source="recurrentId" reference="assets/recurrents" />
+            <SingleFetchAutocomplete reference="assets/recurrents" source="recurrentId" targetField="id" label="Recurrent" />
             <TextInput source="yearMonth" />
             <TextInput source="description" />
             <NumberInput source="amount" />
             <DateInput source="transactionDate" />
-            <ReferenceInput source="paidWithAssetId" reference="assets/assets" filter={{ liquid: true }} sort={{ field: 'id', order: 'ASC' }} />
+
+            <ReferenceInput
+                source="paidWithAssetId"
+                reference="assets/assets"
+                filter={{ liquid: true }}
+                sort={{ field: 'id', order: 'ASC' }}
+            />
         </SimpleForm>
     </Create>
 );

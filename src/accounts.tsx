@@ -52,7 +52,7 @@ export const AccountShow = () => (
             <TextField source="institution" />
             <NumberField source="factor" />
             <Typography color="textSecondary">{'Value'}</Typography>
-            <Stack direction="row" alignItems="left" spacing={1}>
+            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
                 <NumberField source="balance" options={{
                     style: 'decimal',
                     useGrouping: true,
@@ -70,7 +70,7 @@ export const AccountShow = () => (
 export const AccountEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <TextInput source="id" disabled />
             <NumberInput source="balance" />
             <TextInput source="accountType" />
             <TextInput source="country" />
