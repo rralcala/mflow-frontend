@@ -11,6 +11,8 @@ import {
     List,
     NumberField,
     NumberInput,
+    ReferenceField,
+    ReferenceInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -80,6 +82,9 @@ export const InstrumentList = () => (
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
             }} />
+            <DataTable.Col source="targetAssetId">
+                <ReferenceField source="targetAssetId" reference="assets/assets" link="show" />
+            </DataTable.Col>
             <DataTable.Col>
                 <EditButton />
             </DataTable.Col>
@@ -153,6 +158,7 @@ export const InstrumentShow = () => (
             }} />
 
             <BooleanField source="liquid" />
+            <ReferenceField source="targetAssetId" reference="assets/assets" label="Target Asset" />
         </SimpleShowLayout>
     </Show>
 );
@@ -172,6 +178,7 @@ export const InstrumentEdit = () => (
             <NumberInput source="factor" />
             <DateInput source="acquisition_date" />
             <NumberInput source="acquisition_price" />
+            <ReferenceInput source="targetAssetId" reference="assets/assets" label="Target Asset" />
             <TextInput source="id" disabled/>
         </SimpleForm>
     </Edit>
@@ -192,6 +199,7 @@ export const InstrumentCreate = () => (
             <NumberInput source="factor" />
             <DateInput source="acquisition_date" />
             <NumberInput source="acquisition_price" />
+            <ReferenceInput source="targetAssetId" reference="assets/assets" label="Target Asset" />
         </SimpleForm>
     </Create>
 );

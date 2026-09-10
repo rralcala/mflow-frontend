@@ -20,6 +20,7 @@ import {
 import cronstrue from 'cronstrue';
 import { Stack, Typography } from '@mui/material';
 import { FlowFilters } from './lib';
+import { targetAssetsInput } from './lib/elements';
 
 export const RecurrentList = () => (
     <List filters={FlowFilters} title="Recurrent Flows">
@@ -50,6 +51,9 @@ export const RecurrentList = () => (
             <DataTable.Col source="assetId">
                 <ReferenceField source="assetId" reference="assets/assets" link="show" />
             </DataTable.Col>
+            <DataTable.Col source="targetAssetId">
+                <ReferenceField source="targetAssetId" reference="assets/assets" link="show" />
+            </DataTable.Col>
 
             <DataTable.Col>
                 <EditButton />
@@ -75,6 +79,7 @@ export const RecurrentShow = () => (
                 <TextField source="currency" />
             </Stack>
             <ReferenceField source="assetId" reference="assets/assets" />
+            <ReferenceField source="targetAssetId" reference="assets/assets" label="Target Asset" />
             <DateField source="start" />
             <DateField source="end" />
             <FunctionField 
@@ -101,6 +106,7 @@ export const RecurrentEdit = () => (
             <NumberInput source="amount" />
             <TextInput source="currency" />
             <ReferenceInput source="assetId" reference="assets/assets" />
+            {targetAssetsInput()}
             <DateInput source="start" />
             <DateInput source="end" />
             <TextInput source="recurrence" />
@@ -119,6 +125,7 @@ export const RecurrentCreate = () => (
             <NumberInput source="amount" />
             <TextInput source="currency" />
             <ReferenceInput source="assetId" reference="assets/assets" />
+            {targetAssetsInput()}
             <DateInput source="start" />
             <DateInput source="end" />
             <TextInput source="recurrence" />

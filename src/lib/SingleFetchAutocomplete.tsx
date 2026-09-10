@@ -1,4 +1,8 @@
-import { useGetList, AutocompleteInput, RaRecord } from 'react-admin';
+import { 
+    useGetList, 
+    AutocompleteInput, 
+    RaRecord 
+} from 'react-admin';
 
 interface SingleFetchAutocompleteProps {
     reference: string;

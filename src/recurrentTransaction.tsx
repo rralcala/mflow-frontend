@@ -65,15 +65,7 @@ const SumFooter = () => {
     );
 };
 
-const postDefaultValue = () => {
-    const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
-    return {
-        transactionDate: today,
-        yearMonth: today.slice(0, 7), // "YYYY-MM"
-    };
-};
-
-const postFilters = [
+const listFilters = [
     <SingleFetchAutocomplete reference="assets/recurrents" source="recurrentId" targetField="id" label="Recurrent" />,
 
     <TextInput source="yearMonth" label="Year Month" />,
@@ -81,7 +73,7 @@ const postFilters = [
 ];
 
 export const RecurrenttransactionList = () => (
-    <List filters={postFilters} title="Recurrent Transactions" aside={<SumFooter />}>
+    <List filters={listFilters} title="Recurrent Transactions" aside={<SumFooter />}>
         <DataTable>
             <DataTable.Col source="recurrentId">
                 <ReferenceField source="recurrentId" reference="assets/recurrents" />
@@ -148,9 +140,17 @@ export const RecurrenttransactionEdit = () => (
     </Edit>
 );
 
+const newTransactionDefaults = () => {
+    const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+    return {
+        transactionDate: today,
+        yearMonth: today.slice(0, 7), // "YYYY-MM"
+    };
+};
+
 export const RecurrenttransactionCreate = () => (
     <Create>
-        <SimpleForm defaultValues={postDefaultValue}>
+        <SimpleForm defaultValues={newTransactionDefaults}>
             <SingleFetchAutocomplete reference="assets/recurrents" source="recurrentId" targetField="id" label="Recurrent" />
             <TextInput source="yearMonth" />
             <TextInput source="description" />
