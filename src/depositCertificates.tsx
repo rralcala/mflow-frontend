@@ -9,6 +9,8 @@ import {
     List,
     NumberField,
     NumberInput,
+    ReferenceField,
+    ReferenceInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -35,6 +37,9 @@ export const DepositCertificateList = () => (
             </DataTable.Col>
             <DataTable.Col source="entity" />
             <DataTable.Col source="country" />
+            <DataTable.Col source="targetAssetId">
+                <ReferenceField source="targetAssetId" reference="assets/assets" link="show" />
+            </DataTable.Col>
             <DataTable.Col>
                 <EditButton />
             </DataTable.Col>

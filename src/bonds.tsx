@@ -9,6 +9,8 @@ import {
     List,
     NumberField,
     NumberInput,
+    ReferenceField,
+    ReferenceInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -16,6 +18,7 @@ import {
     TextInput
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
+import { targetAssetsInput } from './lib';
 
 export const BondList = () => (
     <List title="Bonds">
@@ -36,6 +39,9 @@ export const BondList = () => (
             </DataTable.Col>
             <DataTable.Col source="entity" />
             <DataTable.Col source="country" />
+            <DataTable.Col source="targetAssetId">
+                <ReferenceField source="targetAssetId" reference="assets/assets" link="show" />
+            </DataTable.Col>
             <DataTable.Col>
                 <EditButton />
             </DataTable.Col>
@@ -67,6 +73,7 @@ export const BondShow = () => (
             }} />
             <TextField source="country" />
             <TextField source="entity" />
+            <ReferenceField source="targetAssetId" reference="assets/assets" label="Target Asset" />
         </SimpleShowLayout>
     </Show>
 );
@@ -81,6 +88,7 @@ export const BondEdit = () => (
             <NumberInput source="capital" />
             <DateInput source="maturityDate" />
             <NumberInput source="rate" />
+            {targetAssetsInput()}
             <TextInput source="id" disabled />
         </SimpleForm>
     </Edit>
@@ -96,6 +104,7 @@ export const BondCreate = () => (
             <NumberInput source="capital" />
             <DateInput source="maturityDate" />
             <NumberInput source="rate" />
+            {targetAssetsInput()}
         </SimpleForm>
     </Create>
 );
