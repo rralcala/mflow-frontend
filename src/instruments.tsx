@@ -21,6 +21,7 @@ import {
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
 import cronstrue from 'cronstrue';
+import { TargetAssetsInput } from './lib';
 
 const cronToString = (pattern: string) => {
   try {
@@ -178,7 +179,7 @@ export const InstrumentEdit = () => (
             <NumberInput source="factor" />
             <DateInput source="acquisition_date" />
             <NumberInput source="acquisition_price" />
-            <ReferenceInput source="targetAssetId" reference="assets/assets" label="Target Asset" />
+            <TargetAssetsInput source="targetAssetId" />
             <TextInput source="id" disabled/>
         </SimpleForm>
     </Edit>
@@ -199,7 +200,7 @@ export const InstrumentCreate = () => (
             <NumberInput source="factor" />
             <DateInput source="acquisition_date" />
             <NumberInput source="acquisition_price" />
-            <ReferenceInput source="targetAssetId" reference="assets/assets" label="Target Asset" />
+            <TargetAssetsInput source="targetAssetId" />
         </SimpleForm>
     </Create>
 );

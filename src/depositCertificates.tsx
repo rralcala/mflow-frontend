@@ -10,7 +10,6 @@ import {
     NumberField,
     NumberInput,
     ReferenceField,
-    ReferenceInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -18,6 +17,7 @@ import {
     TextInput
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
+import { TargetAssetsInput } from './lib';
 
 export const DepositCertificateList = () => (
     <List title="Deposit Certificates">
@@ -70,6 +70,7 @@ export const DepositCertificateShow = () => (
             <TextField source="country" />
             <TextField source="entity" />
             <DateField source="maturityDate" />
+            <ReferenceField source="targetAssetId" reference="assets/assets" label="Target Asset" />
         </SimpleShowLayout>
     </Show>
 );
@@ -84,6 +85,7 @@ export const DepositCertificateEdit = () => (
             <NumberInput source="capital" />
             <DateInput source="maturityDate" />
             <NumberInput source="rate" />
+            <TargetAssetsInput source="targetAssetId" />
             <TextInput source="id"  disabled />
         </SimpleForm>
     </Edit>
@@ -99,6 +101,7 @@ export const DepositCertificateCreate = () => (
             <NumberInput source="capital" />
             <DateInput source="maturityDate" />
             <NumberInput source="rate" />
+            <TargetAssetsInput source="targetAssetId" />
         </SimpleForm>
     </Create>
 );
