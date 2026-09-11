@@ -122,14 +122,7 @@ export const RecurrentCreate = () => (
         <SimpleForm>
             <TextInput source="id" />
             <TextInput source="country" />
-            <SelectInput 
-                source="availability" 
-                choices={[
-                { id: "in_stock", name: "In stock" },
-                { id: "out_of_stock", name: "Out of stock" },
-                { id: "out_of_print", name: "Out of print" },
-                ]} 
-            />
+            <TextInput source="flowClass" />
             <NumberInput source="amount" />
             <TextInput source="currency" />
             <DateInput source="start" />
