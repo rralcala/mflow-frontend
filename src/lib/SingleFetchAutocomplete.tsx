@@ -24,16 +24,16 @@ export const SingleFetchAutocomplete = ({
         sort: { field: target, order: 'ASC' },
     });
 
-    if (isPending) return <span>Loading choices...</span>;
-    if (error) return <span>Error loading options</span>;
+    if (isPending) 
+        return <span>Loading choices...</span>;
+    if (error) 
+        return <span>Error loading options</span>;
 
-    return (
-        <AutocompleteInput
+    return <AutocompleteInput
             source={source}
             label={label}
             choices={choices}
             optionText={target}
             optionValue={target}
-        />
-    );
+        />;
 };

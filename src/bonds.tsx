@@ -10,7 +10,6 @@ import {
     NumberField,
     NumberInput,
     ReferenceField,
-    ReferenceInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -18,7 +17,7 @@ import {
     TextInput
 } from 'react-admin';
 import { Stack, Typography } from '@mui/material';
-import { targetAssetsInput } from './lib';
+import { TargetAssetsInput } from './lib';
 
 export const BondList = () => (
     <List title="Bonds">
@@ -88,7 +87,7 @@ export const BondEdit = () => (
             <NumberInput source="capital" />
             <DateInput source="maturityDate" />
             <NumberInput source="rate" />
-            {targetAssetsInput()}
+            <TargetAssetsInput source="targetAssetId" />
             <TextInput source="id" disabled />
         </SimpleForm>
     </Edit>
@@ -104,7 +103,7 @@ export const BondCreate = () => (
             <NumberInput source="capital" />
             <DateInput source="maturityDate" />
             <NumberInput source="rate" />
-            {targetAssetsInput()}
+            <TargetAssetsInput source="targetAssetId" />
         </SimpleForm>
     </Create>
 );

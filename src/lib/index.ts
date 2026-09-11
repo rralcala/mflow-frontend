@@ -1,7 +1,7 @@
 import { FlowFilters } from './filters';
 import { formatter, formatterPct, formatNumberWithColor, formatPctWithNan, formatterFract } from './formaters';
 import { SingleFetchAutocomplete } from './SingleFetchAutocomplete';
-import { targetAssetsInput } from './elements';
+import { TargetAssetsInput } from './TargetAssetsInput';
 
 export {
     FlowFilters,
@@ -11,5 +11,5 @@ export {
     formatterFract,
     formatterPct,
     SingleFetchAutocomplete,
-    targetAssetsInput,
+    TargetAssetsInput,
 };

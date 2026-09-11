@@ -11,6 +11,7 @@ import {
     NumberInput,
     ReferenceField,
     ReferenceInput,
+    SelectInput,
     Show,
     SimpleForm,
     SimpleShowLayout,
@@ -20,7 +21,7 @@ import {
 import cronstrue from 'cronstrue';
 import { Stack, Typography } from '@mui/material';
 import { FlowFilters } from './lib';
-import { targetAssetsInput } from './lib/elements';
+import { TargetAssetsInput } from './lib/TargetAssetsInput';
 
 export const RecurrentList = () => (
     <List filters={FlowFilters} title="Recurrent Flows">
@@ -106,7 +107,7 @@ export const RecurrentEdit = () => (
             <NumberInput source="amount" />
             <TextInput source="currency" />
             <ReferenceInput source="assetId" reference="assets/assets" />
-            {targetAssetsInput()}
+            <TargetAssetsInput source="targetAssetId" />
             <DateInput source="start" />
             <DateInput source="end" />
             <TextInput source="recurrence" />
@@ -121,15 +122,22 @@ export const RecurrentCreate = () => (
         <SimpleForm>
             <TextInput source="id" />
             <TextInput source="country" />
-            <TextInput source="flowClass" />
+            <SelectInput 
+                source="availability" 
+                choices={[
+                { id: "in_stock", name: "In stock" },
+                { id: "out_of_stock", name: "Out of stock" },
+                { id: "out_of_print", name: "Out of print" },
+                ]} 
+            />
             <NumberInput source="amount" />
             <TextInput source="currency" />
-            <ReferenceInput source="assetId" reference="assets/assets" />
-            {targetAssetsInput()}
             <DateInput source="start" />
             <DateInput source="end" />
             <TextInput source="recurrence" />
             <NumberInput source="rate" />
+            <ReferenceInput label="Originating Asset" source="assetId" reference="assets/assets" />
+            <TargetAssetsInput source="targetAssetId" />
         </SimpleForm>
     </Create>
 );
