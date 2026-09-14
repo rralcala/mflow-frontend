@@ -123,7 +123,7 @@ export const RecurrenttransactionShow = () => (
 export const RecurrenttransactionEdit = () => (
     <Edit>
         <SimpleForm>
-            <ReferenceInput source="recurrentId" reference="assets/recurrents" />
+            <SingleFetchAutocomplete reference="assets/recurrents" source="recurrentId" targetField="id" label="Recurrent" />
             <TextInput source="yearMonth" />
             <TextInput source="description" />
             <NumberInput source="amount" />
