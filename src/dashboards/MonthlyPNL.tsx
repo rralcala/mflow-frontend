@@ -1,28 +1,32 @@
-import { useState, useEffect } from 'react';
-import { useGetOne } from 'react-admin';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Stack } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useState, useEffect } from "react";
+import { useGetOne } from "react-admin";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { Stack } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-import { fetcherEffect } from '../httpClient';
-import { formatter } from '../lib';
+import { fetcherEffect } from "../httpClient";
+import { formatter } from "../lib";
 
-const reportRoute = 'reports/monthly_pnl?oneOff=1';
+const reportRoute = "reports/monthly_pnl?oneOff=1";
 
-type pnlRow = [number, Object];
+type pnlRow = [number, object];
 type CardStates = Record<string, boolean>;
 
-function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: CardStates) {
+function renderRow(
+  row: pnlRow,
+  toggleCard: (id: string) => void,
+  openCards: CardStates,
+) {
   return (
     <Stack>
       <TableContainer component={Paper}>
@@ -36,8 +40,9 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow hover
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            <TableRow
+              hover
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell>
                 <IconButton
@@ -45,7 +50,11 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                   size="small"
                   onClick={() => toggleCard(row[1]["month"])}
                 >
-                  {!!openCards[row[1]["month"]] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                  {openCards[row[1]["month"]] ? (
+                    <KeyboardArrowUpIcon />
+                  ) : (
+                    <KeyboardArrowDownIcon />
+                  )}
                 </IconButton>
               </TableCell>
               <TableCell component="th" scope="row">
@@ -54,20 +63,26 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
               <TableCell align="right">
                 {formatter.format(row[1]["expenses_PYG"])}
               </TableCell>
-              <TableCell align="right">{formatter.format(row[1]["expenses_USD"])}</TableCell>
-
+              <TableCell align="right">
+                {formatter.format(row[1]["expenses_USD"])}
+              </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={3}>
-                <Collapse in={!!openCards[row[1]["month"]]} timeout="auto" unmountOnExit>
+              <TableCell
+                style={{ paddingBottom: 0, paddingTop: 0 }}
+                colSpan={3}
+              >
+                <Collapse
+                  in={!!openCards[row[1]["month"]]}
+                  timeout="auto"
+                  unmountOnExit
+                >
                   <Box sx={{ margin: 1 }}>
-
                     <Table size="small" aria-label="purchases">
                       <TableHead>
                         <TableRow>
                           <TableCell>Asset</TableCell>
                           <TableCell align="right">Amount</TableCell>
-
                         </TableRow>
                       </TableHead>
                       <TableBody>
@@ -76,9 +91,9 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                             <TableCell component="th" scope="row">
                               {historyRow[0]}
                             </TableCell>
-                            <TableCell align="right">{formatter.format(historyRow[1])} {historyRow[2]}</TableCell>
-
-
+                            <TableCell align="right">
+                              {formatter.format(historyRow[1])} {historyRow[2]}
+                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -87,8 +102,9 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                 </Collapse>
               </TableCell>
             </TableRow>
-            <TableRow hover
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            <TableRow
+              hover
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell>
                 <IconButton
@@ -96,7 +112,11 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                   size="small"
                   onClick={() => toggleCard(row[1]["month"])}
                 >
-                  {!!openCards[row[1]["month"]] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                  {openCards[row[1]["month"]] ? (
+                    <KeyboardArrowUpIcon />
+                  ) : (
+                    <KeyboardArrowDownIcon />
+                  )}
                 </IconButton>
               </TableCell>
               <TableCell component="th" scope="row">
@@ -106,15 +126,21 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                 {formatter.format(row[1]["income_PYG"])}
               </TableCell>
 
-              <TableCell align="right">{formatter.format(row[1]["income_USD"])}</TableCell>
-
-
+              <TableCell align="right">
+                {formatter.format(row[1]["income_USD"])}
+              </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={3}>
-                <Collapse in={!!openCards[row[1]["month"]]} timeout="auto" unmountOnExit>
+              <TableCell
+                style={{ paddingBottom: 0, paddingTop: 0 }}
+                colSpan={3}
+              >
+                <Collapse
+                  in={!!openCards[row[1]["month"]]}
+                  timeout="auto"
+                  unmountOnExit
+                >
                   <Box sx={{ margin: 1 }}>
-
                     <Table size="small" aria-label="purchases">
                       <TableHead>
                         <TableRow>
@@ -128,7 +154,9 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                             <TableCell component="th" scope="row">
                               {historyRow[0]}
                             </TableCell>
-                            <TableCell align="right">{formatter.format(historyRow[1])} {historyRow[2]}</TableCell>
+                            <TableCell align="right">
+                              {formatter.format(historyRow[1])} {historyRow[2]}
+                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -137,55 +165,67 @@ function renderRow(row: pnlRow, toggleCard: (id: string) => void, openCards: Car
                 </Collapse>
               </TableCell>
             </TableRow>
-            <TableRow hover
+            <TableRow
+              hover
               //key={row[1]["expenses_PYG"]}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell></TableCell>
               <TableCell component="th" scope="row">
                 <b>Total</b>
               </TableCell>
-              <TableCell align="right"><b>
-                {formatter.format(row[1]["income_PYG"] + row[1]["expenses_PYG"])}</b>
+              <TableCell align="right">
+                <b>
+                  {formatter.format(
+                    row[1]["income_PYG"] + row[1]["expenses_PYG"],
+                  )}
+                </b>
               </TableCell>
 
-              <TableCell align="right"><b>{formatter.format(row[1]["income_USD"] + row[1]["expenses_USD"])}</b></TableCell>
-
-
+              <TableCell align="right">
+                <b>
+                  {formatter.format(
+                    row[1]["income_USD"] + row[1]["expenses_USD"],
+                  )}
+                </b>
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
       <br />
-    </Stack>);
+    </Stack>
+  );
 }
-
 
 export const DashboardMonthlyPNL = () => {
   const [dataR, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openCards, setOpenCards] = useState<CardStates>({});
-  const { data: dataQuotes, isLoading: isLoadingQuotes, error: errorQuotes } = useGetOne('reports/exchangeRates', { id: "USDPYG" });
+  const {
+    data: dataQuotes,
+    isLoading: isLoadingQuotes,
+    error: errorQuotes,
+  } = useGetOne("reports/exchangeRates", { id: "USDPYG" });
   const toggleCard = (id: string) => {
-
     setOpenCards((prev) => ({
       ...prev,
       // Toggle the value, defaulting to true if it didn't exist
       [id]: !prev[id],
     }));
-    console.log(openCards)
+    console.log(openCards);
   };
   useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
 
   if (loading || isLoadingQuotes) return <p>Loading...</p>;
-  if (error || errorQuotes) return <p>Error: {error?.message || errorQuotes?.message}</p>;
+  if (error || errorQuotes)
+    return <p>Error: {error?.message || errorQuotes?.message}</p>;
 
   return (
     <Stack>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-
           <TableHead>
             <TableRow>
               <TableCell>Line</TableCell>
@@ -197,29 +237,60 @@ export const DashboardMonthlyPNL = () => {
           <TableBody>
             <TableRow hover>
               <TableCell>Income</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["income"][1])}</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["income"][0])}</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["income"][0] * dataQuotes.rate + dataR["summary"]["income"][1])}</TableCell>
+              <TableCell align="right">
+                {formatter.format(dataR["summary"]["income"][1])}
+              </TableCell>
+              <TableCell align="right">
+                {formatter.format(dataR["summary"]["income"][0])}
+              </TableCell>
+              <TableCell align="right">
+                {formatter.format(
+                  dataR["summary"]["income"][0] * dataQuotes.rate +
+                    dataR["summary"]["income"][1],
+                )}
+              </TableCell>
             </TableRow>
             <TableRow hover>
               <TableCell>Expenses</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][1])}</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][0])}</TableCell>
-              <TableCell align="right">{formatter.format(dataR["summary"]["expenses"][0] * dataQuotes.rate + dataR["summary"]["expenses"][1])}</TableCell>
+              <TableCell align="right">
+                {formatter.format(dataR["summary"]["expenses"][1])}
+              </TableCell>
+              <TableCell align="right">
+                {formatter.format(dataR["summary"]["expenses"][0])}
+              </TableCell>
+              <TableCell align="right">
+                {formatter.format(
+                  dataR["summary"]["expenses"][0] * dataQuotes.rate +
+                    dataR["summary"]["expenses"][1],
+                )}
+              </TableCell>
             </TableRow>
             <TableRow hover>
-              <TableCell><b>Year net</b></TableCell>
-              <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][1])}</b></TableCell>
-              <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][0])}</b></TableCell>
-              <TableCell align="right"><b>{formatter.format(dataR["summary"]["net"][0] * dataQuotes.rate + dataR["summary"]["net"][1])}</b></TableCell>
+              <TableCell>
+                <b>Year net</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>{formatter.format(dataR["summary"]["net"][1])}</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>{formatter.format(dataR["summary"]["net"][0])}</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>
+                  {formatter.format(
+                    dataR["summary"]["net"][0] * dataQuotes.rate +
+                      dataR["summary"]["net"][1],
+                  )}
+                </b>
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
       <br />
-      {Object.entries(dataR["year_months"]).map((row) => (
-        renderRow(row, toggleCard, openCards)
-      ))}
+      {Object.entries(dataR["year_months"]).map((row) =>
+        renderRow(row, toggleCard, openCards),
+      )}
     </Stack>
   );
 };

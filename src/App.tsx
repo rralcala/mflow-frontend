@@ -1,25 +1,66 @@
 import { Admin, Resource, CustomRoutes } from "react-admin";
-import jsonServerProvider from 'ra-data-json-server';
+import jsonServerProvider from "ra-data-json-server";
 import { Route } from "react-router";
 
-import { authProvider } from './authProvider';
-import { httpClient } from './httpClient';
+import { authProvider } from "./authProvider";
+import { httpClient } from "./httpClient";
 
 import { Layout } from "./layout";
 
-import { AccountShow, AccountList, AccountEdit, AccountCreate } from "./accounts";
+import {
+  AccountShow,
+  AccountList,
+  AccountEdit,
+  AccountCreate,
+} from "./accounts";
 import { AssetList, AssetShow } from "./assets";
-import { BondList, BondShow, BondEdit, BondCreate  } from "./bonds";
-import { BondscheduleEdit, BondscheduleList, BondscheduleShow} from "./bondSchedules";
-import { DepositCertificateList, DepositCertificateShow, DepositCertificateEdit, DepositCertificateCreate} from "./depositCertificates";
-import { DepositCertificateScheduleEdit, DepositCertificateScheduleShow, DepositCertificateSchedulesList } from "./depositCertificateSchedules";
+import { BondList, BondShow, BondEdit, BondCreate } from "./bonds";
+import {
+  BondscheduleEdit,
+  BondscheduleList,
+  BondscheduleShow,
+} from "./bondSchedules";
+import {
+  DepositCertificateList,
+  DepositCertificateShow,
+  DepositCertificateEdit,
+  DepositCertificateCreate,
+} from "./depositCertificates";
+import {
+  DepositCertificateScheduleEdit,
+  DepositCertificateScheduleShow,
+  DepositCertificateSchedulesList,
+} from "./depositCertificateSchedules";
 import { ExchangerateList } from "./exchangeRates";
-import { InstrumentEdit, InstrumentList, InstrumentShow, InstrumentCreate } from "./instruments";
-import { MonthlytransactionList, MonthlytransactionShow } from "./mothlyTransactions";
-import { PayableList, PayableShow, PayableEdit, PayableCreate } from "./payables";
+import {
+  InstrumentEdit,
+  InstrumentList,
+  InstrumentShow,
+  InstrumentCreate,
+} from "./instruments";
+import {
+  MonthlytransactionList,
+  MonthlytransactionShow,
+} from "./mothlyTransactions";
+import {
+  PayableList,
+  PayableShow,
+  PayableEdit,
+  PayableCreate,
+} from "./payables";
 import { PropertyEdit, PropertyList, PropertyShow } from "./properties";
-import { RecurrentList, RecurrentShow, RecurrentEdit, RecurrentCreate } from "./recurrents";
-import { RecurrenttransactionList, RecurrenttransactionShow, RecurrenttransactionEdit, RecurrenttransactionCreate } from "./recurrentTransaction";
+import {
+  RecurrentList,
+  RecurrentShow,
+  RecurrentEdit,
+  RecurrentCreate,
+} from "./recurrents";
+import {
+  RecurrenttransactionList,
+  RecurrenttransactionShow,
+  RecurrenttransactionEdit,
+  RecurrenttransactionCreate,
+} from "./recurrentTransaction";
 import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
 import {
   Dashboard,
@@ -32,20 +73,19 @@ import {
   DashboardProjectionAnalysis,
   DashboardSpendingAnalysis,
   DashboardValuationHistory,
-}
-  from "./dashboards";
+} from "./dashboards";
 
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import CandlestickChartIcon from '@mui/icons-material/CandlestickChart';
-import ChecklistIcon from '@mui/icons-material/Checklist';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import DownloadIcon from '@mui/icons-material/Download';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
-import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
-import SavingsIcon from '@mui/icons-material/Savings';
-import UploadIcon from '@mui/icons-material/Upload';
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import CandlestickChartIcon from "@mui/icons-material/CandlestickChart";
+import ChecklistIcon from "@mui/icons-material/Checklist";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import DownloadIcon from "@mui/icons-material/Download";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import MapsHomeWorkIcon from "@mui/icons-material/MapsHomeWork";
+import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
+import SavingsIcon from "@mui/icons-material/Savings";
+import UploadIcon from "@mui/icons-material/Upload";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -59,35 +99,116 @@ export const App = () => (
     authProvider={authProvider}
     dashboard={Dashboard}
     layout={Layout}
-    requireAuth >
-    <Resource name="assets/accounts" list={AccountList} show={AccountShow} edit={AccountEdit} create={AccountCreate} icon={SavingsIcon} />
-    <Resource name="assets/assets" list={AssetList} show={AssetShow} icon={AccountBalanceIcon} />
-    <Resource name="assets/bondSchedules" list={BondscheduleList} show={BondscheduleShow} edit={BondscheduleEdit} icon={ChecklistIcon} />
-    <Resource name="assets/bonds" list={BondList} show={BondShow} edit={BondEdit} create={BondCreate} icon={RequestQuoteIcon} />
-    <Resource name="assets/depositCertificateSchedules" list={DepositCertificateSchedulesList} show={DepositCertificateScheduleShow} edit={DepositCertificateScheduleEdit} icon={ChecklistIcon} />
-    <Resource name="assets/depositCertificates" list={DepositCertificateList}  edit={DepositCertificateEdit} show={DepositCertificateShow} create={DepositCertificateCreate} icon={RequestQuoteIcon} />
-    <Resource name="assets/instruments" list={InstrumentList} show={InstrumentShow} edit={InstrumentEdit} create={InstrumentCreate} icon={CandlestickChartIcon} />
-    <Resource name="assets/monthlyTransactions" list={MonthlytransactionList} show={MonthlytransactionShow} icon={UploadIcon} />
-    <Resource name="assets/payables" list={PayableList} show={PayableShow} edit={PayableEdit} create={PayableCreate} icon={ReceiptIcon} />
-    <Resource name="assets/properties" list={PropertyList} show={PropertyShow} edit={PropertyEdit} icon={MapsHomeWorkIcon} />
-    <Resource name="assets/recurrentTransactions"
+    requireAuth
+  >
+    <Resource
+      name="assets/accounts"
+      list={AccountList}
+      show={AccountShow}
+      edit={AccountEdit}
+      create={AccountCreate}
+      icon={SavingsIcon}
+    />
+    <Resource
+      name="assets/assets"
+      list={AssetList}
+      show={AssetShow}
+      icon={AccountBalanceIcon}
+    />
+    <Resource
+      name="assets/bondSchedules"
+      list={BondscheduleList}
+      show={BondscheduleShow}
+      edit={BondscheduleEdit}
+      icon={ChecklistIcon}
+    />
+    <Resource
+      name="assets/bonds"
+      list={BondList}
+      show={BondShow}
+      edit={BondEdit}
+      create={BondCreate}
+      icon={RequestQuoteIcon}
+    />
+    <Resource
+      name="assets/depositCertificateSchedules"
+      list={DepositCertificateSchedulesList}
+      show={DepositCertificateScheduleShow}
+      edit={DepositCertificateScheduleEdit}
+      icon={ChecklistIcon}
+    />
+    <Resource
+      name="assets/depositCertificates"
+      list={DepositCertificateList}
+      edit={DepositCertificateEdit}
+      show={DepositCertificateShow}
+      create={DepositCertificateCreate}
+      icon={RequestQuoteIcon}
+    />
+    <Resource
+      name="assets/instruments"
+      list={InstrumentList}
+      show={InstrumentShow}
+      edit={InstrumentEdit}
+      create={InstrumentCreate}
+      icon={CandlestickChartIcon}
+    />
+    <Resource
+      name="assets/monthlyTransactions"
+      list={MonthlytransactionList}
+      show={MonthlytransactionShow}
+      icon={UploadIcon}
+    />
+    <Resource
+      name="assets/payables"
+      list={PayableList}
+      show={PayableShow}
+      edit={PayableEdit}
+      create={PayableCreate}
+      icon={ReceiptIcon}
+    />
+    <Resource
+      name="assets/properties"
+      list={PropertyList}
+      show={PropertyShow}
+      edit={PropertyEdit}
+      icon={MapsHomeWorkIcon}
+    />
+    <Resource
+      name="assets/recurrentTransactions"
       list={RecurrenttransactionList}
       show={RecurrenttransactionShow}
       edit={RecurrenttransactionEdit}
       create={RecurrenttransactionCreate}
-      icon={ReceiptIcon} />
-    <Resource name="assets/recurrents"
+      icon={ReceiptIcon}
+    />
+    <Resource
+      name="assets/recurrents"
       list={RecurrentList}
       show={RecurrentShow}
       edit={RecurrentEdit}
-      create={RecurrentCreate} icon={MenuBookIcon} />
+      create={RecurrentCreate}
+      icon={MenuBookIcon}
+    />
 
-    <Resource name="reports/exchangeRates" list={ExchangerateList} icon={CurrencyExchangeIcon} />
-    <Resource name="reports/upcoming_payments" list={UpcomingpaymentList} show={UpcomingpaymentShow} icon={DownloadIcon} />
+    <Resource
+      name="reports/exchangeRates"
+      list={ExchangerateList}
+      icon={CurrencyExchangeIcon}
+    />
+    <Resource
+      name="reports/upcoming_payments"
+      list={UpcomingpaymentList}
+      show={UpcomingpaymentShow}
+      icon={DownloadIcon}
+    />
     <CustomRoutes>
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
       <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
-      <Route path="/dashboard-ip" element={<DashboardInvestmentPerformance />} />
+      <Route
+        path="/dashboard-ip"
+        element={<DashboardInvestmentPerformance />}
+      />
       <Route path="/dashboard-ipl" element={<DashboardIncomePerLocation />} />
       <Route path="/dashboard-mpnl" element={<DashboardMonthlyPNL />} />
       <Route path="/dashboard-nws" element={<DashboardNetWorthSummary />} />
@@ -95,6 +216,5 @@ export const App = () => (
       <Route path="/dashboard-sa" element={<DashboardSpendingAnalysis />} />
       <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
     </CustomRoutes>
-
   </Admin>
 );

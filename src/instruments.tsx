@@ -1,206 +1,251 @@
 import {
-    BooleanField,
-    BooleanInput,
-    Create,
-    DataTable,
-    DateField,
-    DateInput,
-    Edit,
-    EditButton,
-    FunctionField,
-    List,
-    NumberField,
-    NumberInput,
-    ReferenceField,
-    ReferenceInput,
-    Show,
-    SimpleForm,
-    SimpleShowLayout,
-    TextField,
-    TextInput
-} from 'react-admin';
-import { Stack, Typography } from '@mui/material';
-import cronstrue from 'cronstrue';
-import { TargetAssetsInput } from './lib';
+  BooleanField,
+  BooleanInput,
+  Create,
+  DataTable,
+  DateField,
+  DateInput,
+  Edit,
+  EditButton,
+  FunctionField,
+  List,
+  NumberField,
+  NumberInput,
+  ReferenceField,
+  Show,
+  SimpleForm,
+  SimpleShowLayout,
+  TextField,
+  TextInput,
+} from "react-admin";
+import { Stack, Typography } from "@mui/material";
+import cronstrue from "cronstrue";
+import { TargetAssetsInput } from "./lib";
 
 const cronToString = (pattern: string) => {
   try {
-    
     return cronstrue.toString(pattern);
   } catch {
     return "N/A";
   }
-}
+};
 
 export const InstrumentList = () => (
-    <List title="Financial Instruments">
-        <DataTable>
-            <DataTable.Col source="location" />
-            <DataTable.Col source="symbol" />
-            <DataTable.NumberCol source="qty" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
-            <DataTable.NumberCol source="value" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 0,
-                minimumFractionDigits: 0,
-            }} />
-            <DataTable.Col source="currency" />
+  <List title="Financial Instruments">
+    <DataTable>
+      <DataTable.Col source="location" />
+      <DataTable.Col source="symbol" />
+      <DataTable.NumberCol
+        source="qty"
+        options={{
+          style: "decimal",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
+      <DataTable.NumberCol
+        source="value"
+        options={{
+          style: "decimal",
+          useGrouping: true,
+          maximumFractionDigits: 0,
+          minimumFractionDigits: 0,
+        }}
+      />
+      <DataTable.Col source="currency" />
 
-            <DataTable.NumberCol source="dividend_rate" options={{
-                style: 'percent',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
-            <DataTable.NumberCol label="Monthly Dividend" source="estimated_dividend" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 0,
-                minimumFractionDigits: 0,
-            }} />
-            <DataTable.Col source="currency" />
-            <DataTable.Col source="dividend" />
+      <DataTable.NumberCol
+        source="dividend_rate"
+        options={{
+          style: "percent",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
+      <DataTable.NumberCol
+        label="Monthly Dividend"
+        source="estimated_dividend"
+        options={{
+          style: "decimal",
+          useGrouping: true,
+          maximumFractionDigits: 0,
+          minimumFractionDigits: 0,
+        }}
+      />
+      <DataTable.Col source="currency" />
+      <DataTable.Col source="dividend" />
 
-            <DataTable.Col source="liquid">
-                <BooleanField source="liquid" />
-            </DataTable.Col>
+      <DataTable.Col source="liquid">
+        <BooleanField source="liquid" />
+      </DataTable.Col>
 
-            <DataTable.NumberCol source="factor" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
-            <DataTable.Col source="country" />
-            <DataTable.NumberCol source="capital_rate" options={{
-                style: 'percent',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
-            <DataTable.Col source="targetAssetId">
-                <ReferenceField source="targetAssetId" reference="assets/assets" link="show" />
-            </DataTable.Col>
-            <DataTable.Col>
-                <EditButton />
-            </DataTable.Col>
-
-        </DataTable>
-    </List>
+      <DataTable.NumberCol
+        source="factor"
+        options={{
+          style: "decimal",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
+      <DataTable.Col source="country" />
+      <DataTable.NumberCol
+        source="capital_rate"
+        options={{
+          style: "percent",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
+      <DataTable.Col source="targetAssetId">
+        <ReferenceField
+          source="targetAssetId"
+          reference="assets/assets"
+          link="show"
+        />
+      </DataTable.Col>
+      <DataTable.Col>
+        <EditButton />
+      </DataTable.Col>
+    </DataTable>
+  </List>
 );
 
 export const InstrumentShow = () => (
-    <Show>
-        <SimpleShowLayout>
-            <TextField source="country" />
-            <TextField source="location" />
-            <TextField source="symbol" />
-            <NumberField source="qty" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
-            <Typography color="textSecondary">{'Value'}</Typography>
-            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
-                <NumberField source="value" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                }} />
-                <TextField source="currency" />
-            </Stack>
-            <DateField source="acquisition_date" />
-            <NumberField source="acquisition_price" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
+  <Show>
+    <SimpleShowLayout>
+      <TextField source="country" />
+      <TextField source="location" />
+      <TextField source="symbol" />
+      <NumberField
+        source="qty"
+        options={{
+          style: "decimal",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
+      <Typography color="textSecondary">{"Value"}</Typography>
+      <Stack direction="row" sx={{ alignItems: "flex-start" }} spacing={1}>
+        <NumberField
+          source="value"
+          options={{
+            style: "decimal",
+            useGrouping: true,
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+          }}
+        />
+        <TextField source="currency" />
+      </Stack>
+      <DateField source="acquisition_date" />
+      <NumberField
+        source="acquisition_price"
+        options={{
+          style: "decimal",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
 
-            <FunctionField 
-                label="Dividend Schedule" 
-                render={record => `${cronToString(record.dividend)}`} 
-            />
-            <NumberField source="dividend_rate" options={{
-                style: 'percent',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
-            <NumberField source="capital_rate" options={{
-                style: 'percent',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
-            <Typography color="textSecondary">{'Estimated Dividend'}</Typography>
-            <Stack direction="row" sx={{ alignItems: "flex-start", }} spacing={1}>
-                <NumberField source="estimated_dividend" options={{
-                    style: 'decimal',
-                    useGrouping: true,
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                }} />
-                <TextField source="currency" />
-            </Stack>
+      <FunctionField
+        label="Dividend Schedule"
+        render={(record) => `${cronToString(record.dividend)}`}
+      />
+      <NumberField
+        source="dividend_rate"
+        options={{
+          style: "percent",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
+      <NumberField
+        source="capital_rate"
+        options={{
+          style: "percent",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
+      <Typography color="textSecondary">{"Estimated Dividend"}</Typography>
+      <Stack direction="row" sx={{ alignItems: "flex-start" }} spacing={1}>
+        <NumberField
+          source="estimated_dividend"
+          options={{
+            style: "decimal",
+            useGrouping: true,
+            maximumFractionDigits: 0,
+            minimumFractionDigits: 0,
+          }}
+        />
+        <TextField source="currency" />
+      </Stack>
 
-            <NumberField source="factor" options={{
-                style: 'decimal',
-                useGrouping: true,
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2,
-            }} />
+      <NumberField
+        source="factor"
+        options={{
+          style: "decimal",
+          useGrouping: true,
+          maximumFractionDigits: 2,
+          minimumFractionDigits: 2,
+        }}
+      />
 
-            <BooleanField source="liquid" />
-            <ReferenceField source="targetAssetId" reference="assets/assets" label="Target Asset" />
-        </SimpleShowLayout>
-    </Show>
+      <BooleanField source="liquid" />
+      <ReferenceField
+        source="targetAssetId"
+        reference="assets/assets"
+        label="Target Asset"
+      />
+    </SimpleShowLayout>
+  </Show>
 );
 
 export const InstrumentEdit = () => (
-    <Edit>
-        <SimpleForm>
-            <TextInput source="country" disabled />
-            <TextInput source="location" disabled />
-            <TextInput source="symbol" />
-            <NumberInput source="qty" />
-            <TextInput source="currency" />
-            <TextInput source="dividend" />
-            <NumberInput source="dividend_rate" />
-            <NumberInput source="capital_rate" />
-            <BooleanInput source="liquid" />
-            <NumberInput source="factor" />
-            <DateInput source="acquisition_date" />
-            <NumberInput source="acquisition_price" />
-            <TargetAssetsInput source="targetAssetId" />
-            <TextInput source="id" disabled/>
-        </SimpleForm>
-    </Edit>
+  <Edit>
+    <SimpleForm>
+      <TextInput source="country" disabled />
+      <TextInput source="location" disabled />
+      <TextInput source="symbol" />
+      <NumberInput source="qty" />
+      <TextInput source="currency" />
+      <TextInput source="dividend" />
+      <NumberInput source="dividend_rate" />
+      <NumberInput source="capital_rate" />
+      <BooleanInput source="liquid" />
+      <NumberInput source="factor" />
+      <DateInput source="acquisition_date" />
+      <NumberInput source="acquisition_price" />
+      <TargetAssetsInput source="targetAssetId" />
+      <TextInput source="id" disabled />
+    </SimpleForm>
+  </Edit>
 );
 
 export const InstrumentCreate = () => (
-    <Create>
-        <SimpleForm>
-            <TextInput source="country" />
-            <TextInput source="location" />
-            <TextInput source="symbol" />
-            <NumberInput source="qty" />
-            <TextInput source="currency" />
-            <TextInput source="dividend" />
-            <NumberInput source="dividend_rate" />
-            <NumberInput source="capital_rate" />
-            <BooleanInput source="liquid" />
-            <NumberInput source="factor" />
-            <DateInput source="acquisition_date" />
-            <NumberInput source="acquisition_price" />
-            <TargetAssetsInput source="targetAssetId" />
-        </SimpleForm>
-    </Create>
+  <Create>
+    <SimpleForm>
+      <TextInput source="country" />
+      <TextInput source="location" />
+      <TextInput source="symbol" />
+      <NumberInput source="qty" />
+      <TextInput source="currency" />
+      <TextInput source="dividend" />
+      <NumberInput source="dividend_rate" />
+      <NumberInput source="capital_rate" />
+      <BooleanInput source="liquid" />
+      <NumberInput source="factor" />
+      <DateInput source="acquisition_date" />
+      <NumberInput source="acquisition_price" />
+      <TargetAssetsInput source="targetAssetId" />
+    </SimpleForm>
+  </Create>
 );
