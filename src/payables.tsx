@@ -10,6 +10,7 @@ import {
   List,
   NumberField,
   NumberInput,
+  ReferenceField,
   Show,
   SimpleForm,
   SimpleShowLayout,
@@ -17,7 +18,7 @@ import {
   TextInput,
 } from "react-admin";
 import { Stack, Typography } from "@mui/material";
-import { FlowFilters } from "./lib";
+import { FlowFilters, TargetAssetsInput } from "./lib";
 
 export const PayableList = () => (
   <List filters={FlowFilters} title="Single Payables">
@@ -39,6 +40,13 @@ export const PayableList = () => (
         <BooleanField source="oneOff" />
       </DataTable.Col>
       <DataTable.Col source="flowClass" />
+      <DataTable.Col source="targetAssetId">
+        <ReferenceField
+          source="targetAssetId"
+          reference="assets/assets"
+          link="show"
+        />
+      </DataTable.Col>
       <DataTable.Col>
         <EditButton />
       </DataTable.Col>
@@ -81,6 +89,11 @@ export const PayableShow = () => (
       <BooleanField source="commited" />
       <BooleanField source="oneOff" />
       <TextField source="flowClass" />
+      <ReferenceField
+        source="targetAssetId"
+        reference="assets/assets"
+        label="Target Asset"
+      />
     </SimpleShowLayout>
   </Show>
 );
@@ -97,6 +110,7 @@ export const PayableEdit = () => (
       <BooleanInput source="commited" />
       <BooleanInput source="oneOff" />
       <TextInput source="flowClass" />
+      <TargetAssetsInput source="targetAssetId" />
       <TextInput source="id" disabled />
     </SimpleForm>
   </Edit>
@@ -114,6 +128,7 @@ export const PayableCreate = () => (
       <BooleanInput source="commited" />
       <BooleanInput source="oneOff" />
       <TextInput source="flowClass" />
+      <TargetAssetsInput source="targetAssetId" />
     </SimpleForm>
   </Create>
 );
