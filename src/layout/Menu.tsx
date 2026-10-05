@@ -188,6 +188,13 @@ const Menu = ({ dense = false }: MenuProps) => {
             dense={dense}
           />
           <MenuItemLink
+            to="/dashboard-ft"
+            state={{ _scrollToTop: true }}
+            primaryText={"Future Timeline"}
+            leftIcon={<DashboardIcon />}
+            dense={dense}
+          />
+          <MenuItemLink
             to="/dashboard-ipl"
             state={{ _scrollToTop: true }}
             primaryText={"Investment Per Location"}

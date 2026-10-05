@@ -22,8 +22,17 @@ import { Stack, Typography } from "@mui/material";
 import { FlowFilters } from "./lib";
 import { TargetAssetsInput } from "./lib/TargetAssetsInput";
 
+const RecurrentFilters = [
+  ...FlowFilters,
+  <TargetAssetsInput
+    key="targetAssetFilter"
+    source="targetAssetId"
+    label="Target Asset"
+  />,
+];
+
 export const RecurrentList = () => (
-  <List filters={FlowFilters} title="Recurrent Flows">
+  <List filters={RecurrentFilters} title="Recurrent Flows">
     <DataTable>
       <DataTable.Col source="id" />
       <DataTable.Col source="flowClass" />
