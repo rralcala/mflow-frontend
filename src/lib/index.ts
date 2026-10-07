@@ -1,3 +1,4 @@
+import { ClearableDateInput } from "./ClearableDateInput";
 import { FlowFilters } from "./filters";
 import {
   formatter,
@@ -10,6 +11,7 @@ import { SingleFetchAutocomplete } from "./SingleFetchAutocomplete";
 import { TargetAssetsInput } from "./TargetAssetsInput";
 
 export {
+  ClearableDateInput,
   FlowFilters,
   formatNumberWithColor,
   formatPctWithNan,

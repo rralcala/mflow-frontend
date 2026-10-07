@@ -6,12 +6,14 @@ import {
   List,
   NumberField,
   NumberInput,
+  ReferenceField,
   Show,
   SimpleForm,
   SimpleShowLayout,
   TextField,
   TextInput,
 } from "react-admin";
+import { ClearableDateInput, TargetAssetsInput } from "./lib";
 
 export const PropertyList = () => (
   <List title="Properties">
@@ -29,6 +31,16 @@ export const PropertyList = () => (
       <DataTable.Col source="rentCurrency" />
       <DataTable.Col source="id" />
       <DataTable.NumberCol source="depreciation" />
+      <DataTable.Col source="sellBy" label="Sell By">
+        <DateField source="sellBy" />
+      </DataTable.Col>
+      <DataTable.Col source="targetAssetId" label="Target Asset">
+        <ReferenceField
+          source="targetAssetId"
+          reference="assets/assets"
+          link="show"
+        />
+      </DataTable.Col>
     </DataTable>
   </List>
 );
@@ -46,6 +58,12 @@ export const PropertyShow = () => (
       <TextField source="rentCurrency" />
       <TextField source="additionalData" />
       <NumberField source="depreciation" />
+      <DateField source="sellBy" label="Sell By" />
+      <ReferenceField
+        source="targetAssetId"
+        reference="assets/assets"
+        label="Target Asset"
+      />
       <TextField source="id" />
     </SimpleShowLayout>
   </Show>
@@ -64,6 +82,12 @@ export const PropertyEdit = () => (
       <NumberInput source="rentPrice" />
       <TextInput source="rentCurrency" />
       <TextInput source="additionalData" multiline rows={5} />
+      <ClearableDateInput
+        source="sellBy"
+        label="Sell By"
+        helperText="Simulations sell the property on this date. Linked recurrents should end on it too."
+      />
+      <TargetAssetsInput source="targetAssetId" />
     </SimpleForm>
   </Edit>
 );

@@ -44,6 +44,7 @@ type Flows = {
   expenses: number;
   interest: number;
   maturities: number;
+  sales: number;
   netCashFlow: number;
 };
 
@@ -81,6 +82,7 @@ type AssetValue = {
   country: string;
   currency: string;
   growth: string | null;
+  soldOn: string | null;
   isPool: boolean;
   startValue: number;
   endValue: number;
@@ -136,6 +138,7 @@ function toYearly(months: Month[]): Month[] {
       expenses: prev.expenses + m.expenses,
       interest: prev.interest + m.interest,
       maturities: prev.maturities + m.maturities,
+      sales: prev.sales + m.sales,
       netCashFlow: prev.netCashFlow + m.netCashFlow,
       minBalances,
       negativePools: [...new Set([...prev.negativePools, ...m.negativePools])],
@@ -460,6 +463,7 @@ export const DashboardFutureTimeline = () => {
               <TableCell align="right">Expenses</TableCell>
               <TableCell align="right">Interest</TableCell>
               <TableCell align="right">Maturities</TableCell>
+              <TableCell align="right">Sales</TableCell>
               <TableCell align="right">Net flow</TableCell>
               {pools.map((p) => (
                 <TableCell align="right" key={p.id}>
@@ -494,6 +498,7 @@ export const DashboardFutureTimeline = () => {
                 <TableCell align="right">
                   {formatter.format(m.maturities)}
                 </TableCell>
+                <TableCell align="right">{formatter.format(m.sales)}</TableCell>
                 <TableCell align="right">
                   {formatNumberWithColor(m.netCashFlow)}
                 </TableCell>
@@ -541,7 +546,9 @@ export const DashboardFutureTimeline = () => {
                 <TableCell>{a.type}</TableCell>
                 <TableCell>{a.country}</TableCell>
                 <TableCell>
-                  {a.growth ?? (a.isPool ? "cash pool" : "-")}
+                  {a.soldOn
+                    ? `sold ${a.soldOn}`
+                    : (a.growth ?? (a.isPool ? "cash pool" : "-"))}
                 </TableCell>
                 <TableCell align="right">
                   {formatNumberWithColor(a.startValueUsd)}
