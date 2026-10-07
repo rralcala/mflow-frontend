@@ -10,6 +10,7 @@ export const FlowFilters = [
       { id: "income", name: "income" },
       { id: "loan", name: "loan" },
       { id: "repayment", name: "repayment" },
+      { id: "transfer", name: "transfer" },
     ]}
   />,
 ];
