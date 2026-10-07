@@ -20,7 +20,7 @@ import {
 } from "react-admin";
 import { Stack, Typography } from "@mui/material";
 import cronstrue from "cronstrue";
-import { TargetAssetsInput } from "./lib";
+import { ClearableDateInput, TargetAssetsInput } from "./lib";
 
 const cronToString = (pattern: string) => {
   try {
@@ -106,6 +106,9 @@ export const InstrumentList = () => (
           reference="assets/assets"
           link="show"
         />
+      </DataTable.Col>
+      <DataTable.Col source="sellBy" label="Sell By">
+        <DateField source="sellBy" />
       </DataTable.Col>
       <DataTable.Col>
         <EditButton />
@@ -205,8 +208,17 @@ export const InstrumentShow = () => (
         reference="assets/assets"
         label="Target Asset"
       />
+      <DateField source="sellBy" label="Sell By" />
     </SimpleShowLayout>
   </Show>
+);
+
+const SellByInput = () => (
+  <ClearableDateInput
+    source="sellBy"
+    label="Sell By"
+    helperText="Non-liquid only. Simulations sell it on this date and move its value (after the factor) to the target asset."
+  />
 );
 
 export const InstrumentEdit = () => (
@@ -225,6 +237,7 @@ export const InstrumentEdit = () => (
       <DateInput source="acquisition_date" />
       <NumberInput source="acquisition_price" />
       <TargetAssetsInput source="targetAssetId" />
+      <SellByInput />
       <TextInput source="id" disabled />
     </SimpleForm>
   </Edit>
@@ -246,6 +259,7 @@ export const InstrumentCreate = () => (
       <DateInput source="acquisition_date" />
       <NumberInput source="acquisition_price" />
       <TargetAssetsInput source="targetAssetId" />
+      <SellByInput />
     </SimpleForm>
   </Create>
 );
