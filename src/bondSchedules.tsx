@@ -19,8 +19,13 @@ import {
 } from "react-admin";
 
 const postFilters = [
-  <ReferenceInput source="bondId" label="Bond" reference="assets/bonds" />,
-  <BooleanInput source="paid" label="Paid" />,
+  <ReferenceInput
+    key="bondId"
+    source="bondId"
+    label="Bond"
+    reference="assets/bonds"
+  />,
+  <BooleanInput key="paid" source="paid" label="Paid" />,
 ];
 
 export const BondscheduleList = () => (
@@ -66,8 +71,8 @@ export const BondscheduleShow = () => (
 export const BondscheduleEdit = () => (
   <Edit>
     <SimpleForm>
-      <ReferenceInput source="bondId" reference="assets/bonds" />
-      <BooleanInput source="paid" />
+      <ReferenceInput key="bondId" source="bondId" reference="assets/bonds" />
+      <BooleanInput key="paid" source="paid" />
       <DateInput source="transactionDate" />
       <NumberInput source="amount" />
       <TextInput source="id" disabled />

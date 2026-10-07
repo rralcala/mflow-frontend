@@ -18,7 +18,9 @@ export const DashboardSpendingAnalysis = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
+  useEffect(() => {
+    fetcherEffect(setData, setError, setLoading, reportRoute)();
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

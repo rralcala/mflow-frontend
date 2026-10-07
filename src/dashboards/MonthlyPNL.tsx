@@ -216,7 +216,9 @@ export const DashboardMonthlyPNL = () => {
     }));
     console.log(openCards);
   };
-  useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
+  useEffect(() => {
+    fetcherEffect(setData, setError, setLoading, reportRoute)();
+  }, []);
 
   if (loading || isLoadingQuotes) return <p>Loading...</p>;
   if (error || errorQuotes)

@@ -20,13 +20,15 @@ export const DashboardAssetByLocation = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []); // Empty array ensures this runs once on mount
+  useEffect(() => {
+    fetcherEffect(setData, setError, setLoading, reportRoute)();
+  }, []); // Empty array ensures this runs once on mount
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  type DataRow = [any, number];
-  function addTotal<T>(matrix: DataRow[]): DataRow[] {
+  type DataRow = [string, number];
+  function addTotal(matrix: DataRow[]): DataRow[] {
     const columnSum = matrix.reduce((accumulator, currentRow) => {
       // We use the nullish coalescing operator (?? 0) in case a row is shorter than expected
       console.log(currentRow);

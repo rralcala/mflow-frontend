@@ -14,7 +14,7 @@ import { formatter, formatterPct } from "../lib";
 
 const reportRoute = "reports/income_per_location";
 
-const ExportButton = ({ data }: { data: any[] }) => {
+const ExportButton = ({ data }: { data: Record<string, unknown>[] }) => {
   const downloadCSV = () => {
     // 1. Define your headers
     //const headers = Object.keys(data[0]).join(',');
@@ -51,7 +51,9 @@ export const DashboardIncomePerLocation = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
+  useEffect(() => {
+    fetcherEffect(setData, setError, setLoading, reportRoute)();
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

@@ -20,11 +20,12 @@ import {
 
 const postFilters = [
   <ReferenceInput
+    key="depositCertificateId"
     source="depositCertificateId"
     label="Deposit Certificate"
     reference="assets/depositCertificates"
   />,
-  <BooleanInput source="paid" label="Paid" />,
+  <BooleanInput key="paid" source="paid" label="Paid" />,
 ];
 
 export const DepositCertificateSchedulesList = () => (
@@ -80,7 +81,7 @@ export const DepositCertificateScheduleEdit = () => (
         source="depositCertificateId"
         reference="assets/depositCertificates"
       />
-      <BooleanInput source="paid" />
+      <BooleanInput key="paid" source="paid" />
       <DateInput source="transactionDate" />
       <NumberInput source="amount" />
       <TextInput source="id" disabled />

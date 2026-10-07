@@ -5,10 +5,10 @@ import { NumberField, RecordContextProvider, TextField } from "react-admin";
 import { Stack } from "@mui/material";
 
 interface Props {
-  icon: FC<any>;
+  icon: FC<{ fontSize?: "large" }>;
   to: To;
   title?: string;
-  subtitle?: any;
+  subtitle?: Record<string, unknown>;
   children?: ReactNode;
 }
 

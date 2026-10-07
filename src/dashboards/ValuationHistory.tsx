@@ -14,7 +14,7 @@ import { fetcherEffect } from "../httpClient";
 
 const reportRoute = "reports/valuation_history";
 
-type DataRow = [any, number, number, number];
+type DataRow = [string, number, number, number];
 function reduceColumns<T>(matrix: DataRow[]): T[][] {
   return matrix.map((row) => [
     row[0],
@@ -48,7 +48,9 @@ export const DashboardValuationHistory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(fetcherEffect(setData, setError, setLoading, reportRoute), []);
+  useEffect(() => {
+    fetcherEffect(setData, setError, setLoading, reportRoute)();
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

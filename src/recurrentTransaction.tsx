@@ -76,14 +76,15 @@ const SumFooter = () => {
 
 const listFilters = [
   <SingleFetchAutocomplete
+    key="recurrentId"
     reference="assets/recurrents"
     source="recurrentId"
     targetField="id"
     label="Recurrent"
   />,
 
-  <TextInput source="yearMonth" label="Year Month" />,
-  <TextInput source="description" label="Description" />,
+  <TextInput key="yearMonth" source="yearMonth" label="Year Month" />,
+  <TextInput key="description" source="description" label="Description" />,
 ];
 
 export const RecurrenttransactionList = () => (
@@ -147,7 +148,7 @@ export const RecurrenttransactionEdit = () => (
         targetField="id"
         label="Recurrent"
       />
-      <TextInput source="yearMonth" />
+      <TextInput key="yearMonth" source="yearMonth" />
       <TextInput source="description" />
       <NumberInput source="amount" />
       <DateInput source="transactionDate" />
@@ -180,7 +181,7 @@ export const RecurrenttransactionCreate = () => (
         targetField="id"
         label="Recurrent"
       />
-      <TextInput source="yearMonth" />
+      <TextInput key="yearMonth" source="yearMonth" />
       <TextInput source="description" />
       <NumberInput source="amount" />
       <DateInput source="transactionDate" />
