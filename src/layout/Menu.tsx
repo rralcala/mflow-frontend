@@ -16,13 +16,21 @@ import { Box, MenuList } from "@mui/material";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
-type MenuName = "menuCD" | "menuBonds" | "menuReports" | "menuAssets";
+type MenuName =
+  | "menuCD"
+  | "menuBonds"
+  | "menuReports"
+  | "menuNetWorth"
+  | "menuCashFlow"
+  | "menuAssets";
 
 const Menu = ({ dense = false }: MenuProps) => {
   const [state, setState] = useState({
     menuCD: true,
     menuBonds: true,
     menuReports: true,
+    menuNetWorth: true,
+    menuCashFlow: true,
     menuAssets: true,
   });
   const resources = useResourceDefinitions();
@@ -166,101 +174,117 @@ const Menu = ({ dense = false }: MenuProps) => {
           icon={<BarChartIcon />}
           dense={dense}
         >
-          <MenuItemLink
-            to="/dashboard-abl"
-            state={{ _scrollToTop: true }}
-            primaryText={"Asset By Location"}
-            leftIcon={<DashboardIcon />}
+          <SubMenu
+            handleToggle={() => handleToggle("menuNetWorth")}
+            isOpen={state.menuNetWorth}
+            name="Net Worth & Investments"
+            icon={<DashboardIcon />}
             dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-cf"
-            state={{ _scrollToTop: true }}
-            primaryText={"Cash Flow"}
-            leftIcon={<DashboardIcon />}
+          >
+            <MenuItemLink
+              to="/dashboard-abl"
+              state={{ _scrollToTop: true }}
+              primaryText={"Asset By Location"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-nws"
+              state={{ _scrollToTop: true }}
+              primaryText={"Net Worth Summary"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-vh"
+              state={{ _scrollToTop: true }}
+              primaryText={"Valuation History"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/reports/exchangeRates"
+              state={{ _scrollToTop: true }}
+              primaryText={"Exchange Rates"}
+              leftIcon={createElement(resources["reports/exchangeRates"].icon)}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-ipl"
+              state={{ _scrollToTop: true }}
+              primaryText={"Investment Per Location"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-ip"
+              state={{ _scrollToTop: true }}
+              primaryText={"Investment Performance"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+          </SubMenu>
+          <SubMenu
+            handleToggle={() => handleToggle("menuCashFlow")}
+            isOpen={state.menuCashFlow}
+            name="Cash Flow & Planning"
+            icon={<DashboardIcon />}
             dense={dense}
-          />
-          <MenuItemLink
-            to="/reports/exchangeRates"
-            state={{ _scrollToTop: true }}
-            primaryText={"Exchange Rates"}
-            leftIcon={createElement(resources["reports/exchangeRates"].icon)}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-ft"
-            state={{ _scrollToTop: true }}
-            primaryText={"Future Timeline"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-ipl"
-            state={{ _scrollToTop: true }}
-            primaryText={"Investment Per Location"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-ip"
-            state={{ _scrollToTop: true }}
-            primaryText={"Investment Performance"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-mpnl"
-            state={{ _scrollToTop: true }}
-            primaryText={"Monthly PNL"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/assets/monthlyTransactions"
-            state={{ _scrollToTop: true }}
-            primaryText={"Monthly Transactions"}
-            leftIcon={createElement(
-              resources["assets/monthlyTransactions"].icon,
-            )}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-nws"
-            state={{ _scrollToTop: true }}
-            primaryText={"Net Worth Summary"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-sa"
-            state={{ _scrollToTop: true }}
-            primaryText={"Spending Analysis"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/reports/upcoming_payments"
-            state={{ _scrollToTop: true }}
-            primaryText={"Upcoming Payments"}
-            leftIcon={createElement(
-              resources["reports/upcoming_payments"].icon,
-            )}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-vh"
-            state={{ _scrollToTop: true }}
-            primaryText={"Valuation History"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
-          <MenuItemLink
-            to="/dashboard-pa"
-            state={{ _scrollToTop: true }}
-            primaryText={"Projection Analysis"}
-            leftIcon={<DashboardIcon />}
-            dense={dense}
-          />
+          >
+            <MenuItemLink
+              to="/dashboard-cf"
+              state={{ _scrollToTop: true }}
+              primaryText={"Cash Flow"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-ft"
+              state={{ _scrollToTop: true }}
+              primaryText={"Future Timeline"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-pa"
+              state={{ _scrollToTop: true }}
+              primaryText={"Projection Analysis"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-mpnl"
+              state={{ _scrollToTop: true }}
+              primaryText={"Monthly PNL"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/assets/monthlyTransactions"
+              state={{ _scrollToTop: true }}
+              primaryText={"Monthly Transactions"}
+              leftIcon={createElement(
+                resources["assets/monthlyTransactions"].icon,
+              )}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/dashboard-sa"
+              state={{ _scrollToTop: true }}
+              primaryText={"Spending Analysis"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
+              to="/reports/upcoming_payments"
+              state={{ _scrollToTop: true }}
+              primaryText={"Upcoming Payments"}
+              leftIcon={createElement(
+                resources["reports/upcoming_payments"].icon,
+              )}
+              dense={dense}
+            />
+          </SubMenu>
         </SubMenu>
       </MenuList>
     </Box>
