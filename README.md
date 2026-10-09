@@ -1,32 +1,50 @@
 # mflow-frontend
 
-## Installation
+Web UI for [mflow](../mflow), a personal cash flow tracker. Built with React 19, TypeScript, Vite, [react-admin](https://marmelab.com/react-admin/) and MUI.
 
-Install the application dependencies by running:
+## Setup
 
 ```sh
 npm install
 ```
 
-## Development
+## Configuration
 
-Start the application in development mode by running:
+The backend URL comes from `VITE_API_URL`, read from the env files at the project root:
 
-```sh
-npm run dev
+| File | Used by |
+|---|---|
+| `.env` | `npm run dev`, `npm run build` |
+| `.env.staging` | `npm run build:staging` |
+
+For local development point it at the backend, e.g. `VITE_API_URL=http://localhost:5001/api`.
+
+## Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server with hot reload |
+| `npm run build` | Production build into `dist/` |
+| `npm run build:staging` | Build using `.env.staging` |
+| `npm run serve` | Preview the built output |
+| `npm run type-check` | `tsc --noEmit` |
+| `npm run lint` | ESLint with autofix |
+| `npm run format` | Prettier |
+
+## Structure
+
+```
+src/
+  App.tsx, index.tsx     # app shell and react-admin resource registration
+  authProvider.ts        # JWT login against the backend
+  httpClient.tsx         # fetch wrapper that adds the Bearer token
+  <resource>.tsx         # one file per resource (accounts, bonds, payables, recurrents, ...)
+  dashboards/            # charts, e.g. the future timeline
+  layout/, lib/          # layout components and helpers
 ```
 
-## Production
+The data provider is [ra-data-json-server](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server), so backend list endpoints must follow the json-server query conventions (`_start`, `_end`, `_sort`, `_order`).
 
-Build the application in production mode by running:
+## Deploy
 
-```sh
-npm run build
-```
-
-## DataProvider
-
-The included data provider use [ra-data-json-server](https://github.com/marmelab/react-admin/tree/master/packages/ra-data-json-server). It fits REST APIs powered by [JSON Server](https://github.com/typicode/json-server), such as [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
-
-You'll find an `.env` file at the project root that includes a `VITE_JSON_SERVER_URL` variable. Set it to the URL of your backend. By default, we set it to targets [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
-
+`deploy.sh` builds in staging mode and rsyncs `dist/` to the staging web host. Check the target before running it. A `Dockerfile` is also provided for containerized hosting.
