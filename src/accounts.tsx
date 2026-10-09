@@ -3,11 +3,13 @@ import {
   BooleanInput,
   Create,
   DataTable,
+  DateField,
   Edit,
   EditButton,
   List,
   NumberField,
   NumberInput,
+  ReferenceField,
   Show,
   SimpleForm,
   SimpleShowLayout,
@@ -15,6 +17,18 @@ import {
   TextInput,
 } from "react-admin";
 import { Stack, Typography } from "@mui/material";
+import { ClearableDateInput, TargetAssetsInput } from "./lib";
+
+const TransferInputs = () => (
+  <>
+    <ClearableDateInput
+      source="transferBy"
+      label="Transfer By"
+      helperText="Simulations move the whole balance into the target pool on this date."
+    />
+    <TargetAssetsInput source="targetAssetId" label="Target Pool" />
+  </>
+);
 
 export const AccountList = () => (
   <List perPage={25} title="Cash Accounts">
@@ -38,6 +52,16 @@ export const AccountList = () => (
         <BooleanField source="liquid" />
       </DataTable.Col>
       <DataTable.NumberCol source="factor" />
+      <DataTable.Col source="transferBy" label="Transfer By">
+        <DateField source="transferBy" />
+      </DataTable.Col>
+      <DataTable.Col source="targetAssetId" label="Target Pool">
+        <ReferenceField
+          source="targetAssetId"
+          reference="assets/assets"
+          link="show"
+        />
+      </DataTable.Col>
       <DataTable.Col>
         <EditButton />
       </DataTable.Col>
@@ -67,6 +91,12 @@ export const AccountShow = () => (
         <TextField source="currency" />
       </Stack>
       <BooleanField source="liquid" />
+      <DateField source="transferBy" label="Transfer By" />
+      <ReferenceField
+        source="targetAssetId"
+        reference="assets/assets"
+        label="Target Pool"
+      />
     </SimpleShowLayout>
   </Show>
 );
@@ -82,6 +112,7 @@ export const AccountEdit = () => (
       <TextInput source="institution" />
       <NumberInput source="factor" />
       <BooleanInput source="liquid" />
+      <TransferInputs />
     </SimpleForm>
   </Edit>
 );
@@ -97,6 +128,7 @@ export const AccountCreate = () => (
       <NumberInput source="factor" />
       <NumberInput source="balance" />
       <BooleanInput source="liquid" />
+      <TransferInputs />
     </SimpleForm>
   </Create>
 );

@@ -83,6 +83,8 @@ type AssetValue = {
   currency: string;
   growth: string | null;
   soldOn: string | null;
+  transferredOn: string | null;
+  transferredTo: string | null;
   isPool: boolean;
   startValue: number;
   endValue: number;
@@ -548,7 +550,9 @@ export const DashboardFutureTimeline = () => {
                 <TableCell>
                   {a.soldOn
                     ? `sold ${a.soldOn}`
-                    : (a.growth ?? (a.isPool ? "cash pool" : "-"))}
+                    : a.transferredOn
+                      ? `moved to ${a.transferredTo} ${a.transferredOn}`
+                      : (a.growth ?? (a.isPool ? "cash pool" : "-"))}
                 </TableCell>
                 <TableCell align="right">
                   {formatNumberWithColor(a.startValueUsd)}
