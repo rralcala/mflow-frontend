@@ -80,6 +80,9 @@ export const InstrumentList = () => (
       <DataTable.Col source="liquid">
         <BooleanField source="liquid" />
       </DataTable.Col>
+      <DataTable.Col source="isTargetPool" label="Target Pool">
+        <BooleanField source="isTargetPool" />
+      </DataTable.Col>
 
       <DataTable.NumberCol
         source="factor"
@@ -203,6 +206,7 @@ export const InstrumentShow = () => (
       />
 
       <BooleanField source="liquid" />
+      <BooleanField source="isTargetPool" label="Target Pool" />
       <ReferenceField
         source="targetAssetId"
         reference="assets/assets"
@@ -217,7 +221,7 @@ const SellByInput = () => (
   <ClearableDateInput
     source="sellBy"
     label="Sell By"
-    helperText="Non-liquid only. Simulations sell it on this date and move its value (after the factor) to the target asset."
+    helperText="Not for target pools. Simulations sell it on this date and move its value (after the factor) to the target asset."
   />
 );
 
@@ -233,6 +237,11 @@ export const InstrumentEdit = () => (
       <NumberInput source="dividend_rate" />
       <NumberInput source="capital_rate" />
       <BooleanInput source="liquid" />
+      <BooleanInput
+        source="isTargetPool"
+        label="Target Pool"
+        helperText="Other assets can draw from or deposit into it. Only target pools are offered as target assets."
+      />
       <NumberInput source="factor" />
       <DateInput source="acquisition_date" />
       <NumberInput source="acquisition_price" />
@@ -255,6 +264,11 @@ export const InstrumentCreate = () => (
       <NumberInput source="dividend_rate" />
       <NumberInput source="capital_rate" />
       <BooleanInput source="liquid" />
+      <BooleanInput
+        source="isTargetPool"
+        label="Target Pool"
+        helperText="Other assets can draw from or deposit into it. Only target pools are offered as target assets."
+      />
       <NumberInput source="factor" />
       <DateInput source="acquisition_date" />
       <NumberInput source="acquisition_price" />

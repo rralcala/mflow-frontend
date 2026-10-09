@@ -17,7 +17,8 @@ export const TargetAssetsInput = ({
       label={label || "Target Asset"}
       source={source}
       reference={reference || "assets/assets"}
-      filter={{ liquid: true }}
+      // Liquid accounts and instruments marked as target pools.
+      filter={{ targetPool: true }}
       sort={{ field: "id", order: "ASC" }}
     />
   );
