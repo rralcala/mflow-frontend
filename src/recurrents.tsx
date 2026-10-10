@@ -1,4 +1,6 @@
 import {
+  BooleanField,
+  BooleanInput,
   Create,
   DataTable,
   DateField,
@@ -62,6 +64,9 @@ export const RecurrentList = () => (
           minimumFractionDigits: 2,
         }}
       />
+      <DataTable.Col source="inflation">
+        <BooleanField source="inflation" />
+      </DataTable.Col>
       <DataTable.Col source="country" />
       <DataTable.Col source="assetId">
         <ReferenceField
@@ -126,6 +131,7 @@ export const RecurrentShow = () => (
           minimumFractionDigits: 2,
         }}
       />
+      <BooleanField source="inflation" />
     </SimpleShowLayout>
   </Show>
 );
@@ -144,6 +150,10 @@ export const RecurrentEdit = () => (
       <DateInput source="end" />
       <TextInput source="recurrence" />
       <NumberInput source="rate" />
+      <BooleanInput
+        source="inflation"
+        helperText="Simulations grow the amount yearly with the country's inflation."
+      />
     </SimpleForm>
   </Edit>
 );
@@ -160,6 +170,10 @@ export const RecurrentCreate = () => (
       <DateInput source="end" />
       <TextInput source="recurrence" />
       <NumberInput source="rate" />
+      <BooleanInput
+        source="inflation"
+        helperText="Simulations grow the amount yearly with the country's inflation."
+      />
       <ReferenceInput
         label="Originating Asset"
         source="assetId"

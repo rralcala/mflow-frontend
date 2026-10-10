@@ -326,7 +326,7 @@ export const DashboardFutureTimeline = () => {
           value={Object.entries(data.inflationRates)
             .map(([c, r]) => `${c} ${(r * 100).toFixed(1)}%`)
             .join(" · ")}
-          detail="Applied to expenses, income, yearly payables and housing (not loans)"
+          detail="Applied to recurrents marked Inflation, yearly payables and housing"
         />
       </Stack>
 
