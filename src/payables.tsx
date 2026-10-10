@@ -36,9 +36,6 @@ export const PayableList = () => (
       <DataTable.Col source="commited">
         <BooleanField source="commited" />
       </DataTable.Col>
-      <DataTable.Col source="oneOff">
-        <BooleanField source="oneOff" />
-      </DataTable.Col>
       <DataTable.Col source="flowClass" />
       <DataTable.Col source="targetAssetId">
         <ReferenceField
@@ -87,7 +84,6 @@ export const PayableShow = () => (
       </Stack>
       <TextField source="country" />
       <BooleanField source="commited" />
-      <BooleanField source="oneOff" />
       <TextField source="flowClass" />
       <ReferenceField
         source="targetAssetId"
@@ -108,7 +104,6 @@ export const PayableEdit = () => (
       <TextInput source="currency" />
       <DateInput source="dueDate" />
       <BooleanInput source="commited" />
-      <BooleanInput source="oneOff" />
       <TextInput source="flowClass" />
       <TargetAssetsInput source="targetAssetId" />
       <TextInput source="id" disabled />
@@ -126,7 +121,6 @@ export const PayableCreate = () => (
       <TextInput source="currency" />
       <DateInput source="dueDate" />
       <BooleanInput source="commited" />
-      <BooleanInput source="oneOff" />
       <TextInput source="flowClass" />
       <TargetAssetsInput source="targetAssetId" />
     </SimpleForm>
