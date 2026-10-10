@@ -8,6 +8,7 @@ import {
   EditButton,
   NumberField,
   NumberInput,
+  Pagination,
   ReferenceField,
   ReferenceInput,
   Show,
@@ -86,12 +87,14 @@ const listFilters = [
   <TextInput key="yearMonth" source="yearMonth" label="Year Month" />,
   <TextInput key="description" source="description" label="Description" />,
 ];
+const PostPagination = () => <Pagination rowsPerPageOptions={[10, 25, 50, 100]} />;
 
 export const RecurrenttransactionList = () => (
   <List
     filters={listFilters}
     title="Recurrent Transactions"
     aside={<SumFooter />}
+    pagination={<PostPagination />}
   >
     <DataTable>
       <DataTable.Col source="recurrentId">
