@@ -7,6 +7,7 @@ import { DashboardInvestmentPerformance } from "./InvestmentPerformance";
 import { DashboardMonthlyPNL } from "./MonthlyPNL";
 import { DashboardNetWorthSummary } from "./NetWorthSummary";
 import { DashboardProjectionAnalysis } from "./ProjectionEstimate";
+import { DashboardRecurrentHistory } from "./RecurrentHistory";
 import { DashboardSpendingAnalysis } from "./SpendingAnalysis";
 import { DashboardValuationHistory } from "./ValuationHistory";
 
@@ -20,6 +21,7 @@ export {
   DashboardMonthlyPNL,
   DashboardNetWorthSummary,
   DashboardProjectionAnalysis,
+  DashboardRecurrentHistory,
   DashboardSpendingAnalysis,
   DashboardValuationHistory,
 };

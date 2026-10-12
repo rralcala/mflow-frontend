@@ -277,6 +277,13 @@ const Menu = ({ dense = false }: MenuProps) => {
               dense={dense}
             />
             <MenuItemLink
+              to="/dashboard-rh"
+              state={{ _scrollToTop: true }}
+              primaryText={"Recurrent History"}
+              leftIcon={<DashboardIcon />}
+              dense={dense}
+            />
+            <MenuItemLink
               to="/dashboard-sa"
               state={{ _scrollToTop: true }}
               primaryText={"Spending Analysis"}

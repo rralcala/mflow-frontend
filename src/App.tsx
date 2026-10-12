@@ -73,6 +73,7 @@ import {
   DashboardMonthlyPNL,
   DashboardNetWorthSummary,
   DashboardProjectionAnalysis,
+  DashboardRecurrentHistory,
   DashboardSpendingAnalysis,
   DashboardValuationHistory,
 } from "./dashboards";
@@ -220,6 +221,7 @@ export const App = () => (
       <Route path="/dashboard-mpnl" element={<DashboardMonthlyPNL />} />
       <Route path="/dashboard-nws" element={<DashboardNetWorthSummary />} />
       <Route path="/dashboard-pa" element={<DashboardProjectionAnalysis />} />
+      <Route path="/dashboard-rh" element={<DashboardRecurrentHistory />} />
       <Route path="/dashboard-sa" element={<DashboardSpendingAnalysis />} />
       <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
     </CustomRoutes>
