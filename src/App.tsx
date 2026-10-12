@@ -61,6 +61,7 @@ import {
   RecurrenttransactionEdit,
   RecurrenttransactionCreate,
 } from "./recurrentTransaction";
+import { RecurrentTransactionImport } from "./recurrentTransactionImport";
 import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
 import {
   Dashboard,
@@ -204,6 +205,10 @@ export const App = () => (
       icon={DownloadIcon}
     />
     <CustomRoutes>
+      <Route
+        path="/recurrent-transactions-import"
+        element={<RecurrentTransactionImport />}
+      />
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
       <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
       <Route path="/dashboard-ft" element={<DashboardFutureTimeline />} />

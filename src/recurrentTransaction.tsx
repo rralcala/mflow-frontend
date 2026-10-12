@@ -1,11 +1,14 @@
 import {
   List,
   Create,
+  CreateButton,
   DataTable,
   DateField,
   DateInput,
   Edit,
   EditButton,
+  ExportButton,
+  FilterButton,
   NumberField,
   NumberInput,
   Pagination,
@@ -16,11 +19,13 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  TopToolbar,
   useListContext,
   useGetOne,
 } from "react-admin";
 import { Stack, Typography } from "@mui/material";
 import { formatter, SingleFetchAutocomplete } from "./lib";
+import { ImportTransactionsButton } from "./recurrentTransactionImport";
 
 interface Transaction {
   id: number;
@@ -87,11 +92,23 @@ const listFilters = [
   <TextInput key="yearMonth" source="yearMonth" label="Year Month" />,
   <TextInput key="description" source="description" label="Description" />,
 ];
-const PostPagination = () => <Pagination rowsPerPageOptions={[10, 25, 50, 100]} />;
+const ListActions = () => (
+  <TopToolbar>
+    <FilterButton />
+    <CreateButton />
+    <ImportTransactionsButton />
+    <ExportButton />
+  </TopToolbar>
+);
+
+const PostPagination = () => (
+  <Pagination rowsPerPageOptions={[10, 25, 50, 100]} />
+);
 
 export const RecurrenttransactionList = () => (
   <List
     filters={listFilters}
+    actions={<ListActions />}
     title="Recurrent Transactions"
     aside={<SumFooter />}
     pagination={<PostPagination />}
@@ -138,6 +155,7 @@ export const RecurrenttransactionShow = () => (
       <ReferenceField source="paidWithAssetId" reference="assets/assets" />
       <NumberField source="amount" options={numberFieldOptions} />
       <TextField source="id" />
+      <TextField source="importHash" emptyText="-" />
     </SimpleShowLayout>
   </Show>
 );

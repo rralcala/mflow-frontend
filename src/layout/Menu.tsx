@@ -15,6 +15,7 @@ import SubMenu from "./SubMenu";
 import { Box, MenuList } from "@mui/material";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import UploadIcon from "@mui/icons-material/Upload";
 
 type MenuName =
   | "menuCD"
@@ -73,6 +74,13 @@ const Menu = ({ dense = false }: MenuProps) => {
           leftIcon={createElement(
             resources["assets/recurrentTransactions"].icon,
           )}
+          dense={dense}
+        />
+        <MenuItemLink
+          to="/recurrent-transactions-import"
+          state={{ _scrollToTop: true }}
+          primaryText={"Import Transactions"}
+          leftIcon={<UploadIcon />}
           dense={dense}
         />
         <MenuItemLink
