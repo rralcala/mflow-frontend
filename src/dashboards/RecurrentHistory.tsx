@@ -21,7 +21,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { formatNumberWithColor } from "../lib";
+import { formatNumberWithColor, formatter } from "../lib";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const reportRoute = "reports/recurrent_history";
@@ -46,6 +46,8 @@ type Series = {
   flowClass: string | null;
   // The recurrent was deleted but its transactions remain.
   missing: boolean;
+  // The recurrent's stored amount, null when it was deleted.
+  target: number | null;
   months: number[];
   stats: Stats;
 };
@@ -84,6 +86,16 @@ const transactionsLink = (recurrentId: string, yearMonth?: string) =>
 
 const amount = (value: number | null) =>
   value === null ? "-" : formatNumberWithColor(value);
+
+// A month meets its target when it's at least the recurrent's amount, for
+// income (100 target: 100 or 110 is fine) and expenses alike (-100 target:
+// -90 is fine, -110 went over). Without a target (deleted recurrent or a zero
+// amount) only the sign is shown: negatives red, everything else default.
+const targetColor = (value: number, target: number | null) => {
+  if (value === 0) return "text.primary";
+  if (!target) return value < 0 ? "error.main" : "text.primary";
+  return value >= target ? "success.main" : "error.main";
+};
 
 const stickySx = {
   position: "sticky",
@@ -148,27 +160,47 @@ export const DashboardRecurrentHistory = () => {
 
   const months = report?.months ?? [];
 
-  const valueCells = (values: number[], stats: Stats, recurrentId?: string) =>
+  // Month cells of a recurrent are colored against its target; total rows
+  // keep the plain formatting.
+  const monthCell = (value: number, month: string, row?: Series) => {
+    if (!row) {
+      return value === 0 ? (
+        <Typography component="span" color="text.disabled">
+          -
+        </Typography>
+      ) : (
+        amount(value)
+      );
+    }
+    const text = (
+      <Typography
+        component="span"
+        variant="body2"
+        sx={{ color: targetColor(value, row.target) }}
+      >
+        {formatter.format(value)}
+      </Typography>
+    );
+    return value === 0 ? (
+      text
+    ) : (
+      <Link
+        component={RouterLink}
+        to={transactionsLink(row.id, month)}
+        underline="hover"
+        color="inherit"
+      >
+        {text}
+      </Link>
+    );
+  };
+
+  const valueCells = (values: number[], stats: Stats, row?: Series) =>
     view === "months" ? (
       <>
         {values.map((value, i) => (
           <TableCell key={months[i]} align="right">
-            {value === 0 ? (
-              <Typography component="span" color="text.disabled">
-                -
-              </Typography>
-            ) : recurrentId ? (
-              <Link
-                component={RouterLink}
-                to={transactionsLink(recurrentId, months[i])}
-                underline="hover"
-                color="inherit"
-              >
-                {amount(value)}
-              </Link>
-            ) : (
-              amount(value)
-            )}
+            {monthCell(value, months[i], row)}
           </TableCell>
         ))}
         <TableCell align="right">{amount(stats.total)}</TableCell>
@@ -238,8 +270,10 @@ export const DashboardRecurrentHistory = () => {
             </ToggleButtonGroup>
           </Stack>
           <Typography variant="body2" color="text.secondary">
-            Recorded transactions only. Statistics use one total per month in
-            the range, counting months without transactions as zero.
+            Recorded transactions only. Months are green when they reach the
+            amount set on the recurrent and red when they fall short of it.
+            Statistics use one total per month in the range, counting months
+            without transactions as zero.
           </Typography>
 
           {error && <Alert severity="error">{error}</Alert>}
@@ -324,7 +358,7 @@ export const DashboardRecurrentHistory = () => {
                                 </Typography>
                               )}
                             </TableCell>
-                            {valueCells(row.months, row.stats, row.id)}
+                            {valueCells(row.months, row.stats, row)}
                           </TableRow>
                         ))}
                         {total && (
