@@ -1,5 +1,5 @@
 // in src/Dashboard.js
-import { useGetOne } from "react-admin";
+import { useGetList } from "react-admin";
 
 import { Card, CardContent, CardHeader } from "@mui/material";
 import DollarIcon from "@mui/icons-material/AttachMoney";
@@ -7,39 +7,16 @@ import CardWithIcon from "../CardWithIcon";
 import { Stack } from "@mui/material";
 
 export const Dashboard = () => {
-  // Fetch a specific record using useGetOne hook
-  // Replace 'dashboard-stats' with your actual resource name and '1' with the record ID
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  // The recurrents shown here come from DASHBOARD_RECURRENTS in the user's config.json.
+  const { data, isLoading, error } = useGetList("assets/dashboardBudgets");
 
-  const { data, isLoading, error } = useGetOne("assets/monthlyTransactions", {
-    id: `${year}-${month}-CostoFijo-PY`,
-  });
-
-  const {
-    data: dataD,
-    isLoading: isLoadingD,
-    error: errorD,
-  } = useGetOne("assets/monthlyTransactions", {
-    id: `${year}-${month}-Discretionary`,
-  });
-
-  const {
-    data: dataS,
-    isLoading: isLoadingS,
-    error: errorS,
-  } = useGetOne("assets/monthlyTransactions", {
-    id: `${year}-${month}-Supermercado`,
-  });
-
-  if (isLoading || isLoadingD || isLoadingS)
+  if (isLoading)
     return (
       <Card>
         <CardContent>Loading...</CardContent>
       </Card>
     );
-  if (error || errorD || errorS)
+  if (error)
     return (
       <Card>
         <CardContent>Error loading data</CardContent>
@@ -50,26 +27,21 @@ export const Dashboard = () => {
     <Stack spacing={1}>
       <Card>
         <CardHeader title="Welcome mFlow" />
-        <CardContent>Here&apos;s a summary of key budgets:</CardContent>
+        <CardContent>
+          {data?.length
+            ? "Here's a summary of key budgets:"
+            : "No budgets selected for the dashboard yet."}
+        </CardContent>
       </Card>
-      <CardWithIcon
-        to="/recurrentTransactions"
-        icon={DollarIcon}
-        title={`Remaining discretionary for ${year}-${month}`}
-        subtitle={dataD}
-      />
-      <CardWithIcon
-        to="/recurrentTransactions"
-        icon={DollarIcon}
-        title={`Remaining groceries for ${year}-${month}`}
-        subtitle={dataS}
-      />
-      <CardWithIcon
-        to="/recurrentTransactions"
-        icon={DollarIcon}
-        title={`Remaining fixed for ${year}-${month}`}
-        subtitle={data}
-      />
+      {data?.map((budget) => (
+        <CardWithIcon
+          key={budget.id}
+          to="/recurrentTransactions"
+          icon={DollarIcon}
+          title={`Remaining ${budget.label} for ${budget.yearMonth}`}
+          subtitle={budget}
+        />
+      ))}
     </Stack>
   );
 };
