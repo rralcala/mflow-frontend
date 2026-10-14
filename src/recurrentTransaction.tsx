@@ -1,5 +1,6 @@
 import {
   List,
+  BooleanInput,
   Create,
   CreateButton,
   DataTable,
@@ -212,6 +213,11 @@ export const RecurrenttransactionCreate = () => (
         reference="assets/assets"
         filter={{ liquid: true }}
         sort={{ field: "id", order: "ASC" }}
+      />
+      <BooleanInput
+        source="updateBalance"
+        label="Update account balance"
+        helperText="Add the amount to the paid-with account's balance."
       />
     </SimpleForm>
   </Create>
