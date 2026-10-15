@@ -92,6 +92,13 @@ const listFilters = [
 
   <TextInput key="yearMonth" source="yearMonth" label="Year Month" />,
   <TextInput key="description" source="description" label="Description" />,
+  <ReferenceInput
+    key="paidWithAssetId"
+    source="paidWithAssetId"
+    reference="assets/assets"
+    filter={{ liquid: true }}
+    sort={{ field: "id", order: "ASC" }}
+  />,
 ];
 const ListActions = () => (
   <TopToolbar>
