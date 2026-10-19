@@ -48,6 +48,7 @@ import {
   PayableEdit,
   PayableCreate,
 } from "./payables";
+import { ProfilePage } from "./profile";
 import { PropertyEdit, PropertyList, PropertyShow } from "./properties";
 import {
   RecurrentList,
@@ -222,6 +223,7 @@ export const App = () => (
       <Route path="/dashboard-rh" element={<DashboardRecurrentHistory />} />
       <Route path="/dashboard-sa" element={<DashboardSpendingAnalysis />} />
       <Route path="/dashboard-vh" element={<DashboardValuationHistory />} />
+      <Route path="/profile" element={<ProfilePage />} />
     </CustomRoutes>
   </Admin>
 );
