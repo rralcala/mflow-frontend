@@ -21,12 +21,10 @@ import {
   Typography,
 } from "@mui/material";
 
-import { formatNumberWithColor, formatter } from "../lib";
+import { FLOW_CLASSES, formatNumberWithColor, formatter } from "../lib";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const reportRoute = "reports/recurrent_history";
-
-const FLOW_CLASSES = ["expense", "income", "loan", "repayment", "transfer"];
 
 type Stats = {
   total: number;

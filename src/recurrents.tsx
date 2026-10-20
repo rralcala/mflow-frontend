@@ -21,7 +21,7 @@ import {
 } from "react-admin";
 import cronstrue from "cronstrue";
 import { Stack, Typography } from "@mui/material";
-import { FlowFilters } from "./lib";
+import { FlowClassInput, FlowFilters } from "./lib";
 import { TargetAssetsInput } from "./lib/TargetAssetsInput";
 
 const RecurrentFilters = [
@@ -141,7 +141,7 @@ export const RecurrentEdit = () => (
     <SimpleForm>
       <TextInput source="id" disabled />
       <TextInput source="country" />
-      <TextInput source="flowClass" />
+      <FlowClassInput />
       <NumberInput source="amount" />
       <TextInput source="currency" />
       <ReferenceInput source="assetId" reference="assets/assets" />
@@ -163,7 +163,7 @@ export const RecurrentCreate = () => (
     <SimpleForm>
       <TextInput source="id" />
       <TextInput source="country" />
-      <TextInput source="flowClass" />
+      <FlowClassInput />
       <NumberInput source="amount" />
       <TextInput source="currency" />
       <DateInput source="start" />

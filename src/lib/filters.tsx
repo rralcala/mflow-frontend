@@ -1,16 +1,11 @@
 import { SelectInput } from "ra-ui-materialui";
+import { FLOW_CLASS_CHOICES } from "./flowClasses";
 
 export const FlowFilters = [
   <SelectInput
     key="flowClassFilter"
     label="Flow Class"
     source="flowClass"
-    choices={[
-      { id: "expense", name: "expense" },
-      { id: "income", name: "income" },
-      { id: "loan", name: "loan" },
-      { id: "repayment", name: "repayment" },
-      { id: "transfer", name: "transfer" },
-    ]}
+    choices={FLOW_CLASS_CHOICES}
   />,
 ];

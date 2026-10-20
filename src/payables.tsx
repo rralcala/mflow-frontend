@@ -18,7 +18,7 @@ import {
   TextInput,
 } from "react-admin";
 import { Stack, Typography } from "@mui/material";
-import { FlowFilters, TargetAssetsInput } from "./lib";
+import { FlowClassInput, FlowFilters, TargetAssetsInput } from "./lib";
 
 export const PayableList = () => (
   <List filters={FlowFilters} title="Single Payables">
@@ -104,7 +104,7 @@ export const PayableEdit = () => (
       <TextInput source="currency" />
       <DateInput source="dueDate" />
       <BooleanInput source="commited" />
-      <TextInput source="flowClass" />
+      <FlowClassInput />
       <TargetAssetsInput source="targetAssetId" />
       <TextInput source="id" disabled />
     </SimpleForm>
@@ -121,7 +121,7 @@ export const PayableCreate = () => (
       <TextInput source="currency" />
       <DateInput source="dueDate" />
       <BooleanInput source="commited" />
-      <TextInput source="flowClass" />
+      <FlowClassInput />
       <TargetAssetsInput source="targetAssetId" />
     </SimpleForm>
   </Create>
