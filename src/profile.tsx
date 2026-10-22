@@ -1,7 +1,8 @@
-import { useState, useEffect, ReactNode } from "react";
-import { Title } from "react-admin";
+import { useState, useEffect, FormEvent, ReactNode } from "react";
+import { Title, useNotify } from "react-admin";
 
 import {
+  Button,
   Card,
   CardContent,
   Chip,
@@ -12,13 +13,19 @@ import {
   TableCell,
   TableContainer,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 
-import { fetcherEffect } from "./httpClient";
+import { fetcherEffect, httpClient } from "./httpClient";
 import { formatter, formatterPct } from "./lib";
 
+const apiUrl = import.meta.env.VITE_API_URL;
 const profileRoute = "auth/profile";
+const passwordRoute = "auth/password";
+// Keep in step with lib/passwords.py in the backend.
+const MIN_PASSWORD_LENGTH = 12;
+const MAX_PASSWORD_LENGTH = 30;
 
 type Profile = {
   id: string;
@@ -82,6 +89,108 @@ const renderValue = (key: string, value: unknown): ReactNode => {
   );
 };
 
+const passwordError = (password: string, current: string) => {
+  if (password.length < MIN_PASSWORD_LENGTH)
+    return `At least ${MIN_PASSWORD_LENGTH} characters`;
+  if (password.length > MAX_PASSWORD_LENGTH)
+    return `At most ${MAX_PASSWORD_LENGTH} characters`;
+  if (password.trim() !== password) return "Can't start or end with whitespace";
+  if (password === current) return "Must differ from the current password";
+  return null;
+};
+
+const ChangePasswordCard = () => {
+  const notify = useNotify();
+  const [current, setCurrent] = useState("");
+  const [next, setNext] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const nextError = next ? passwordError(next, current) : null;
+  const confirmError =
+    confirm && confirm !== next ? "Passwords don't match" : null;
+  const canSubmit =
+    !busy && current && next && confirm && !nextError && !confirmError;
+
+  const submit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!canSubmit) return;
+    setBusy(true);
+    try {
+      await httpClient(apiUrl + passwordRoute, {
+        method: "POST",
+        body: JSON.stringify({ currentPassword: current, newPassword: next }),
+      });
+      setCurrent("");
+      setNext("");
+      setConfirm("");
+      notify("Password changed", { type: "success" });
+    } catch (error) {
+      notify((error as Error).message || "Could not change the password", {
+        type: "error",
+      });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          Change password
+        </Typography>
+        <Stack
+          component="form"
+          onSubmit={submit}
+          spacing={2}
+          sx={{ maxWidth: 400 }}
+        >
+          <TextField
+            label="Current password"
+            type="password"
+            autoComplete="current-password"
+            value={current}
+            onChange={(e) => setCurrent(e.target.value)}
+            required
+          />
+          <TextField
+            label="New password"
+            type="password"
+            autoComplete="new-password"
+            value={next}
+            onChange={(e) => setNext(e.target.value)}
+            error={Boolean(nextError)}
+            helperText={
+              nextError ??
+              `${MIN_PASSWORD_LENGTH}–${MAX_PASSWORD_LENGTH} characters`
+            }
+            required
+          />
+          <TextField
+            label="Repeat new password"
+            type="password"
+            autoComplete="new-password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            error={Boolean(confirmError)}
+            helperText={confirmError ?? " "}
+            required
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={!canSubmit}
+            sx={{ alignSelf: "flex-start" }}
+          >
+            Change password
+          </Button>
+        </Stack>
+      </CardContent>
+    </Card>
+  );
+};
+
 export const ProfilePage = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -131,6 +240,7 @@ export const ProfilePage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <ChangePasswordCard />
     </Stack>
   );
 };
