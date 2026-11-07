@@ -136,11 +136,11 @@ export const RecurrenttransactionList = () => (
           minimumFractionDigits: 0,
         }}
       />
-      <DataTable.Col source="paidWithAssetId">
-        <ReferenceField source="paidWithAssetId" reference="assets/assets" />
-      </DataTable.Col>
       <DataTable.Col source="transactionDate">
         <DateField source="transactionDate" />
+      </DataTable.Col>
+      <DataTable.Col source="paidWithAssetId">
+        <ReferenceField source="paidWithAssetId" reference="assets/assets" />
       </DataTable.Col>
       <DataTable.Col source="createDate">
         <DateField source="createDate" />
