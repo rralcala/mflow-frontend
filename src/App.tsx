@@ -63,6 +63,7 @@ import {
   RecurrenttransactionCreate,
 } from "./recurrentTransaction";
 import { RecurrentTransactionImport } from "./recurrentTransactionImport";
+import { ScheduleUpload } from "./scheduleUpload";
 import { UpcomingpaymentList, UpcomingpaymentShow } from "./upcomingPayments";
 import {
   Dashboard,
@@ -210,6 +211,7 @@ export const App = () => (
         path="/recurrent-transactions-import"
         element={<RecurrentTransactionImport />}
       />
+      <Route path="/schedule-upload" element={<ScheduleUpload />} />
       <Route path="/dashboard-abl" element={<DashboardAssetByLocation />} />
       <Route path="/dashboard-cf" element={<DashboardCashFlow />} />
       <Route path="/dashboard-ft" element={<DashboardFutureTimeline />} />

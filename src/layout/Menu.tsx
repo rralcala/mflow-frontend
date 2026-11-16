@@ -161,6 +161,13 @@ const Menu = ({ dense = false }: MenuProps) => {
             />
           </SubMenu>
           <MenuItemLink
+            to="/schedule-upload"
+            state={{ _scrollToTop: true }}
+            primaryText={"Upload Schedule"}
+            leftIcon={<UploadIcon />}
+            dense={dense}
+          />
+          <MenuItemLink
             to="/assets/instruments"
             state={{ _scrollToTop: true }}
             primaryText={"Instruments"}
