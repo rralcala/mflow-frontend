@@ -35,7 +35,7 @@ export const AccountList = () => (
     <DataTable>
       <DataTable.Col source="id" />
       <DataTable.Col source="accountType" />
-      <DataTable.Col source="institution" />
+      <DataTable.Col source="location" />
       <DataTable.Col source="country" />
 
       <DataTable.NumberCol
@@ -75,7 +75,7 @@ export const AccountShow = () => (
       <TextField source="id" />
       <TextField source="accountType" />
       <TextField source="country" />
-      <TextField source="institution" />
+      <TextField source="location" />
       <NumberField source="factor" />
       <Typography color="textSecondary">{"Value"}</Typography>
       <Stack direction="row" sx={{ alignItems: "flex-start" }} spacing={1}>
@@ -109,7 +109,7 @@ export const AccountEdit = () => (
       <TextInput source="accountType" />
       <TextInput source="country" />
       <TextInput source="currency" />
-      <TextInput source="institution" />
+      <TextInput source="location" />
       <NumberInput source="factor" />
       <BooleanInput source="liquid" />
       <TransferInputs />
@@ -122,7 +122,7 @@ export const AccountCreate = () => (
     <SimpleForm>
       <TextInput source="id" />
       <TextInput source="country" />
-      <TextInput source="institution" />
+      <TextInput source="location" />
       <TextInput source="accountType" />
       <TextInput source="currency" />
       <NumberInput source="factor" />

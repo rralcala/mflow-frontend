@@ -17,6 +17,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  required,
 } from "react-admin";
 import { Stack, Typography } from "@mui/material";
 import cronstrue from "cronstrue";
@@ -37,6 +38,7 @@ export const InstrumentList = () => (
   >
     <DataTable>
       <DataTable.Col source="location" />
+      <DataTable.Col source="account" />
       <DataTable.Col source="symbol" />
       <DataTable.NumberCol
         source="qty"
@@ -126,8 +128,10 @@ export const InstrumentList = () => (
 export const InstrumentShow = () => (
   <Show>
     <SimpleShowLayout>
+      <TextField source="identifier" />
       <TextField source="country" />
       <TextField source="location" />
+      <TextField source="account" />
       <TextField source="symbol" />
       <NumberField
         source="qty"
@@ -220,6 +224,14 @@ export const InstrumentShow = () => (
   </Show>
 );
 
+const AccountInput = () => (
+  <TextInput
+    source="account"
+    validate={required()}
+    helperText="The account at the location that holds it. Its identifier is Location_Account_Symbol; renaming it updates the assets that use it."
+  />
+);
+
 const SellByInput = () => (
   <ClearableDateInput
     source="sellBy"
@@ -232,7 +244,8 @@ export const InstrumentEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput source="country" disabled />
-      <TextInput source="location" disabled />
+      <TextInput source="location" />
+      <AccountInput />
       <TextInput source="symbol" />
       <NumberInput source="qty" />
       <TextInput source="currency" />
@@ -260,6 +273,7 @@ export const InstrumentCreate = () => (
     <SimpleForm>
       <TextInput source="country" />
       <TextInput source="location" />
+      <AccountInput />
       <TextInput source="symbol" />
       <NumberInput source="qty" />
       <TextInput source="currency" />
