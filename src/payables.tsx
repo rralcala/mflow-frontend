@@ -21,7 +21,11 @@ import { Stack, Typography } from "@mui/material";
 import { FlowClassInput, FlowFilters, TargetAssetsInput } from "./lib";
 
 export const PayableList = () => (
-  <List filters={FlowFilters} title="Single Payables">
+  <List
+    filters={FlowFilters}
+    sort={{ field: "dueDate", order: "ASC" }}
+    title="Single Payables"
+  >
     <DataTable>
       <DataTable.Col source="country" />
       <DataTable.Col source="description" />

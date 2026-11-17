@@ -116,6 +116,7 @@ const PostPagination = () => (
 export const RecurrenttransactionList = () => (
   <List
     filters={listFilters}
+    sort={{ field: "transactionDate", order: "DESC" }}
     actions={<ListActions />}
     title="Recurrent Transactions"
     aside={<SumFooter />}

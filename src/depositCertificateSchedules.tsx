@@ -24,12 +24,17 @@ const postFilters = [
     source="depositCertificateId"
     label="Deposit Certificate"
     reference="assets/depositCertificates"
+    sort={{ field: "name", order: "ASC" }}
   />,
   <BooleanInput key="paid" source="paid" label="Paid" />,
 ];
 
 export const DepositCertificateSchedulesList = () => (
-  <List filters={postFilters} title="Deposit Certificate Schedules">
+  <List
+    filters={postFilters}
+    sort={{ field: "transactionDate", order: "ASC" }}
+    title="Deposit Certificate Schedules"
+  >
     <DataTable>
       <DataTable.Col source="depositCertificateId">
         <ReferenceField
@@ -57,6 +62,7 @@ export const DepositCertificateScheduleShow = () => (
       <ReferenceField
         source="depositCertificateId"
         reference="assets/depositCertificates"
+        sort={{ field: "name", order: "ASC" }}
       />
       <DateField source="transactionDate" />
       <NumberField
@@ -80,6 +86,7 @@ export const DepositCertificateScheduleEdit = () => (
       <ReferenceInput
         source="depositCertificateId"
         reference="assets/depositCertificates"
+        sort={{ field: "name", order: "ASC" }}
       />
       <BooleanInput key="paid" source="paid" />
       <DateInput source="transactionDate" />

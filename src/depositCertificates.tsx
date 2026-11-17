@@ -19,7 +19,7 @@ import { Stack, Typography } from "@mui/material";
 import { TargetAssetsInput } from "./lib";
 
 export const DepositCertificateList = () => (
-  <List title="Deposit Certificates">
+  <List sort={{ field: "name", order: "ASC" }} title="Deposit Certificates">
     <DataTable>
       <DataTable.Col source="name" />
       <DataTable.NumberCol source="capital" />

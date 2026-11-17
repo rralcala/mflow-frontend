@@ -31,7 +31,10 @@ const cronToString = (pattern: string) => {
 };
 
 export const InstrumentList = () => (
-  <List title="Financial Instruments">
+  <List
+    sort={{ field: "location", order: "ASC" }}
+    title="Financial Instruments"
+  >
     <DataTable>
       <DataTable.Col source="location" />
       <DataTable.Col source="symbol" />

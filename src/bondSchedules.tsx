@@ -24,12 +24,17 @@ const postFilters = [
     source="bondId"
     label="Bond"
     reference="assets/bonds"
+    sort={{ field: "name", order: "ASC" }}
   />,
   <BooleanInput key="paid" source="paid" label="Paid" />,
 ];
 
 export const BondscheduleList = () => (
-  <List filters={postFilters} title="Bond Schedules">
+  <List
+    filters={postFilters}
+    sort={{ field: "transactionDate", order: "ASC" }}
+    title="Bond Schedules"
+  >
     <DataTable>
       <DataTable.Col source="bondId">
         <ReferenceField source="bondId" reference="assets/bonds" />
@@ -71,7 +76,12 @@ export const BondscheduleShow = () => (
 export const BondscheduleEdit = () => (
   <Edit>
     <SimpleForm>
-      <ReferenceInput key="bondId" source="bondId" reference="assets/bonds" />
+      <ReferenceInput
+        key="bondId"
+        source="bondId"
+        reference="assets/bonds"
+        sort={{ field: "name", order: "ASC" }}
+      />
       <BooleanInput key="paid" source="paid" />
       <DateInput source="transactionDate" />
       <NumberInput source="amount" />

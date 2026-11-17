@@ -19,7 +19,7 @@ import { Stack, Typography } from "@mui/material";
 import { TargetAssetsInput } from "./lib";
 
 export const BondList = () => (
-  <List title="Bonds">
+  <List sort={{ field: "name", order: "ASC" }} title="Bonds">
     <DataTable>
       <DataTable.Col source="name" />
       <DataTable.NumberCol source="capital" />
